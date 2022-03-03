@@ -1,25 +1,16 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { ChakraProvider, Flex } from "@chakra-ui/react";
+import { Routes, Route, Link } from "react-router-dom";
+import Landing from "./pages/Employer";
+import Profile from "./pages/Home";
+import Create from "./pages/Jobseeker";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Flex h="100%" w="100%" bg="red">
+      {" "}
+      hi{" "}
+    </Flex>
   );
 }
 
