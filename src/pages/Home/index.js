@@ -1,11 +1,9 @@
-import { Flex, Image, Text } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import React from "react";
-import NavigationBar from "../../components/NaviagtionBar";
 
 function Home() {
   return (
     <Flex minH="100vh" bg="#f4f4f4" flexDir="column">
-      <NavigationBar />
       <Flex h="80vh" bg="white">
         <Flex w="50%" align="center" justify="center">
           <Flex
