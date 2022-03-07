@@ -1,16 +1,21 @@
 import React from "react";
-import { ChakraProvider, Flex } from "@chakra-ui/react";
-import { Routes, Route, Link } from "react-router-dom";
-import Landing from "./pages/Employer";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Landing from "./pages/Apply";
+import Home from "./pages/Home";
 import Profile from "./pages/Home";
-import Create from "./pages/Jobseeker";
+import Create from "./pages/Explore";
+import Apply from "./pages/Apply";
+import Explore from "./pages/Explore";
 
 function App() {
   return (
-    <Flex h="100%" w="100%" bg="red">
-      {" "}
-      hi{" "}
-    </Flex>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="apply" element={<Apply />} />
+        <Route path="explore" element={<Explore />} />
+      </Routes>
+    </Router>
   );
 }
 
