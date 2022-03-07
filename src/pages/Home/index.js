@@ -36,10 +36,29 @@ function Home() {
       </Flex>
       <Flex h="80vh" bg="white">
         <Flex w="50%" align="center" justify="center">
-          Get Hired
+          <Flex
+            h="70%"
+            w="70%"
+            bg="blue"
+            justify="center"
+            align="center"
+            bg="#EAD657"
+            borderRadius="3xl"
+          >
+            Get Hired
+          </Flex>
         </Flex>
         <Flex h="100%" w="50%" align="center" justify="center">
-          Hire Someone
+          <Flex
+            h="70%"
+            w="70%"
+            bg="blue"
+            justify="center"
+            align="center"
+            borderRadius="3xl"
+          >
+            Hire Someone
+          </Flex>
         </Flex>
       </Flex>
     </Flex>
