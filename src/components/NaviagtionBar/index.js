@@ -1,12 +1,24 @@
-import { Button, Flex, Image, Text } from "@chakra-ui/react";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { ImCross } from "react-icons/im";
+import {
+  Box,
+  Flex,
+  HStack,
+  IconButton,
+  useDisclosure,
+  Text,
+  Image,
+  Stack,
+  Button,
+} from "@chakra-ui/react";
 import React from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { signInWithPopup, signOut } from "firebase/auth";
 import { auth, provider } from "../../utils/firebase";
 
 function NavigationBar({ currentUser, setCurrentUser }) {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
   const signUserIn = () => {
     signInWithPopup(auth, provider)
@@ -39,52 +51,138 @@ function NavigationBar({ currentUser, setCurrentUser }) {
   };
 
   return (
-    <Flex px="4" bg="#EAD657" justify="space-between" align="center">
-      <Image
-        w="120px"
-        h="120px"
-        src="https://i.imgur.com/h7IuUMm.png"
-        onClick={() => {
-          navigate("/");
-        }}
-      />
-      <Flex pr="8">
-        <Link to="explore">
-          <Text
-            px="6"
-            py="2"
-            fontFamily="sans-serif"
+    <>
+      <Box bg="#EAD657" py="6" px="8" w="100vw" overflow="hidden">
+        <Flex h={16} alignItems="center" justifyContent="space-between">
+          <HStack spacing={8} alignItems="center">
+            <Image
+              w="120px"
+              h="120px"
+              src="https://i.imgur.com/h7IuUMm.png"
+              onClick={() => {
+                navigate("/");
+              }}
+            />
+            <HStack
+              as="nav"
+              spacing={4}
+              display={{ base: "none", md: "flex" }}
+            />
+          </HStack>
+          <Flex
+            alignItems="center"
+            fontFamily="Inter"
             fontWeight="bold"
-            borderRadius="lg"
-            _hover={{ bg: "white" }}
+            display={{ base: "none", md: "flex" }}
           >
-            Explore Jobs
-          </Text>
-        </Link>
-        <Link to="apply">
-          <Text
-            px="6"
-            py="2"
-            fontFamily="sans-serif"
-            fontWeight="bold"
-            borderRadius="lg"
-            _hover={{ bg: "white" }}
-          >
-            Post a Job
-          </Text>
-        </Link>
-        {currentUser ? (
-          <Button mx="4" onClick={signUserOut}>
-            Sign Out
-          </Button>
-        ) : (
-          <Button mx="4" leftIcon={<FcGoogle />} onClick={signUserIn}>
-            Sign In
-          </Button>
-        )}
-      </Flex>
-    </Flex>
+            <Link to="explore">
+              <Text
+                px="6"
+                py="2"
+                fontFamily="sans-serif"
+                fontWeight="bold"
+                borderRadius="lg"
+                _hover={{ bg: "white" }}
+              >
+                Explore Jobs
+              </Text>
+            </Link>
+            <Link to="apply">
+              <Text
+                px="6"
+                py="2"
+                fontFamily="sans-serif"
+                fontWeight="bold"
+                borderRadius="lg"
+                _hover={{ bg: "white" }}
+              >
+                Post a Job
+              </Text>
+            </Link>
+            {currentUser ? (
+              <Button mx="4" onClick={signUserOut}>
+                Sign Out
+              </Button>
+            ) : (
+              <Button mx="4" leftIcon={<FcGoogle />} onClick={signUserIn}>
+                Sign In
+              </Button>
+            )}
+          </Flex>
+          <IconButton
+            size="md"
+            fontSize="lg"
+            background="black"
+            color="white"
+            p={3}
+            icon={isOpen ? <ImCross /> : <GiHamburgerMenu />}
+            aria-label="Open Menu"
+            display={{ md: "none" }}
+            onClick={isOpen ? onClose : onOpen}
+            _hover={{
+              background: "white",
+              color: "black",
+            }}
+          />
+        </Flex>
+        {isOpen ? (
+          <Box pb={4} display={{ md: "none" }}>
+            <Stack
+              as="nav"
+              spacing={4}
+              alignItems="center"
+              fontFamily="Inter"
+              fontWeight="bold"
+            >
+              <Link to="explore">
+                <Text
+                  px="6"
+                  py="2"
+                  fontFamily="sans-serif"
+                  fontWeight="bold"
+                  borderRadius="lg"
+                  _hover={{ bg: "white" }}
+                >
+                  Explore Jobs
+                </Text>
+              </Link>
+              <Link to="apply">
+                <Text
+                  px="6"
+                  py="2"
+                  fontFamily="sans-serif"
+                  fontWeight="bold"
+                  borderRadius="lg"
+                  _hover={{ bg: "white" }}
+                >
+                  Post a Job
+                </Text>
+              </Link>
+              {currentUser ? (
+                <Button mx="4" onClick={signUserOut}>
+                  Sign Out
+                </Button>
+              ) : (
+                <Button mx="4" leftIcon={<FcGoogle />} onClick={signUserIn}>
+                  Sign In
+                </Button>
+              )}
+            </Stack>
+          </Box>
+        ) : null}
+      </Box>
+    </>
   );
 }
 
 export default NavigationBar;
+
+// function NavigationBar() {
+//   return (
+//     <Flex px="4" bg="#EAD657" justify="space-between" align="center">
+//       <Flex pr="8">
+
+//       </Flex>
+//     </Flex>
+//   );
+// }
