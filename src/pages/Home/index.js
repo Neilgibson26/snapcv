@@ -26,6 +26,9 @@ function Home() {
               transform: "scale(1.1)",
               shadow: "2xl",
             }}
+            onClick={() => {
+              navigate("/Apply");
+            }}
           >
             <Text fontSize="3xl" as="em">
               Get Hired
@@ -45,7 +48,7 @@ function Home() {
               shadow: "2xl",
             }}
             onClick={() => {
-              navigate("/apply");
+              navigate("/Hire");
             }}
           >
             <Text fontSize="3xl" as="em">
