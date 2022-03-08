@@ -1,13 +1,19 @@
-import { Flex, Image, Text, AspectRatio } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 import React from "react";
-import NavigationBar from "../../components/NaviagtionBar";
 
 function Home() {
+  const navigate = useNavigate();
   return (
-    <Flex minH="100vh" bg="#f4f4f4" flexDir="column">
-      <NavigationBar />
-      <Flex h="80vh" bg="#f4f4f4">
-        <Flex h="100%" w="50%" align="center" justify="center">
+    <Flex
+      minH="100vh"
+      bg="#f4f4f4"
+      flexDir="column"
+      justify="center"
+      align="center"
+    >
+      <Flex h="80vh" w="80vw">
+        <Flex w="50%" align="center" justify="center">
           <Flex
             h="50%"
             w="70%"
@@ -16,6 +22,10 @@ function Home() {
             bg="#EAD657"
             borderRadius="3xl"
             margin="2px"
+            _hover={{
+              transform: "scale(1.1)",
+              shadow: "2xl",
+            }}
           >
             <Text fontSize="3xl" as="em">
               Get Hired
@@ -30,6 +40,13 @@ function Home() {
             justify="center"
             align="center"
             borderRadius="3xl"
+            _hover={{
+              transform: "scale(1.1)",
+              shadow: "2xl",
+            }}
+            onClick={() => {
+              navigate("/apply");
+            }}
           >
             <Text fontSize="3xl" as="em">
               Hire Someone
@@ -38,15 +55,15 @@ function Home() {
         </Flex>
       </Flex>
       <Flex w="100%" justify="center" align="center">
-        <Flex w="70%" justify="center" align="center" minH="25vh">
+        <Flex w="70%" justify="center" align="center">
           <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/_tQtfkce3Dc"
+            width="100%"
+            height="500"
+            src="https://www.youtube.com/embed/eSs68R4zhLI"
             title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
+            autoplay
           ></iframe>
         </Flex>
       </Flex>
