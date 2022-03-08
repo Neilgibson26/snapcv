@@ -27,7 +27,7 @@ function Home() {
               shadow: "2xl",
             }}
             onClick={() => {
-              navigate("/Apply");
+              navigate("/apply");
             }}
           >
             <Text fontSize="3xl" as="em">
@@ -48,7 +48,7 @@ function Home() {
               shadow: "2xl",
             }}
             onClick={() => {
-              navigate("/Hire");
+              navigate("/hire");
             }}
           >
             <Text fontSize="3xl" as="em">

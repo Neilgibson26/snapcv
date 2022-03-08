@@ -1,7 +1,13 @@
+import { Flex } from "@chakra-ui/react";
 import React from "react";
+import Form from "../../components/form";
 
 function Apply() {
-  return <div>Apply</div>;
+  return (
+    <Flex p="8">
+      <Form />
+    </Flex>
+  );
 }
 
 export default Apply;
