@@ -5,7 +5,7 @@ import { EmailIcon } from "@chakra-ui/icons";
 
 function Profile() {
   return (
-    <Flex h="100vh" w="100vw" alignItems="center" justify="center">
+    <Flex h="100vh" w="100vw" alignItems="center" justify="center" p="10">
       <Flex
         flexDir="column"
         w="80%"
@@ -13,6 +13,8 @@ function Profile() {
         justify="center"
         align="center"
         p="5"
+        shadow="dark-lg"
+        borderRadius="3xl"
       >
         <Text fontSize="6xl" as="b">
           Neil Gibson
