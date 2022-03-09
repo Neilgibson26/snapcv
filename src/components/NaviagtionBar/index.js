@@ -75,7 +75,7 @@ function NavigationBar({ currentUser, setCurrentUser }) {
             fontWeight="bold"
             display={{ base: "none", md: "flex" }}
           >
-            <Link to="explore">
+            <Link to="hire">
               <Text
                 px="6"
                 py="2"
@@ -84,7 +84,7 @@ function NavigationBar({ currentUser, setCurrentUser }) {
                 borderRadius="lg"
                 _hover={{ bg: "white" }}
               >
-                Explore Jobs
+                Hire somebody
               </Text>
             </Link>
             <Link to="apply">

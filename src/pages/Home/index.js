@@ -49,11 +49,11 @@ function Home() {
               shadow: "2xl",
             }}
             onClick={() => {
-              navigate("/hire");
+              navigate("/explore");
             }}
           >
             <Text fontSize="3xl" as="em">
-              Hire Someone
+              Explore jobs
             </Text>
           </Flex>
         </Flex>
