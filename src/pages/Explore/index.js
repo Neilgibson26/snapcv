@@ -29,7 +29,7 @@ function Explore() {
           <option value="option3">Option 3</option>
         </Select>
       </Flex>
-      <Flex flexWrap="wrap">
+      <Flex flexWrap="wrap" justify="center" align="center">
         <Card />
         <Card />
         <Card />
