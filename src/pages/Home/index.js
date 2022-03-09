@@ -1,6 +1,7 @@
-import { Flex, Text } from "@chakra-ui/react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import React from "react";
+import Footer from "../../components/Footer";
 
 function Home() {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ function Home() {
       justify="center"
       align="center"
     >
-      <Flex h="80vh" w="80vw">
+      <Flex h="80vh" w="100vw">
         <Flex w="50%" align="center" justify="center">
           <Flex
             h="50%"
@@ -59,17 +60,20 @@ function Home() {
       </Flex>
       <Flex w="100%" justify="center" align="center">
         <Flex w="70%" justify="center" align="center">
-          <iframe
-            width="100%"
-            height="500"
-            src="https://www.youtube.com/embed/eSs68R4zhLI"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            autoplay
-          ></iframe>
+          <Box w="100%" borderWidth="1px" borderRadius="lg" overflow="hidden">
+            <iframe
+              width="100%"
+              height="500"
+              src="https://www.youtube.com/embed/eSs68R4zhLI"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              autoplay
+            ></iframe>
+          </Box>
         </Flex>
       </Flex>
+      <Footer />
     </Flex>
   );
 }
