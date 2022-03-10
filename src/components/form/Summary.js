@@ -38,7 +38,7 @@ function Summary({
         <FormLabel fontWeight="bold">Summary</FormLabel>
         <Textarea
           h="62vh"
-          placeholder="Summary"
+          placeholder="Upload Summary video 20 seconds / write short summary (optional)"
           value={formData && formData.summary ? formData.summary : ""}
           onChange={(e) => {
             const copy = { ...formData };

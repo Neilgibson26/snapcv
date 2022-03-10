@@ -198,7 +198,7 @@ function Preview({ formData, data, goBack }) {
           );
         })}
       </Flex>
-      <Flex
+      {/* <Flex
         justify="center"
         direction="column"
         p="5"
@@ -206,11 +206,11 @@ function Preview({ formData, data, goBack }) {
         borderRadius="10"
         w="100%"
         my="2"
-      >
-        <Flex justify="center" fontWeight="bold" fontSize="30">
+      > */}
+      {/* <Flex justify="center" fontWeight="bold" fontSize="30">
           <Text>Experience</Text>
-        </Flex>
-        {formData.experience.map((item) => {
+        </Flex> */}
+      {/* {formData.experience.map((item) => {
           return (
             <Flex
               justify="center"
@@ -279,8 +279,8 @@ function Preview({ formData, data, goBack }) {
               </Flex>
             </Flex>
           );
-        })}
-      </Flex>
+        })} */}
+      {/* </Flex> */}
       <Flex
         justify="center"
         direction="column"

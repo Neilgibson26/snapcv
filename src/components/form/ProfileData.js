@@ -1,15 +1,16 @@
-import { Button, Flex, IconButton, Spacer } from "@chakra-ui/react";
+import {
+  Button,
+  Flex,
+  IconButton,
+  Spacer,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import { TiArrowRightOutline } from "react-icons/ti";
 import React from "react";
 import FormTextInput from "./FormTextInput";
 
-function ProfileData({
-  formData,
-  updateFormData,
-  goBack,
-  goNext,
-}) {
-  console.log(formData);
+function ProfileData({ formData, updateFormData, goBack, goNext }) {
+  const [isOnmobile] = useMediaQuery("(max-width: 768px)");
 
   const checkValidInput = () => {
     if (
@@ -41,11 +42,12 @@ function ProfileData({
   return (
     <Flex
       justify="center"
-      w="50%"
+      w={isOnmobile ? "100%" : "50%"}
       p="10"
       mb="10"
+      bg="white"
       direction="column"
-      boxShadow="dark-lg"
+      boxShadow="2xl"
       borderRadius="10px"
     >
       <FormTextInput

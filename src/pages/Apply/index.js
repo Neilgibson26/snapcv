@@ -4,7 +4,7 @@ import Form from "../../components/form";
 
 function Apply() {
   return (
-    <Flex p="8">
+    <Flex p="8" bg="#f7f7f7">
       <Form />
     </Flex>
   );
