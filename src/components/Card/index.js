@@ -4,19 +4,17 @@ import React from "react";
 function Card(props) {
   return (
     <Box
-      h="50vh"
-      maxW="sm"
+      h="40vh"
+      w="20vw"
       borderWidth="1px"
       borderRadius="lg"
       overflow="hidden"
-      p="2"
       mx="10"
       my="10"
     >
       <Flex flexDir="column" flexWrap="wrap">
-        <Box h="30vh" objectFit="cover">
+        <Box objectFit="contain" w="100%" borderRadius="lg">
           <Image
-            borderRadius="lg"
             w="100%"
             h="100%"
             alt="Profile"
@@ -24,19 +22,19 @@ function Card(props) {
             objectFit="contain"
           ></Image>
         </Box>
-        <Flex flexWrap="wrap" justify="space-evenly">
-          <Text mx="2" as="b">
-            Neil Gibson &bull;{" "}
+        <Flex flexWrap="wrap" justify="space-evenly" p="2">
+          <Text mx="1" as="b">
+            &bull; Neil Gibson &bull;{" "}
           </Text>
-          <Text mx="2" as="b">
+          <Text mx="1" as="b">
             Dublin &bull;
           </Text>
-          <Text mx="2" as="b">
+          <Text mx="1" as="b">
             {" "}
-            Ireland{" "}
+            Ireland &bull;
           </Text>
         </Flex>
-        <Flex flexWrap="wrap">
+        <Flex flexWrap="wrap" px="2">
           <Text>
             hcjhdvb djhv jdhv ju cb dvjhd v dv dgc dh chvd hvd vhvads vhvdvhvdcv
             dch dhvc vha cvhda ch dhc adhc h

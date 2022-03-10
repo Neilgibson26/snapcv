@@ -5,7 +5,7 @@ import { EmailIcon } from "@chakra-ui/icons";
 
 function Profile() {
   return (
-    <Flex h="100vh" w="100vw" alignItems="center" justify="center" p="10">
+    <Flex w="100vw" alignItems="center" justify="center" p="10">
       <Flex
         flexDir="column"
         w="80%"
@@ -15,6 +15,7 @@ function Profile() {
         p="5"
         shadow="dark-lg"
         borderRadius="3xl"
+        my="2"
       >
         <Text fontSize="6xl" as="b">
           Neil Gibson
@@ -37,6 +38,9 @@ function Profile() {
           ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in
           ea voluptate velit esse quam nihil molestiae consequatur, vel illum
           qui dolorem eum fugiat quo voluptas nulla pariatur?"
+        </Text>
+        <Text as="b" fontSize="6xl">
+          Skills
         </Text>
         <Button
           leftIcon={<EmailIcon />}
