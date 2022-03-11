@@ -11,10 +11,10 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   return (
     <Router>
-      <NavigationBar
+      {/* <NavigationBar
         currentUser={currentUser}
         setCurrentUser={setCurrentUser}
-      />
+      /> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="apply" element={<Apply />} />
