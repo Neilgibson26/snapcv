@@ -1,20 +1,22 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Flex, Text, useMediaQuery } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import React from "react";
 import WhiteNavigationBar from "../../components/WhiteNavigationBar";
 
 function Home() {
+  const [isOnmobile] = useMediaQuery("(max-width: 768px)");
+
   const navigate = useNavigate();
   return (
     <Flex
-      bg="#EAD657"
+      bg="#F7CD6B"
       w="100%"
       minH="100vh"
       flexDir="column"
       flexWrap="wrap"
       justify="center"
       align="center"
-      p="20"
+      p={isOnmobile ? "8" : "16"}
       borderRadius="sm"
     >
       <Flex
@@ -26,9 +28,7 @@ function Home() {
         w="100%"
         shadow="2xl"
       >
-        <Flex>
-          <WhiteNavigationBar />
-        </Flex>
+        <WhiteNavigationBar />
         <Flex h="80vh" w="100vw" align="center" justify="center">
           <Flex h="100%" w="40%" align="center" justify="center">
             <Flex

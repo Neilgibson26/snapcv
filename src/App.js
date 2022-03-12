@@ -11,16 +11,56 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   return (
     <Router>
-      {/* <NavigationBar
-        currentUser={currentUser}
-        setCurrentUser={setCurrentUser}
-      /> */}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="apply" element={<Apply />} />
-        <Route path="explore" element={<Explore />} />
-        <Route path="hire" element={<Hire />} />
-        <Route path="profile" element={<Profile />} />
+        <Route
+          path="apply"
+          element={
+            <>
+              <NavigationBar
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+              />
+              <Apply />
+            </>
+          }
+        />
+        <Route
+          path="explore"
+          element={
+            <>
+              <NavigationBar
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+              />
+              <Explore />
+            </>
+          }
+        />
+        <Route
+          path="hire"
+          element={
+            <>
+              <NavigationBar
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+              />
+              <Hire />
+            </>
+          }
+        />
+        <Route
+          path="profile"
+          element={
+            <>
+              <NavigationBar
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+              />
+              <Profile />
+            </>
+          }
+        />
       </Routes>
     </Router>
   );

@@ -16,6 +16,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { signInWithPopup, signOut } from "firebase/auth";
 import { auth, provider } from "../../utils/firebase";
+import logo from "../../Assets/whitesnapcv.png";
 
 function NavigationBar({ currentUser, setCurrentUser }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -52,13 +53,13 @@ function NavigationBar({ currentUser, setCurrentUser }) {
 
   return (
     <>
-      <Box bg="#EAD657" py="6" px="8" w="100vw" overflow="hidden">
+      <Box bg="#F7CD6B" py="2" px="8" w="100vw" overflow="hidden">
         <Flex h={16} alignItems="center" justifyContent="space-between">
           <HStack spacing={8} alignItems="center">
             <Image
               w="120px"
               h="120px"
-              src="https://i.imgur.com/h7IuUMm.png"
+              src={logo}
               onClick={() => {
                 navigate("/");
               }}
@@ -75,7 +76,7 @@ function NavigationBar({ currentUser, setCurrentUser }) {
             fontWeight="bold"
             display={{ base: "none", md: "flex" }}
           >
-            <Link to="hire">
+            <Link to="/hire">
               <Text
                 px="6"
                 py="2"
@@ -87,7 +88,7 @@ function NavigationBar({ currentUser, setCurrentUser }) {
                 Hire somebody
               </Text>
             </Link>
-            <Link to="apply">
+            <Link to="/apply">
               <Text
                 px="6"
                 py="2"
