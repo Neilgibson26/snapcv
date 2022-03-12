@@ -5,8 +5,8 @@ import WhiteNavigationBar from "../../components/WhiteNavigationBar";
 
 function Home() {
   const [isOnmobile] = useMediaQuery("(max-width: 768px)");
-
   const navigate = useNavigate();
+
   return (
     <Flex
       bg="#F7CD6B"

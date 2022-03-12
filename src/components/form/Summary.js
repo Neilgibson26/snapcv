@@ -1,3 +1,4 @@
+import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import {
   Button,
   Flex,
@@ -6,6 +7,7 @@ import {
   IconButton,
   Spacer,
   Textarea,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import { TiArrowRightOutline, TiArrowLeftOutline } from "react-icons/ti";
 
@@ -16,28 +18,32 @@ function Summary({
   goNext,
   goBack,
 }) {
+  const [isOnmobile] = useMediaQuery("(max-width: 768px)");
+
   const checkValidInput = () => {
-    if (formData.summary === "") {
-      alert("Insert Some Data to Proceed");
-      return false;
-    }
+    // if (formData.summary === "") {
+    //   alert("Insert Some Data to Proceed");
+    //   return false;
+    // }
 
     return true;
   };
   return (
     <Flex
       justify="center"
-      w="50%"
+      w={isOnmobile ? "100%" : "50%"}
       p="10"
       mb="10"
+      bg="white"
       direction="column"
-      boxShadow="dark-lg"
+      boxShadow="2xl"
       borderRadius="10px"
     >
       <FormControl p="1vw" id="first-name" isRequired>
         <FormLabel fontWeight="bold">Summary</FormLabel>
         <Textarea
-          h="62vh"
+          h="42vh"
+          maxLength="500"
           placeholder="Upload Summary video 20 seconds / write short summary (optional)"
           value={formData && formData.summary ? formData.summary : ""}
           onChange={(e) => {
@@ -48,32 +54,28 @@ function Summary({
         />
       </FormControl>
 
-      <Flex justify="center">
-        <IconButton placeContent="left" m="2vw" onClick={goBack}>
-          <TiArrowLeftOutline fontSize="5vh" />
-        </IconButton>
-        <Spacer />
+      <Flex w="100%" justify="space-between" mt="8">
         <Button
-          m="2vw"
-          fontSize="3vh"
-          alignContent="left"
-          onClick={() => {
-            uploadDataToDatabase();
-          }}
+          onClick={goBack}
+          bg="#F7CD6B"
+          leftIcon={<ChevronLeftIcon fontSize="2xl" />}
         >
-          Save
+          Back
         </Button>
-        <IconButton
-          placeContent="right"
-          m="2vw"
+
+        <Spacer />
+
+        <Button
+          bg="#F7CD6B"
+          rightIcon={<ChevronRightIcon fontSize="2xl" />}
           onClick={() => {
             if (checkValidInput()) {
               goNext();
             }
           }}
         >
-          <TiArrowRightOutline fontSize="5vh" />
-        </IconButton>
+          Next
+        </Button>
       </Flex>
     </Flex>
   );

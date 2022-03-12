@@ -1,16 +1,18 @@
 import {
   Button,
   Flex,
-  IconButton,
+  Heading,
   Spacer,
   useMediaQuery,
+  useToast,
 } from "@chakra-ui/react";
-import { TiArrowRightOutline } from "react-icons/ti";
 import React from "react";
 import FormTextInput from "./FormTextInput";
+import { ChevronRightIcon } from "@chakra-ui/icons";
 
 function ProfileData({ formData, updateFormData, goBack, goNext }) {
   const [isOnmobile] = useMediaQuery("(max-width: 768px)");
+  const toast = useToast();
 
   const checkValidInput = () => {
     if (
@@ -21,19 +23,39 @@ function ProfileData({ formData, updateFormData, goBack, goNext }) {
       formData.location.country === "" ||
       formData.location.city === ""
     ) {
-      alert("Please Insert all Date Required");
+      toast({
+        title: `Please fill all required fields`,
+        variant: "left-accent",
+        status: "error",
+        position: "top",
+        isClosable: false,
+      });
       return false;
     }
     if (
       !formData.contact.email.includes(".") &&
       !formData.contact.email.includes("@")
     ) {
-      alert("Please Insert Valid Email");
+      toast({
+        title: `Please enter a valid email address`,
+        variant: "left-accent",
+        status: "error",
+        position: "top",
+        isClosable: false,
+      });
       return false;
     }
-    var pattern = new RegExp(/^[0-9\b]+$/);
+    var pattern = new RegExp(
+      /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/im
+    );
     if (!pattern.test(formData.contact.phone)) {
-      alert("Please Insert Valid Phone Number ");
+      toast({
+        title: `Please enter a valid phone number`,
+        variant: "left-accent",
+        status: "error",
+        position: "top",
+        isClosable: false,
+      });
       return false;
     }
 
@@ -50,6 +72,9 @@ function ProfileData({ formData, updateFormData, goBack, goNext }) {
       boxShadow="2xl"
       borderRadius="10px"
     >
+      <Heading mb="6" size="md" textAlign="center">
+        Enter your details
+      </Heading>
       <FormTextInput
         label="First Name"
         placeholder="First Name"
@@ -112,22 +137,24 @@ function ProfileData({ formData, updateFormData, goBack, goNext }) {
           }}
         />
       </Flex>
-      <Flex justify="center">
-        <Button m="2vw" fontSize="3vh" alignContent="left" onClick={goBack}>
+      <Flex w="100%" justify="space-between" mt="8">
+        <Button onClick={goBack} bg="#F7CD6B">
           Cancel
         </Button>
+
         <Spacer />
 
-        <IconButton
-          m="2vw"
+        <Button
+          bg="#F7CD6B"
+          rightIcon={<ChevronRightIcon fontSize="2xl" />}
           onClick={() => {
             if (checkValidInput()) {
               goNext();
             }
           }}
         >
-          <TiArrowRightOutline fontSize="5vh" />
-        </IconButton>
+          Next
+        </Button>
       </Flex>
     </Flex>
   );
