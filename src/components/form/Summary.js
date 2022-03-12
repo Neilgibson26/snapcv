@@ -9,7 +9,6 @@ import {
   Textarea,
   useMediaQuery,
 } from "@chakra-ui/react";
-import { TiArrowRightOutline, TiArrowLeftOutline } from "react-icons/ti";
 
 function Summary({
   formData,

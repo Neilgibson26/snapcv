@@ -53,7 +53,7 @@ function Home() {
                 shadow: "2xl",
               }}
               onClick={() => {
-                navigate("/apply");
+                navigate("/signup");
               }}
             >
               <Text fontSize="3xl" as="em">

@@ -6,11 +6,17 @@ import {
   useMediaQuery,
   useToast,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import FormTextInput from "./FormTextInput";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 
-function ProfileData({ formData, updateFormData, goBack, goNext }) {
+function ProfileData({
+  formData,
+  updateFormData,
+  goBack,
+  goNext,
+  currentUser,
+}) {
   const [isOnmobile] = useMediaQuery("(max-width: 768px)");
   const toast = useToast();
 
@@ -61,6 +67,33 @@ function ProfileData({ formData, updateFormData, goBack, goNext }) {
 
     return true;
   };
+
+  useEffect(() => {
+    const copy = { ...formData };
+    copy.name.fname =
+      formData && formData.name
+        ? formData.name.fname === ""
+          ? currentUser.displayName.split(" ")[0]
+          : formData.name.fname
+        : "";
+
+    copy.name.lname =
+      formData && formData.name
+        ? formData.name.lname === "" &&
+          currentUser.displayName.split(" ").length > 1
+          ? currentUser.displayName.split(" ")[1]
+          : formData.name.lname
+        : "";
+
+    copy.contact.email =
+      formData && formData.contact
+        ? formData.contact.email === ""
+          ? currentUser.email
+          : formData.contact.email
+        : "";
+    updateFormData(copy);
+  }, []);
+
   return (
     <Flex
       justify="center"
@@ -73,12 +106,18 @@ function ProfileData({ formData, updateFormData, goBack, goNext }) {
       borderRadius="10px"
     >
       <Heading mb="6" size="md" textAlign="center">
-        Enter your details
+        Hello {currentUser.displayName.split(" ")[0]},<br /> Enter your details
       </Heading>
       <FormTextInput
         label="First Name"
         placeholder="First Name"
-        value={formData && formData.name ? formData.name.fname : ""}
+        value={
+          formData && formData.name
+            ? formData.name.fname === ""
+              ? currentUser.displayName.split(" ")[0]
+              : formData.name.fname
+            : ""
+        }
         onChange={(text) => {
           const copy = { ...formData };
           copy.name.fname = text;
@@ -88,7 +127,14 @@ function ProfileData({ formData, updateFormData, goBack, goNext }) {
       <FormTextInput
         label="Last Name"
         placeholder="Last Name"
-        value={formData && formData.name ? formData.name.lname : ""}
+        value={
+          formData && formData.name
+            ? formData.name.lname === "" &&
+              currentUser.displayName.split(" ").length > 1
+              ? currentUser.displayName.split(" ")[1]
+              : formData.name.lname
+            : ""
+        }
         onChange={(text) => {
           const copy = { ...formData };
           copy.name.lname = text;
@@ -108,7 +154,13 @@ function ProfileData({ formData, updateFormData, goBack, goNext }) {
       <FormTextInput
         label="Email"
         placeholder="Email"
-        value={formData && formData.contact ? formData.contact.email : ""}
+        value={
+          formData && formData.contact
+            ? formData.contact.email === ""
+              ? currentUser.email
+              : formData.contact.email
+            : ""
+        }
         onChange={(text) => {
           const copy = { ...formData };
           copy.contact.email = text;

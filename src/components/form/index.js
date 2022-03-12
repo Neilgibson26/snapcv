@@ -10,6 +10,7 @@ import Links from "./Links";
 import Preview from "./Preview";
 import JobType from "./JobType";
 import AreaOfInterest from "./AreaOfInterest";
+import SignUpIntro from "./SignUpIntro";
 
 const defaultData = {
   profileImg: "",
@@ -64,9 +65,9 @@ const defaultData = {
   ],
 };
 
-function Form() {
+function Form({ currentUser, setCurrentUser }) {
   const [currentStep, setCurrentStep] = useState(0);
-  const [data, setData] = useState(null);
+  // const [data, setData] = useState(null);
   const [formData, setFormData] = useState(defaultData);
 
   const navigate = useNavigate();
@@ -124,7 +125,9 @@ function Form() {
   switch (currentStep) {
     case 0:
       currentContent = (
-        <ProfileData
+        <SignUpIntro
+          currentUser={currentUser}
+          setCurrentUser={setCurrentUser}
           formData={formData}
           updateFormData={setFormData}
           goNext={goNext}
@@ -134,6 +137,17 @@ function Form() {
       break;
     case 1:
       currentContent = (
+        <ProfileData
+          formData={formData}
+          currentUser={currentUser}
+          updateFormData={setFormData}
+          goNext={goNext}
+          goBack={goBack}
+        />
+      );
+      break;
+    case 2:
+      currentContent = (
         <Summary
           formData={formData}
           updateFormData={setFormData}
@@ -142,7 +156,7 @@ function Form() {
         />
       );
       break;
-    case 2:
+    case 3:
       currentContent = (
         <AreaOfInterest
           formData={formData}
@@ -240,7 +254,7 @@ function Form() {
         <Preview
           formData={formData}
           updateFormData={setFormData}
-          data={data}
+          // data={data}
           goNext={goNext}
           goBack={goBack}
         />

@@ -107,11 +107,13 @@ function WhiteNavigationBar({ currentUser, setCurrentUser }) {
             ) : (
               <Button
                 mx="4"
-                leftIcon={<FcGoogle />}
-                onClick={signUserIn}
-                _hover={{ bg: "#F7CD6B" }}
+                onClick={() => {
+                  navigate("/signup");
+                }}
+                bg="#F7CD6B"
+                _hover={{ opacity: 0.8 }}
               >
-                Sign In
+                Sign Up
               </Button>
             )}
           </Flex>

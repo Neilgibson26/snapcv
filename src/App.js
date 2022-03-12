@@ -6,13 +6,44 @@ import Apply from "./pages/Apply";
 import Explore from "./pages/Explore";
 import NavigationBar from "./components/NaviagtionBar";
 import Profile from "./pages/Profile";
+import SignUp from "./pages/SignUp/SignUp";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./utils/firebase";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      // const uid = user.uid;
+      setCurrentUser(user);
+    } else {
+      // User is signed out
+      setCurrentUser(null);
+    }
+  });
+
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route
+          path="signup"
+          element={
+            <>
+              <NavigationBar
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+              />
+              <SignUp
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+              />
+            </>
+          }
+        />
         <Route
           path="apply"
           element={
