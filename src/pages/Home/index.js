@@ -1,4 +1,4 @@
-import { Box, Flex, Text, useMediaQuery } from "@chakra-ui/react";
+import { Box, Flex, Skeleton, Text, useMediaQuery } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import React from "react";
 import WhiteNavigationBar from "../../components/WhiteNavigationBar";
@@ -29,6 +29,15 @@ function Home() {
         shadow="2xl"
       >
         <WhiteNavigationBar />
+
+        <Skeleton
+          w="90%"
+          mt="8"
+          startColor="#F7CD6B"
+          endColor="yellow.300"
+          height="70vh"
+        />
+
         <Flex h="80vh" w="100vw" align="center" justify="center">
           <Flex h="100%" w="40%" align="center" justify="center">
             <Flex
