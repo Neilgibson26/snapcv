@@ -15,7 +15,6 @@ function App() {
         currentUser={currentUser}
         setCurrentUser={setCurrentUser}
       /> */}
-      {/* need a use state to figure out if we are on the home page or not for correct routing */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="apply" element={<Apply />} />

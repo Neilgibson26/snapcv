@@ -32,7 +32,7 @@ function AreaOfInterest({ formData, updateFormData, goBack, goNext }) {
     "Logistics",
     "Healthcare",
     "Childcare",
-    "Retails",
+    "Retail",
   ];
 
   const [isOnmobile] = useMediaQuery("(max-width: 768px)");
@@ -67,7 +67,7 @@ function AreaOfInterest({ formData, updateFormData, goBack, goNext }) {
               borderRadius="xl"
               cursor="pointer"
               fontWeight="semibold"
-              bg={item.selected ? "#EAD757" : "#F1F3F4"}
+              bg={item.selected ? "#F7CD6B" : "#F1F3F4"}
               _hover={{ opacity: 0.7, cursor: "pointer" }}
               onClick={() => {
                 const newList = [...currentList];
@@ -89,7 +89,7 @@ function AreaOfInterest({ formData, updateFormData, goBack, goNext }) {
           m="4"
           leftIcon={<ChevronLeftIcon fontSize="2xl" />}
           onClick={goBack}
-          bg="#EAD757"
+          bg="#F7CD6B"
         >
           Back
         </Button>
@@ -98,7 +98,7 @@ function AreaOfInterest({ formData, updateFormData, goBack, goNext }) {
 
         <Button
           m="4"
-          bg="#EAD757"
+          bg="#F7CD6B"
           rightIcon={<ChevronRightIcon fontSize="2xl" />}
           onClick={() => {
             goNext();

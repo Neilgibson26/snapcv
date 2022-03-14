@@ -6,14 +6,15 @@ import { useNavigate } from "react-router-dom";
 import Education from "./Education";
 import Work from "./Work";
 import Links from "./Links";
-import Skills from "./Skills";
+// import Skills from "./Skills";
 import Preview from "./Preview";
 import JobType from "./JobType";
 import AreaOfInterest from "./AreaOfInterest";
+import SignUpIntro from "./SignUpIntro";
 
 const defaultData = {
   profileImg: "",
-  jobType: "",
+  jobType: "casual",
   name: {
     fname: "",
     lname: "",
@@ -64,14 +65,18 @@ const defaultData = {
   ],
 };
 
-function Form() {
+function Form({ currentUser, setCurrentUser }) {
   const [currentStep, setCurrentStep] = useState(0);
-  const [data, setData] = useState(null);
+  // const [data, setData] = useState(null);
   const [formData, setFormData] = useState(defaultData);
 
   const navigate = useNavigate();
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
     // const auth = getAuth();
     // onAuthStateChanged(auth, (user) => {
     //   if (user) {
@@ -103,6 +108,10 @@ function Form() {
 
   let currentContent = <Flex>Loading...</Flex>;
   const goNext = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
     setCurrentStep(currentStep + 1);
   };
 
@@ -116,7 +125,9 @@ function Form() {
   switch (currentStep) {
     case 0:
       currentContent = (
-        <JobType
+        <SignUpIntro
+          currentUser={currentUser}
+          setCurrentUser={setCurrentUser}
           formData={formData}
           updateFormData={setFormData}
           goNext={goNext}
@@ -126,7 +137,38 @@ function Form() {
       break;
     case 1:
       currentContent = (
+        <ProfileData
+          formData={formData}
+          currentUser={currentUser}
+          updateFormData={setFormData}
+          goNext={goNext}
+          goBack={goBack}
+        />
+      );
+      break;
+    case 2:
+      currentContent = (
+        <Summary
+          formData={formData}
+          updateFormData={setFormData}
+          goNext={goNext}
+          goBack={goBack}
+        />
+      );
+      break;
+    case 3:
+      currentContent = (
         <AreaOfInterest
+          formData={formData}
+          updateFormData={setFormData}
+          goNext={goNext}
+          goBack={goBack}
+        />
+      );
+      break;
+    case 110:
+      currentContent = (
+        <JobType
           formData={formData}
           updateFormData={setFormData}
           goNext={goNext}
@@ -145,28 +187,6 @@ function Form() {
     //     />
     //   );
     //   break;
-
-    case 2:
-      currentContent = (
-        <Summary
-          formData={formData}
-          updateFormData={setFormData}
-          goNext={goNext}
-          goBack={goBack}
-        />
-      );
-      break;
-
-    case 3:
-      currentContent = (
-        <ProfileData
-          formData={formData}
-          updateFormData={setFormData}
-          goNext={goNext}
-          goBack={goBack}
-        />
-      );
-      break;
 
     case 21:
       currentContent = (
@@ -234,7 +254,7 @@ function Form() {
         <Preview
           formData={formData}
           updateFormData={setFormData}
-          data={data}
+          // data={data}
           goNext={goNext}
           goBack={goBack}
         />

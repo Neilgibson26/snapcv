@@ -83,7 +83,7 @@ function WhiteNavigationBar({ currentUser, setCurrentUser }) {
                 fontFamily="sans-serif"
                 fontWeight="bold"
                 borderRadius="lg"
-                _hover={{ bg: "white" }}
+                _hover={{ bg: "#F7CD6B" }}
               >
                 Hire somebody
               </Text>
@@ -95,7 +95,7 @@ function WhiteNavigationBar({ currentUser, setCurrentUser }) {
                 fontFamily="sans-serif"
                 fontWeight="bold"
                 borderRadius="lg"
-                _hover={{ bg: "white" }}
+                _hover={{ bg: "#F7CD6B" }}
               >
                 Post a Job
               </Text>
@@ -105,8 +105,15 @@ function WhiteNavigationBar({ currentUser, setCurrentUser }) {
                 Sign Out
               </Button>
             ) : (
-              <Button mx="4" leftIcon={<FcGoogle />} onClick={signUserIn}>
-                Sign In
+              <Button
+                mx="4"
+                onClick={() => {
+                  navigate("/signup");
+                }}
+                bg="#F7CD6B"
+                _hover={{ opacity: 0.8 }}
+              >
+                Sign Up
               </Button>
             )}
           </Flex>
@@ -127,22 +134,24 @@ function WhiteNavigationBar({ currentUser, setCurrentUser }) {
           />
         </Flex>
         {isOpen ? (
-          <Box pb={4} display={{ md: "none" }}>
+          <Box w="100%" pb={4} display={{ md: "none" }}>
             <Stack
               as="nav"
+              w="100%"
               spacing={4}
               alignItems="center"
               fontFamily="Inter"
               fontWeight="bold"
             >
-              <Link to="explore">
+              <Link to="explore" w="100%">
                 <Text
+                  w="100%"
                   px="6"
                   py="2"
                   fontFamily="sans-serif"
                   fontWeight="bold"
                   borderRadius="lg"
-                  _hover={{ bg: "white" }}
+                  _hover={{ bg: "#F7CD6B" }}
                 >
                   Explore Jobs
                 </Text>
@@ -154,17 +163,22 @@ function WhiteNavigationBar({ currentUser, setCurrentUser }) {
                   fontFamily="sans-serif"
                   fontWeight="bold"
                   borderRadius="lg"
-                  _hover={{ bg: "white" }}
+                  _hover={{ bg: "#F7CD6B" }}
                 >
                   Post a Job
                 </Text>
               </Link>
               {currentUser ? (
-                <Button mx="4" onClick={signUserOut}>
+                <Button mx="4" onClick={signUserOut} _hover={{ bg: "#F7CD6B" }}>
                   Sign Out
                 </Button>
               ) : (
-                <Button mx="4" leftIcon={<FcGoogle />} onClick={signUserIn}>
+                <Button
+                  mx="4"
+                  leftIcon={<FcGoogle />}
+                  onClick={signUserIn}
+                  _hover={{ bg: "#F7CD6B" }}
+                >
                   Sign In
                 </Button>
               )}
