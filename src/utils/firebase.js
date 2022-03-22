@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
+// config
 const firebaseConfig = {
   apiKey: "AIzaSyB1mXONn6pI-ArODA53M9T937Ii2fdSi2E",
   authDomain: "snapshotcv-c5be7.firebaseapp.com",
