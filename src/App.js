@@ -6,21 +6,92 @@ import Apply from "./pages/Apply";
 import Explore from "./pages/Explore";
 import NavigationBar from "./components/NaviagtionBar";
 import Profile from "./pages/Profile";
+import SignUp from "./pages/SignUp/SignUp";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./utils/firebase";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      // const uid = user.uid;
+      setCurrentUser(user);
+    } else {
+      // User is signed out
+      setCurrentUser(null);
+    }
+  });
+
   return (
     <Router>
-      {/* <NavigationBar
-        currentUser={currentUser}
-        setCurrentUser={setCurrentUser}
-      /> */}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="apply" element={<Apply />} />
-        <Route path="explore" element={<Explore />} />
-        <Route path="hire" element={<Hire />} />
-        <Route path="profile" element={<Profile />} />
+        <Route
+          path="signup"
+          element={
+            <>
+              <NavigationBar
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+              />
+              <SignUp
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+              />
+            </>
+          }
+        />
+        <Route
+          path="apply"
+          element={
+            <>
+              <NavigationBar
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+              />
+              <Apply />
+            </>
+          }
+        />
+        <Route
+          path="explore"
+          element={
+            <>
+              <NavigationBar
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+              />
+              <Explore />
+            </>
+          }
+        />
+        <Route
+          path="hire"
+          element={
+            <>
+              <NavigationBar
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+              />
+              <Hire />
+            </>
+          }
+        />
+        <Route
+          path="profile"
+          element={
+            <>
+              <NavigationBar
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+              />
+              <Profile />
+            </>
+          }
+        />
       </Routes>
     </Router>
   );
