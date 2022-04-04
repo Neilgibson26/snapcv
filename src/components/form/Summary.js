@@ -8,17 +8,22 @@ import {
   Spacer,
   Textarea,
   useMediaQuery,
+  useToast,
 } from "@chakra-ui/react";
 import useMediaRecorder from "@wmik/use-media-recorder";
 import VideoPreview from "./VideoPreview";
 import getBlobDuration from "get-blob-duration";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { storage } from "../../utils/firebase";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 // import { ReactMediaRecorder } from "react-media-recorder";
 // import VideoPreview from "./VideoPreview";
 // import VideoRecorder from "react-video-recorder";
 
-function Summary({ formData, updateFormData, goNext, goBack }) {
+function Summary({ formData, updateFormData, goNext, goBack, currentUser }) {
+  const toast = useToast();
+
   const [isOnmobile] = useMediaQuery("(max-width: 768px)");
   const [isRecording, setIsRecording] = useState(false);
   const [firstRecordComplete, setfFrstRecordComplete] = useState(false);
@@ -90,11 +95,33 @@ function Summary({ formData, updateFormData, goNext, goBack }) {
     );
   };
 
+  useEffect(() => {
+    return () => {
+      stopRecording();
+    };
+  }, []);
+
   const checkValidInput = () => {
-    // if (formData.summary === "") {
-    //   alert("Insert Some Data to Proceed");
-    //   return false;
-    // }
+    if (!mediaBlob) {
+      toast({
+        title: `Please record/upload a 20s video`,
+        variant: "left-accent",
+        status: "error",
+        position: "top",
+        isClosable: false,
+      });
+      return false;
+    }
+
+    const storageRef = ref(storage, "userVideos/" + currentUser.uid);
+
+    // 'file' comes from the Blob or File API
+    uploadBytes(storageRef, mediaBlob).then((snapshot) => {
+      console.log("Uploaded a blob or file!", snapshot);
+      getDownloadURL(snapshot.ref).then((downloadURL) => {
+        console.log("File available at", downloadURL);
+      });
+    });
 
     return true;
   };
