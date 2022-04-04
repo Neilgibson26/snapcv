@@ -267,7 +267,7 @@ function Form({ currentUser, setCurrentUser }) {
   }
 
   return (
-    <Flex w="100%" flexDir="column">
+    <Flex w="100%" flexDir="column" bg="white">
       <Flex w="100%" justify="center">
         {currentContent}
       </Flex>

@@ -38,51 +38,6 @@ function Home() {
           height="70vh"
         />
 
-        <Flex h="80vh" w="100vw" align="center" justify="center">
-          <Flex h="100%" w="40%" align="center" justify="center">
-            <Flex
-              h="50%"
-              w="70%"
-              justify="center"
-              align="center"
-              bg="#EAD657"
-              borderRadius="3xl"
-              margin="2px"
-              _hover={{
-                transform: "scale(1.1)",
-                shadow: "2xl",
-              }}
-              onClick={() => {
-                navigate("/signup");
-              }}
-            >
-              <Text fontSize="3xl" as="em">
-                Get Hired
-              </Text>
-            </Flex>
-          </Flex>
-          <Flex h="100%" w="40%" align="center" justify="center">
-            <Flex
-              h="50%"
-              w="70%"
-              bg="#89CFF0"
-              justify="center"
-              align="center"
-              borderRadius="3xl"
-              _hover={{
-                transform: "scale(1.1)",
-                shadow: "2xl",
-              }}
-              onClick={() => {
-                navigate("/explore");
-              }}
-            >
-              <Text fontSize="3xl" as="em">
-                Explore jobs
-              </Text>
-            </Flex>
-          </Flex>
-        </Flex>
         <Flex w="100%" justify="center" align="center">
           <Flex w="70%" justify="center" align="center">
             <Box
