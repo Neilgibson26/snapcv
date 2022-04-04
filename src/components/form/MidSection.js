@@ -2,10 +2,11 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { Button, Flex, Heading, Image, useMediaQuery } from "@chakra-ui/react";
 import { signInWithPopup } from "firebase/auth";
 import logo from "../../Assets/whitesnapcv.png";
+import { Link, useNavigate } from "react-router-dom";
 
 function MidSection({ formData, updateFormData, goBack, goNext }) {
   const [isOnmobile] = useMediaQuery("(max-width: 768px)");
-
+  const navigate = useNavigate();
   return (
     <Flex
       justify="center"
@@ -20,27 +21,45 @@ function MidSection({ formData, updateFormData, goBack, goNext }) {
     >
       <Image w="150px" h="150px" src={logo} />
       <Heading w="60%" mb="6" size="md" textAlign="center">
-        You're done
+        Your profile is now ready!
+      </Heading>
+      <Heading w="60%" mb="6" size="md" textAlign="center">
+        If you would like to add more information click next.
       </Heading>
 
-      <Button
-        m="4"
-        leftIcon={<ChevronLeftIcon fontSize="2xl" />}
-        onClick={goBack}
-        bg="#F7CD6B"
-      >
-        Back
-      </Button>
+      <Flex>
+        <Button
+          mt="4"
+          mx="2"
+          onClick={() => {
+            navigate("/explore");
+          }}
+          bg="#F7CD6B"
+        >
+          Explore jobs
+        </Button>
+        <Button
+          bg="#F7CD6B"
+          mt="4"
+          mb="8"
+          mx="2"
+          onClick={() => {
+            navigate("/profile");
+          }}
+        >
+          Preview
+        </Button>
 
-      <Button
-        bg="#F7CD6B"
-        mt="4"
-        mb="8"
-        rightIcon={<ChevronRightIcon fontSize="2xl" />}
-        onClick={goNext}
-      >
-        Next
-      </Button>
+        <Button
+          bg="#F7CD6B"
+          mt="4"
+          mx="2"
+          rightIcon={<ChevronRightIcon fontSize="2xl" />}
+          onClick={goNext}
+        >
+          Next
+        </Button>
+      </Flex>
     </Flex>
   );
 }

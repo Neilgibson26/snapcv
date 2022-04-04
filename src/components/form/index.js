@@ -2,13 +2,8 @@ import { Flex } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import ProfileData from "./ProfileData";
 import Summary from "./Summary";
+import Experience from "./Experience";
 import { useNavigate } from "react-router-dom";
-import Education from "./Education";
-import Work from "./Work";
-import Links from "./Links";
-// import Skills from "./Skills";
-import Preview from "./Preview";
-import JobType from "./JobType";
 import AreaOfInterest from "./AreaOfInterest";
 import SignUpIntro from "./SignUpIntro";
 import Skills from "./Skills";
@@ -164,79 +159,7 @@ function Form({ currentUser, setCurrentUser }) {
         />
       );
       break;
-    case 110:
-      currentContent = (
-        <JobType
-          formData={formData}
-          updateFormData={setFormData}
-          goNext={goNext}
-          goBack={goBack}
-        />
-      );
-      break;
 
-    // case 2:
-    //   currentContent = (
-    //     <ProfilePicture
-    //       formData={formData}
-    //       updateFormData={setFormData}
-    //       goNext={goNext}
-    //       goBack={goBack}
-    //     />
-    //   );
-    //   break;
-
-    case 21:
-      currentContent = (
-        <Education
-          formData={formData}
-          updateFormData={setFormData}
-          goNext={goNext}
-          goBack={goBack}
-        />
-      );
-      break;
-
-    case 31:
-      currentContent = (
-        <Work
-          formData={formData}
-          updateFormData={setFormData}
-          goNext={goNext}
-          goBack={goBack}
-        />
-      );
-      break;
-    // case 5:
-    //   currentContent = (
-    //     <Experience
-    //       formData={formData}
-    //       updateFormData={setFormData}
-    //       goNext={goNext}
-    //       goBack={goBack}
-    //     />
-    //   );
-    // break;
-    // case 6:
-    //   currentContent = (
-    //     <Achievements
-    //       formData={formData}
-    //       updateFormData={setFormData}
-    //       goNext={goNext}
-    //       goBack={goBack}
-    //     />
-    //   );
-    //   break;
-    // case 7:
-    //   currentContent = (
-    //     <Skills
-    //       formData={formData}
-    //       updateFormData={setFormData}
-    //       goNext={goNext}
-    //       goBack={goBack}
-    //     />
-    //   );
-    //   break;
     case 4:
       currentContent = (
         <MidSection
@@ -257,27 +180,29 @@ function Form({ currentUser, setCurrentUser }) {
         />
       );
       break;
-    case 43:
-      currentContent = (
-        <Links
-          formData={formData}
-          updateFormData={setFormData}
-          goNext={goNext}
-          goBack={goBack}
-        />
-      );
-      break;
+
     case 6:
       currentContent = (
-        <Preview
+        <Experience
           formData={formData}
           updateFormData={setFormData}
-          // data={data}
           goNext={goNext}
           goBack={goBack}
         />
       );
       break;
+
+    // case 6:
+    //   currentContent = (
+    //     <Preview
+    //       formData={formData}
+    //       updateFormData={setFormData}
+    //       // data={data}
+    //       goNext={goNext}
+    //       goBack={goBack}
+    //     />
+    //   );
+    //   break;
 
     default:
       break;
