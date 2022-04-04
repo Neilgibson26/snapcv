@@ -32,10 +32,6 @@ function Hire() {
       <Flex flexWrap="wrap" justify="center" align="center">
         <Card />
         <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
       </Flex>
     </Flex>
   );

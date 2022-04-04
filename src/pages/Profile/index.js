@@ -7,7 +7,6 @@ import NavigationBar from "../../components/NaviagtionBar";
 function Profile() {
   return (
     <Flex w="100vw" alignItems="center" justify="center" flexDir="column">
-      <NavigationBar />
       <Flex
         flexDir="column"
         w="80%"

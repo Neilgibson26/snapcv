@@ -1,7 +1,9 @@
 import { Box, Flex, Image, Text } from "@chakra-ui/react";
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 function Card(props) {
+  const navigate = useNavigate();
   return (
     <Box
       h="40vh"
@@ -11,6 +13,10 @@ function Card(props) {
       overflow="hidden"
       mx="10"
       my="10"
+      _hover={{ opacity: 0.7 }}
+      onClick={() => {
+        navigate("/profile");
+      }}
     >
       <Flex flexDir="column" flexWrap="wrap">
         <Box objectFit="contain" w="100%" borderRadius="lg">
