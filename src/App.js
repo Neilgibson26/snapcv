@@ -9,9 +9,12 @@ import Profile from "./pages/Profile";
 import SignUp from "./pages/SignUp/SignUp";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./utils/firebase";
+import useScript from "./hooks/useScript";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
+
+  useScript("https://upload-widget.cloudinary.com/global/all.js");
 
   onAuthStateChanged(auth, (user) => {
     if (user) {

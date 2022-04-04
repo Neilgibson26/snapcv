@@ -37,7 +37,9 @@ function AreaOfInterest({ formData, updateFormData, goBack, goNext }) {
 
   const [isOnmobile] = useMediaQuery("(max-width: 768px)");
   const [currentList, setCurrentList] = useState(
-    formData.jobType === "skilled"
+    formData.interests.length !== 0
+      ? formData.interests
+      : formData.jobType === "skilled"
       ? convertToSelectableObjects(skilledAreas)
       : convertToSelectableObjects(casualAreas)
   );
@@ -59,7 +61,10 @@ function AreaOfInterest({ formData, updateFormData, goBack, goNext }) {
       </Heading>
 
       <Flex w="100%" h="100%" align="center" justify="center" flexWrap="wrap">
-        {currentList.map((item, index) => {
+        {(formData.interests.length !== 0
+          ? formData.interests
+          : currentList
+        ).map((item, index) => {
           return (
             <Flex
               m="4"
@@ -76,6 +81,9 @@ function AreaOfInterest({ formData, updateFormData, goBack, goNext }) {
 
                 newList[index] = currentItem;
                 setCurrentList(newList);
+                const copy = { ...formData };
+                copy.interests = currentList;
+                updateFormData(copy);
               }}
             >
               {item.text}

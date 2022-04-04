@@ -54,6 +54,7 @@ const defaultData = {
     //   list: [],
     // },
   ],
+  interests: [],
   work: [
     // {
     //   startDate: "",

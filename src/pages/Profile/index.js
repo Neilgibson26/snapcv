@@ -1,6 +1,6 @@
-import { Box, Button, Flex, Text } from "@chakra-ui/react";
+import { Button, Flex, Text } from "@chakra-ui/react";
 import React from "react";
-import { Skeleton, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
+// import { Skeleton, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
 import { EmailIcon } from "@chakra-ui/icons";
 import NavigationBar from "../../components/NaviagtionBar";
 
@@ -19,7 +19,7 @@ function Profile() {
         borderRadius="3xl"
         my="10"
       >
-        <Skeleton h="60vh" w="80%" mt="10"></Skeleton>
+        {/* <Skeleton h="60vh" w="80%" mt="10"></Skeleton> */}
         <Flex flexDir="column">
           <Text as="b" fontSize="3xl">
             Neil Gibson
