@@ -1,83 +1,107 @@
-import {
-  Button,
-  Flex,
-  IconButton,
-  Spacer,
-  useDisclosure,
-} from "@chakra-ui/react";
-import { TiArrowRightOutline, TiArrowLeftOutline } from "react-icons/ti";
-import React from "react";
-import SkillsModel from "./SkillsModel";
-import TextDesign from "./TextDesign";
-function Skills({
-  formData,
-  updateFormData,
-  goBack,
-  goNext,
-  uploadDataToDatabase,
-}) {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
+import { Button, Flex, Heading, Spacer, useMediaQuery } from "@chakra-ui/react";
+import React, { useState } from "react";
+
+const convertToSelectableObjects = (list) => {
+  const selectableList = [];
+
+  for (let i = 0; i < list.length; i++) {
+    selectableList.push({
+      text: list[i],
+      selected: false,
+    });
+  }
+
+  return selectableList;
+};
+
+function Skills({ formData, updateFormData, goBack, goNext }) {
+  const skills = [
+    "Technology",
+    "Driving",
+    "Customer Service",
+    "Attention to Detail",
+    "Craft",
+    "example here",
+  ];
+
+  const [isOnmobile] = useMediaQuery("(max-width: 768px)");
+  const [currentList, setCurrentList] = useState(
+    formData.interests.length !== 0
+      ? formData.skills
+      : convertToSelectableObjects(skills)
+  );
+
   return (
     <Flex
       justify="center"
-      w="50%"
+      minH="50vh"
+      w={isOnmobile ? "100%" : "50%"}
       p="10"
       mb="10"
-      direction="column"
-      boxShadow="dark-lg"
+      bg="white"
+      boxShadow="2xl"
       borderRadius="10px"
+      flexDir="column"
     >
-      <Flex flexDir="column">
-        {formData.skills.map((item) => {
-          return (
-            <Flex
-              justify="center"
-              direction="column"
-              p="5"
-              boxShadow="dark-lg"
-              borderRadius="10"
-              w="100%"
-              my="2"
-            >
-              <Flex>
-                <TextDesign text="Skill Title: " content={item.title} />
+      <Heading size="lg" textAlign="center" mb="4">
+        Select Your Skills
+      </Heading>
+
+      <Flex w="100%" h="100%" align="center" justify="center" flexWrap="wrap">
+        {(formData.skills.length !== 0 ? formData.skills : currentList).map(
+          (item, index) => {
+            return (
+              <Flex
+                m="4"
+                p="4"
+                borderRadius="xl"
+                cursor="pointer"
+                fontWeight="semibold"
+                bg={item.selected ? "#F7CD6B" : "#F1F3F4"}
+                _hover={{ opacity: 0.7, cursor: "pointer" }}
+                onClick={() => {
+                  const newList = [...currentList];
+                  const currentItem = newList[index];
+                  currentItem.selected = !currentItem.selected;
+
+                  newList[index] = currentItem;
+                  setCurrentList(newList);
+                  const copy = { ...formData };
+                  copy.skills = currentList;
+                  updateFormData(copy);
+                }}
+              >
+                {item.text}
               </Flex>
-              <Flex>
-                <TextDesign text="Description: " content={item.list} />
-              </Flex>
-            </Flex>
-          );
-        })}
+            );
+          }
+        )}
       </Flex>
-      <Button justify="center" w="90%" m="2vw" fontSize="lg" onClick={onOpen}>
-        Add Skill
-      </Button>
-      <Flex justify="center">
-        <IconButton placeContent="left" m="2vw" onClick={goBack}>
-          <TiArrowLeftOutline fontSize="5vh" />
-        </IconButton>
-        <Spacer />
+
+      <Flex justify="center" mt="4">
         <Button
-          m="2vw"
-          fontSize="3vh"
-          alignContent="left"
+          m="4"
+          leftIcon={<ChevronLeftIcon fontSize="2xl" />}
+          onClick={goBack}
+          bg="#F7CD6B"
+        >
+          Back
+        </Button>
+
+        <Spacer />
+
+        <Button
+          m="4"
+          bg="#F7CD6B"
+          rightIcon={<ChevronRightIcon fontSize="2xl" />}
           onClick={() => {
-            uploadDataToDatabase();
+            goNext();
           }}
         >
-          Save
+          Next
         </Button>
-        <IconButton placeContent="right" m="2vw" onClick={goNext}>
-          <TiArrowRightOutline fontSize="35px" />
-        </IconButton>
       </Flex>
-      <SkillsModel
-        formData={formData}
-        updateFormData={updateFormData}
-        onClose={onClose}
-        onOpen={onOpen}
-        isOpen={isOpen}
-      />
     </Flex>
   );
 }

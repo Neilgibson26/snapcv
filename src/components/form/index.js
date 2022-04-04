@@ -11,6 +11,8 @@ import Preview from "./Preview";
 import JobType from "./JobType";
 import AreaOfInterest from "./AreaOfInterest";
 import SignUpIntro from "./SignUpIntro";
+import Skills from "./Skills";
+import MidSection from "./MidSection";
 
 const defaultData = {
   profileImg: "",
@@ -48,12 +50,7 @@ const defaultData = {
     //   },
     // },
   ],
-  skills: [
-    // {
-    //   title: "",
-    //   list: [],
-    // },
-  ],
+  skills: [],
   interests: [],
   work: [
     // {
@@ -242,7 +239,7 @@ function Form({ currentUser, setCurrentUser }) {
     //   break;
     case 4:
       currentContent = (
-        <Links
+        <MidSection
           formData={formData}
           updateFormData={setFormData}
           goNext={goNext}
@@ -251,6 +248,26 @@ function Form({ currentUser, setCurrentUser }) {
       );
       break;
     case 5:
+      currentContent = (
+        <Skills
+          formData={formData}
+          updateFormData={setFormData}
+          goNext={goNext}
+          goBack={goBack}
+        />
+      );
+      break;
+    case 43:
+      currentContent = (
+        <Links
+          formData={formData}
+          updateFormData={setFormData}
+          goNext={goNext}
+          goBack={goBack}
+        />
+      );
+      break;
+    case 6:
       currentContent = (
         <Preview
           formData={formData}
