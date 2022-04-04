@@ -1,96 +1,73 @@
+import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import {
   Button,
   Flex,
-  IconButton,
-  Spacer,
-  useDisclosure,
+  Heading,
+  Image,
+  useMediaQuery,
+  Textarea,
 } from "@chakra-ui/react";
-import { TiArrowRightOutline, TiArrowLeftOutline } from "react-icons/ti";
-import React from "react";
-import ExperienceModel from "./ExperienceModel";
-import TextDesign from "./TextDesign";
-function Experience({
-  formData,
-  updateFormData,
-  uploadDataToDatabase,
-  goBack,
-  goNext,
-}) {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+import { signInWithPopup } from "firebase/auth";
+import logo from "../../Assets/whitesnapcv.png";
+import { Link, useNavigate } from "react-router-dom";
+
+function MidSection({ formData, updateFormData, goBack, goNext }) {
+  const [isOnmobile] = useMediaQuery("(max-width: 768px)");
+  const navigate = useNavigate();
   return (
     <Flex
       justify="center"
-      w="50%"
+      w={isOnmobile ? "100%" : "50%"}
       p="10"
       mb="10"
+      bg="white"
       direction="column"
-      boxShadow="dark-lg"
+      boxShadow="2xl"
       borderRadius="10px"
+      align="center"
     >
-      <Flex flexDir="column">
-        {formData.experience.map((item) => {
-          return (
-            <Flex
-              justify="center"
-              direction="column"
-              p="5"
-              boxShadow="dark-lg"
-              borderRadius="10"
-              w="100%"
-              my="2"
-            >
-              <Flex>
-                <TextDesign text="Title: " content={item.title} />
-              </Flex>
-              <Flex>
-                <TextDesign text="Organization: " content={item.org} />
-              </Flex>
-              <Flex justify="center" direction="row">
-                <TextDesign text="Start Date: " content={item.startDate} />
-                <Spacer />
-                <TextDesign text="End Date: " content={item.endDate} />
-                <Spacer />
-                <TextDesign text="Type: " content={item.type} />
-              </Flex>
-
-              <Flex>
-                <TextDesign text="Description: " content={item.description} />
-              </Flex>
-            </Flex>
-          );
-        })}
+      <Image w="150px" h="150px" src={logo} />
+      <Flex flexDir="column" w="100%" justify="center" align="center">
+        <Heading w="60%" size="md" textAlign="center">
+          Experience
+        </Heading>
       </Flex>
-      <Button justify="center" w="90%" m="2vw" fontSize="lg" onClick={onOpen}>
-        Add Experience
-      </Button>
-      <Flex justify="center">
-        <IconButton placeContent="left" m="2vw" onClick={goBack}>
-          <TiArrowLeftOutline fontSize="5vh" />
-        </IconButton>
-        <Spacer />
+      <Textarea
+        my="5"
+        h="20vh"
+        maxLength="500"
+        placeholder="Write a short summmary of the experience you have accumilated"
+        value={formData && formData.summary ? formData.summary : ""}
+        onChange={(e) => {
+          const copy = { ...formData };
+          copy.summary = e.target.value;
+          updateFormData(copy);
+        }}
+      />
+      <Flex>
         <Button
-          m="2vw"
-          fontSize="3vh"
-          alignContent="left"
+          onClick={goBack}
+          mb="8"
+          mx="2"
+          bg="#F7CD6B"
+          leftIcon={<ChevronLeftIcon fontSize="2xl" />}
+        >
+          Back
+        </Button>
+
+        <Button
+          bg="#F7CD6B"
+          mx="2"
+          rightIcon={<ChevronRightIcon fontSize="2xl" />}
           onClick={() => {
-            uploadDataToDatabase();
+            navigate("/profile");
           }}
         >
-          Save
+          Preview
         </Button>
-        <IconButton placeContent="right" m="2vw" onClick={goNext}>
-          <TiArrowRightOutline fontSize="35px" />
-        </IconButton>
       </Flex>
-      <ExperienceModel
-        formData={formData}
-        updateFormData={updateFormData}
-        onClose={onClose}
-        onOpen={onOpen}
-        isOpen={isOpen}
-      />
     </Flex>
   );
 }
 
-export default Experience;
+export default MidSection;
