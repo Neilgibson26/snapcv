@@ -54,6 +54,7 @@ function Preview({ formData, data, goBack }) {
       direction="column"
       boxShadow="dark-lg"
       borderRadius="10px"
+      bg="white"
     >
       <Image
         src={formData.profileImg}
