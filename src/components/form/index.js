@@ -142,6 +142,7 @@ function Form({ currentUser, setCurrentUser }) {
     case 2:
       currentContent = (
         <Summary
+          currentUser={currentUser}
           formData={formData}
           updateFormData={setFormData}
           goNext={goNext}
