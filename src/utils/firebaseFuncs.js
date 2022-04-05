@@ -4,6 +4,7 @@ import { doc, setDoc, getDoc } from "firebase/firestore";
 export async function addUser(userID, user) {
   try {
     await setDoc(doc(db, "users", userID + ""), user);
+    console.error("Success");
   } catch (e) {
     console.error("Error adding document: ", e);
   }

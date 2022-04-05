@@ -29,6 +29,14 @@ function MidSection({ formData, updateFormData, goBack, goNext }) {
 
       <Flex>
         <Button
+          m="4"
+          leftIcon={<ChevronLeftIcon fontSize="2xl" />}
+          onClick={goBack}
+          bg="#F7CD6B"
+        >
+          Back
+        </Button>
+        <Button
           mt="4"
           mx="2"
           onClick={() => {
