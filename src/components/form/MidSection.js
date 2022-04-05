@@ -1,12 +1,19 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { Button, Flex, Heading, Image, useMediaQuery } from "@chakra-ui/react";
-import { signInWithPopup } from "firebase/auth";
+import {} from "firebase/auth";
 import logo from "../../Assets/whitesnapcv.png";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { addUser } from "../../utils/firebaseFuncs";
 
-function MidSection({ formData, updateFormData, goBack, goNext }) {
+function MidSection({ formData, updateFormData, goBack, goNext, currentUser }) {
   const [isOnmobile] = useMediaQuery("(max-width: 768px)");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    addUser(currentUser.uid, formData);
+  }, []);
+
   return (
     <Flex
       justify="center"

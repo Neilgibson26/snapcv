@@ -69,6 +69,7 @@ function AreaOfInterest({ formData, updateFormData, goBack, goNext }) {
             <Flex
               m="4"
               p="4"
+              key={item.text + index}
               borderRadius="xl"
               cursor="pointer"
               fontWeight="semibold"
