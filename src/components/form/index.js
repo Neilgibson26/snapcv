@@ -58,7 +58,7 @@ const defaultData = {
   ],
 };
 
-function Form({ currentUser, setCurrentUser }) {
+function Form({ currentUser, setCurrentUser, text }) {
   const [currentStep, setCurrentStep] = useState(0);
   // const [data, setData] = useState(null);
   const [formData, setFormData] = useState(defaultData);

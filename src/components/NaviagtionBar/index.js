@@ -88,7 +88,7 @@ function NavigationBar({ currentUser, setCurrentUser }) {
                 Hire somebody
               </Text>
             </Link>
-            <Link to="/apply">
+            <Link to="/post">
               <Text
                 px="6"
                 py="2"

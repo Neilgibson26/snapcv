@@ -2,16 +2,16 @@ import { Flex } from "@chakra-ui/react";
 import React from "react";
 import Form from "../../components/form";
 
-function SignUp({ currentUser, setCurrentUser }) {
+function PostJob({ currentUser, setCurrentUser }) {
   return (
     <Flex minH="90vh" p="8" bg="#F7CD6B">
       <Form
         currentUser={currentUser}
         setCurrentUser={setCurrentUser}
-        text={""}
+        text={"Employer"}
       />
     </Flex>
   );
 }
 
-export default SignUp;
+export default PostJob;

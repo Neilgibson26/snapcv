@@ -46,7 +46,6 @@ function JobType({ formData, updateFormData, goBack, goNext }) {
             bgSize="cover"
             bgImage="https://images.unsplash.com/photo-1576669801820-a9ab287ac2d1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
           />
-          Casual Jobs
         </Flex>
         <Flex
           flexDir="column"
@@ -74,7 +73,7 @@ function JobType({ formData, updateFormData, goBack, goNext }) {
             bgSize="cover"
             bgImg="https://images.unsplash.com/photo-1640622842223-e1e39f4bf627?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80"
           />
-          Skilled Jobs
+          Employer
         </Flex>
       </Flex>
 

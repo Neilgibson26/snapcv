@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Hire from "./pages/Hire";
-import Apply from "./pages/Apply";
+import Apply from "./pages/PostJob";
 import Explore from "./pages/Explore";
 import NavigationBar from "./components/NaviagtionBar";
 import Profile from "./pages/Profile";
@@ -10,6 +10,7 @@ import SignUp from "./pages/SignUp/SignUp";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./utils/firebase";
 import useScript from "./hooks/useScript";
+import PostJob from "./pages/PostJob";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -92,6 +93,18 @@ function App() {
                 setCurrentUser={setCurrentUser}
               />
               <Profile />
+            </>
+          }
+        />
+        <Route
+          path="post"
+          element={
+            <>
+              <NavigationBar
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+              />
+              <PostJob />
             </>
           }
         />
