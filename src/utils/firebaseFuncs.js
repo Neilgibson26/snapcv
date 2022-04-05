@@ -2,8 +2,10 @@ import { db } from "./firebase";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 
 export async function addUser(userID, user) {
+  console.log("test", user);
   try {
-    await setDoc(doc(db, "users", userID + ""), user);
+    const docRef = await setDoc(doc(db, "users", userID + ""), user);
+    console.log("Document written with ID: ", docRef);
   } catch (e) {
     console.error("Error adding document: ", e);
   }

@@ -20,42 +20,16 @@ const defaultData = {
     phone: "",
     email: "",
   },
-  links: [
-    // {
-    //   name: "",
-    //   link: "",
-    // },
-  ],
   location: {
     city: "",
     country: "",
   },
   summary: "",
-  education: [
-    // {
-    //   startDate: "",
-    //   endDate: "",
-    //   currentYear: "",
-    //   institutionName: "",
-    //   course: "",
-    //   score: "",
-    //   details: {
-    //     modules: "",
-    //     extra: "",
-    //   },
-    // },
-  ],
+  video: "",
+  education: [],
   skills: [],
   interests: [],
-  work: [
-    // {
-    //   startDate: "",
-    //   endDate: "",
-    //   jobTitle: "",
-    //   company: "",
-    //   description: "",
-    // },
-  ],
+  work: [],
 };
 
 function Form({ currentUser, setCurrentUser }) {
@@ -164,6 +138,7 @@ function Form({ currentUser, setCurrentUser }) {
     case 4:
       currentContent = (
         <MidSection
+          currentUser={currentUser}
           formData={formData}
           updateFormData={setFormData}
           goNext={goNext}

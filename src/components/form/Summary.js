@@ -28,7 +28,7 @@ function Summary({ formData, updateFormData, goNext, goBack, currentUser }) {
   const [isRecording, setIsRecording] = useState(false);
   const [firstRecordComplete, setfFrstRecordComplete] = useState(false);
 
-  let { error, status, mediaBlob, stopRecording, liveStream, startRecording } =
+  let { mediaBlob, stopRecording, liveStream, startRecording } =
     useMediaRecorder({
       recordScreen: false,
       blobOptions: { type: "video/webm" },
@@ -120,6 +120,9 @@ function Summary({ formData, updateFormData, goNext, goBack, currentUser }) {
       console.log("Uploaded a blob or file!", snapshot);
       getDownloadURL(snapshot.ref).then((downloadURL) => {
         console.log("File available at", downloadURL);
+        const copy = { ...formData };
+        copy.video = downloadURL;
+        updateFormData(copy);
       });
     });
 
