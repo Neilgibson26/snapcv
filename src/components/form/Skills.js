@@ -27,7 +27,7 @@ function Skills({ formData, updateFormData, goBack, goNext }) {
 
   const [isOnmobile] = useMediaQuery("(max-width: 768px)");
   const [currentList, setCurrentList] = useState(
-    formData.interests.length !== 0
+    formData.skills.length !== 0
       ? formData.skills
       : convertToSelectableObjects(skills)
   );
