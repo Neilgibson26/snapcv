@@ -96,13 +96,16 @@ function Summary({ formData, updateFormData, goNext, goBack, currentUser }) {
   };
 
   useEffect(() => {
+    if (formData.video !== "") {
+      setfFrstRecordComplete(true);
+    }
     return () => {
       stopRecording();
     };
   }, []);
 
   const checkValidInput = () => {
-    if (!mediaBlob) {
+    if (!mediaBlob && formData.video === "") {
       toast({
         title: `Please record/upload a 20s video`,
         variant: "left-accent",
@@ -113,18 +116,20 @@ function Summary({ formData, updateFormData, goNext, goBack, currentUser }) {
       return false;
     }
 
-    const storageRef = ref(storage, "userVideos/" + currentUser.uid);
+    if (mediaBlob) {
+      const storageRef = ref(storage, "userVideos/" + currentUser.uid);
 
-    // 'file' comes from the Blob or File API
-    uploadBytes(storageRef, mediaBlob).then((snapshot) => {
-      console.log("Uploaded a blob or file!", snapshot);
-      getDownloadURL(snapshot.ref).then((downloadURL) => {
-        console.log("File available at", downloadURL);
-        const copy = { ...formData };
-        copy.video = downloadURL;
-        updateFormData(copy);
+      // 'file' comes from the Blob or File API
+      uploadBytes(storageRef, mediaBlob).then((snapshot) => {
+        console.log("Uploaded a blob or file!", snapshot);
+        getDownloadURL(snapshot.ref).then((downloadURL) => {
+          console.log("File available at", downloadURL);
+          const copy = { ...formData };
+          copy.video = downloadURL;
+          updateFormData(copy);
+        });
       });
-    });
+    }
 
     return true;
   };
@@ -162,7 +167,7 @@ function Summary({ formData, updateFormData, goNext, goBack, currentUser }) {
       {isRecording ? (
         <VideoPreview stream={liveStream} />
       ) : (
-        <Player srcBlob={mediaBlob} />
+        <Player srcBlob={mediaBlob} videoUrl={formData.video} />
       )}
 
       <FormControl p="1vw" id="first-name" isRequired>
@@ -206,7 +211,11 @@ function Summary({ formData, updateFormData, goNext, goBack, currentUser }) {
   );
 }
 
-function Player({ srcBlob, audio }) {
+function Player({ srcBlob, audio, videoUrl }) {
+  if (videoUrl !== "") {
+    return <video src={videoUrl} width={520} height={480} autoPlay controls />;
+  }
+
   if (!srcBlob) {
     return null;
   }
@@ -220,6 +229,7 @@ function Player({ srcBlob, audio }) {
       src={URL.createObjectURL(srcBlob)}
       width={520}
       height={480}
+      autoPlay
       controls
     />
   );

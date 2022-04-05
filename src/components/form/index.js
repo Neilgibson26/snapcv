@@ -44,33 +44,6 @@ function Form({ currentUser, setCurrentUser }) {
       top: 0,
       behavior: "smooth",
     });
-    // const auth = getAuth();
-    // onAuthStateChanged(auth, (user) => {
-    //   if (user) {
-    //     axios
-    //       .get("http://localhost:5000/api/v1/user/" + user.uid + "/data")
-    //       .then(function (response) {
-    //         console.log("throw");
-    //         setFormData(response.data.data.profile.profileData);
-    //         setData(response.data.data.profile);
-    //         if (
-    //           !response.data.data.profile.profileData.name ||
-    //           !response.data.data.profile.profileData.name.fname
-    //         ) {
-    //           setFormData(defaultData);
-    //         }
-    //         console.log("profile data", response.data.data.profile.profileData);
-    //         // handle success
-    //       })
-    //       .catch(function (error) {
-    //         // handle error
-    //         console.log(error);
-    //       });
-    //     console.log("User signed in");
-    //   } else {
-    //     console.log("User not signed in");
-    //   }
-    // });
   }, []);
 
   let currentContent = <Flex>Loading...</Flex>;

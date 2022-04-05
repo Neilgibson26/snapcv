@@ -1,4 +1,4 @@
-import { ChevronRightIcon } from "@chakra-ui/icons";
+import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { Button, Flex, Heading, Image, useMediaQuery } from "@chakra-ui/react";
 import {} from "firebase/auth";
 import logo from "../../Assets/whitesnapcv.png";
@@ -35,6 +35,14 @@ function MidSection({ formData, updateFormData, goBack, goNext, currentUser }) {
       </Heading>
 
       <Flex>
+        <Button
+          m="4"
+          leftIcon={<ChevronLeftIcon fontSize="2xl" />}
+          onClick={goBack}
+          bg="#F7CD6B"
+        >
+          Back
+        </Button>
         <Button
           mt="4"
           mx="2"

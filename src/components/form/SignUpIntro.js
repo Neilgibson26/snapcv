@@ -3,32 +3,28 @@ import { Button, Flex, Heading, Image, useMediaQuery } from "@chakra-ui/react";
 import { signInWithPopup } from "firebase/auth";
 import logo from "../../Assets/whitesnapcv.png";
 import { auth, provider } from "../../utils/firebase";
+import { getUser } from "../../utils/firebaseFuncs";
 
-function SignUpIntro({ goNext, setCurrentUser, currentUser }) {
+function SignUpIntro({ goNext, updateFormData, setCurrentUser, currentUser }) {
   const [isOnmobile] = useMediaQuery("(max-width: 768px)");
+
+  const getExistingUser = (data) => {
+    if (data) {
+      updateFormData(data);
+    }
+  };
 
   const signUserIn = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        // const credential = GoogleAuthProvider.credentialFromResult(result);
-        // const token = credential.accessToken;
-        // // The signed-in user info.
         const user = result.user;
         setCurrentUser(user);
+
+        getUser(user.uid, getExistingUser);
         goNext();
         // ...
       })
-      .catch((error) => {
-        // Handle Errors here.
-        // const errorCode = error.code;
-        // const errorMessage = error.message;
-        // // The email of the user's account used.
-        // const email = error.email;
-        // // The AuthCredential type that was used.
-        // const credential = GoogleAuthProvider.credentialFromError(error);
-        // ...
-      });
+      .catch((error) => {});
   };
 
   return (
@@ -63,6 +59,7 @@ function SignUpIntro({ goNext, setCurrentUser, currentUser }) {
           mb="8"
           rightIcon={<ChevronRightIcon fontSize="2xl" />}
           onClick={() => {
+            getUser(currentUser.uid, getExistingUser);
             goNext();
           }}
         >

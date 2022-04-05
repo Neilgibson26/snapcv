@@ -6,7 +6,13 @@ import NavigationBar from "../../components/NaviagtionBar";
 
 function Profile() {
   return (
-    <Flex w="100vw" alignItems="center" justify="center" flexDir="column">
+    <Flex
+      w="100vw"
+      alignItems="center"
+      justify="center"
+      flexDir="column"
+      bg="#F7CD6B"
+    >
       <Flex
         flexDir="column"
         w="80%"
@@ -17,6 +23,7 @@ function Profile() {
         shadow="dark-lg"
         borderRadius="3xl"
         my="10"
+        bg="white"
       >
         <Flex flexDir="column">
           <Text as="b" fontSize="3xl">
