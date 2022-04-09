@@ -162,6 +162,7 @@ function Summary({ formData, updateFormData, goNext, goBack, currentUser }) {
 
   useEffect(() => {
     if (isUploading === UPLOADING_COMPLETE) {
+      stopRecording();
       goNext();
     } else if (isUploading === UPLOADING_STARTED) {
       alert("Uploading video.... please wait");
