@@ -134,6 +134,7 @@ function Form({ currentUser, setCurrentUser, text }) {
     case 6:
       currentContent = (
         <Skills
+          currentUser={currentUser}
           formData={formData}
           updateFormData={setFormData}
           goNext={goNext}

@@ -1,6 +1,7 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { Button, Flex, Heading, Spacer, useMediaQuery } from "@chakra-ui/react";
 import React, { useState } from "react";
+import { addUser } from "../../utils/firebaseFuncs";
 
 const convertToSelectableObjects = (list) => {
   const selectableList = [];
@@ -15,7 +16,7 @@ const convertToSelectableObjects = (list) => {
   return selectableList;
 };
 
-function Skills({ formData, updateFormData, goBack, goNext }) {
+function Skills({ formData, updateFormData, goBack, goNext, currentUser }) {
   const skills = [
     "Technology",
     "Driving",
@@ -96,6 +97,7 @@ function Skills({ formData, updateFormData, goBack, goNext }) {
           bg="#F7CD6B"
           rightIcon={<ChevronRightIcon fontSize="2xl" />}
           onClick={() => {
+            addUser(currentUser.uid, formData);
             goNext();
           }}
         >
