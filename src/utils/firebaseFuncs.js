@@ -1,5 +1,5 @@
 import { db } from "./firebase";
-import { doc, setDoc, getDoc } from "firebase/firestore";
+import { doc, setDoc, getDoc, getDocs, collection } from "firebase/firestore";
 
 export async function addUser(userID, user) {
   try {
@@ -21,4 +21,14 @@ export async function getUser(userID, callback) {
     console.log("No such document!");
     callback(null);
   }
+}
+export async function getAllUsers(callback) {
+  const allUsers = await getDocs(collection(db, "users"));
+  const usersArray = [];
+  allUsers.forEach((doc) => {
+    // doc.data() is never undefined for query doc snapshots
+    usersArray.push({ id: doc.id, ...doc.data() });
+    console.log(doc.id, " => ", doc.data());
+  });
+  callback(usersArray);
 }

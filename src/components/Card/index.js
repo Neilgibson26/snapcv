@@ -15,37 +15,31 @@ function Card(props) {
       my="10"
       _hover={{ opacity: 0.7 }}
       onClick={() => {
-        navigate("/profile");
+        navigate("/profile/" + props.id);
       }}
     >
       <Flex flexDir="column" flexWrap="wrap">
         <Box objectFit="contain" w="100%" borderRadius="lg">
-          <Image
-            w="100%"
-            h="100%"
-            alt="Profile"
-            src="https://media.istockphoto.com/photos/pleasant-young-indian-woman-freelancer-consult-client-via-video-call-picture-id1300972573?s=612x612"
-            objectFit="contain"
-          ></Image>
+          <video src={props.video} width={520} height={480} autoPlay muted />
         </Box>
         <Flex flexWrap="wrap" justify="space-evenly" p="2">
           <Text mx="1" as="b">
-            &bull; Neil Gibson &bull;{" "}
+            &bull; {props.fname} {props.lname}{" "}
           </Text>
           <Text mx="1" as="b">
-            Dublin &bull;
+            &bull;{props.city}
           </Text>
           <Text mx="1" as="b">
             {" "}
-            Ireland &bull;
+            &bull;{props.country}
           </Text>
         </Flex>
-        <Flex flexWrap="wrap" px="2">
-          <Text>
-            hcjhdvb djhv jdhv ju cb dvjhd v dv dgc dh chvd hvd vhvads vhvdvhvdcv
-            dch dhvc vha cvhda ch dhc adhc h
-          </Text>
-        </Flex>
+
+        {props.summary ? (
+          <Flex flexWrap="wrap" px="2">
+            <Text>{props.summary}</Text>
+          </Flex>
+        ) : null}
       </Flex>
     </Box>
   );

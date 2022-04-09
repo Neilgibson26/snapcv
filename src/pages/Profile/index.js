@@ -1,12 +1,14 @@
 import { Button, Flex, Text } from "@chakra-ui/react";
 import { React, useEffect, useState } from "react";
 import { Box, useMediaQuery } from "@chakra-ui/react";
-import { EmailIcon } from "@chakra-ui/icons";
+import { EmailIcon, EditIcon } from "@chakra-ui/icons";
 import { getUser } from "../../utils/firebaseFuncs";
+import { useNavigate, useParams } from "react-router-dom";
 
 function Profile({ currentUser, setCurrentUser }) {
   const [data, setData] = useState(null);
   const [isOnmobile] = useMediaQuery("(max-width: 768px)");
+  const { id } = useParams();
 
   const getExistingUser = (data) => {
     if (data) {
@@ -17,10 +19,12 @@ function Profile({ currentUser, setCurrentUser }) {
 
   useEffect(() => {
     if (currentUser) {
-      getUser(currentUser.uid, getExistingUser);
+      getUser(!id ? currentUser.uid : id, getExistingUser);
     }
     return () => {};
   }, []);
+
+  const navigate = useNavigate();
 
   return data ? (
     <Flex
@@ -44,7 +48,7 @@ function Profile({ currentUser, setCurrentUser }) {
         pos="relative"
       >
         <Button
-          leftIcon={<EmailIcon />}
+          leftIcon={<EditIcon />}
           colorScheme="teal"
           variant="solid"
           my="6"
@@ -52,6 +56,9 @@ function Profile({ currentUser, setCurrentUser }) {
           top="0"
           left="0"
           ml="10"
+          onClick={() => {
+            navigate("/signup");
+          }}
         >
           Edit
         </Button>
@@ -89,7 +96,7 @@ function Profile({ currentUser, setCurrentUser }) {
           <Text as="b" fontSize="3xl" my="5">
             Areas of interest
           </Text>
-          <Flex align="center" justify="center" flexWrap="wrap">
+          <Flex align="center" justify="center" flexWrap="wrap" mb="10">
             {data.interests.map((interest) => {
               return interest.selected ? (
                 <Flex
@@ -110,7 +117,7 @@ function Profile({ currentUser, setCurrentUser }) {
           </Flex>
         </Flex>
         <Button
-          leftIcon={<EmailIcon />}
+          rightIcon={<EmailIcon />}
           colorScheme="teal"
           variant="solid"
           my="6"

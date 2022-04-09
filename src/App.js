@@ -100,6 +100,21 @@ function App() {
           }
         />
         <Route
+          path="profile/:id"
+          element={
+            <>
+              <NavigationBar
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+              />
+              <Profile
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+              />
+            </>
+          }
+        />
+        <Route
           path="post"
           element={
             <>
