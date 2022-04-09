@@ -92,7 +92,10 @@ function App() {
                 currentUser={currentUser}
                 setCurrentUser={setCurrentUser}
               />
-              <Profile />
+              <Profile
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+              />
             </>
           }
         />
