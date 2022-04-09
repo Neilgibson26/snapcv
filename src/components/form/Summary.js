@@ -22,6 +22,7 @@ import {
   UPLOADING_COMPLETE,
   UPLOADING_STARTED,
 } from "../../utils/Constants";
+import VideoPlayer from "./VideoPlayer";
 
 function Summary({ formData, updateFormData, goNext, goBack, currentUser }) {
   const toast = useToast();
@@ -181,6 +182,13 @@ function Summary({ formData, updateFormData, goNext, goBack, currentUser }) {
       <Heading mb="6" size="md" textAlign="center">
         Give a summary about yourself in 20 seconds
       </Heading>
+      <Text textAlign="center" mb="4">
+        <b>Here's some ideas:</b>
+        <br />
+        - Give an introduction <br />
+        - Talk about your past experiences
+        <br /> - Motivation to apply
+      </Text>
       <Button onClick={uploadVideo} _hover={{ opacity: 0.7 }}>
         Upload Video
       </Button>
@@ -200,26 +208,13 @@ function Summary({ formData, updateFormData, goNext, goBack, currentUser }) {
       {isRecording ? (
         <VideoPreview stream={liveStream} />
       ) : (
-        <Player
+        <VideoPlayer
           srcBlob={mediaBlob}
           videoUrl={formData.video}
           recStarted={recording}
         />
       )}
-      <FormControl p="1vw" id="first-name" isRequired>
-        <FormLabel fontWeight="bold">Summary</FormLabel>
-        <Textarea
-          h="42vh"
-          maxLength="500"
-          placeholder="Upload Summary video 20 seconds / write short summary (optional)"
-          value={formData && formData.summary ? formData.summary : ""}
-          onChange={(e) => {
-            const copy = { ...formData };
-            copy.summary = e.target.value;
-            updateFormData(copy);
-          }}
-        />
-      </FormControl>
+
       <Flex w="100%" justify="space-between" mt="8">
         <Button
           onClick={goBack}
@@ -244,30 +239,6 @@ function Summary({ formData, updateFormData, goNext, goBack, currentUser }) {
         </Button>
       </Flex>
     </Flex>
-  );
-}
-
-function Player({ srcBlob, audio, videoUrl, recStarted }) {
-  if (videoUrl !== "" && !recStarted) {
-    return <video src={videoUrl} width={520} height={480} autoPlay controls />;
-  }
-
-  if (!srcBlob) {
-    return null;
-  }
-
-  if (audio) {
-    return <audio src={URL.createObjectURL(srcBlob)} controls />;
-  }
-
-  return (
-    <video
-      src={URL.createObjectURL(srcBlob)}
-      width={520}
-      height={480}
-      autoPlay
-      controls
-    />
   );
 }
 

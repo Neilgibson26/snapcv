@@ -8,6 +8,7 @@ import AreaOfInterest from "./AreaOfInterest";
 import SignUpIntro from "./SignUpIntro";
 import Skills from "./Skills";
 import MidSection from "./MidSection";
+import WrittenSummary from "./WrittenSummary";
 
 const defaultData = {
   profileImg: "",
@@ -99,6 +100,17 @@ function Form({ currentUser, setCurrentUser, text }) {
       break;
     case 3:
       currentContent = (
+        <WrittenSummary
+          currentUser={currentUser}
+          formData={formData}
+          updateFormData={setFormData}
+          goNext={goNext}
+          goBack={goBack}
+        />
+      );
+      break;
+    case 4:
+      currentContent = (
         <AreaOfInterest
           formData={formData}
           updateFormData={setFormData}
@@ -108,7 +120,7 @@ function Form({ currentUser, setCurrentUser, text }) {
       );
       break;
 
-    case 4:
+    case 5:
       currentContent = (
         <MidSection
           currentUser={currentUser}
@@ -119,7 +131,7 @@ function Form({ currentUser, setCurrentUser, text }) {
         />
       );
       break;
-    case 5:
+    case 6:
       currentContent = (
         <Skills
           formData={formData}
@@ -130,7 +142,7 @@ function Form({ currentUser, setCurrentUser, text }) {
       );
       break;
 
-    case 6:
+    case 7:
       currentContent = (
         <Experience
           formData={formData}

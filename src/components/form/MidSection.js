@@ -27,14 +27,47 @@ function MidSection({ formData, updateFormData, goBack, goNext, currentUser }) {
       align="center"
     >
       <Image w="150px" h="150px" src={logo} />
-      <Heading w="60%" mb="6" size="md" textAlign="center">
+      <Heading
+        w={isOnmobile ? "100%" : "60%"}
+        mb="6"
+        size="md"
+        textAlign="center"
+      >
         Your profile is now ready!
       </Heading>
-      <Heading w="60%" mb="6" size="md" textAlign="center">
+      <Heading
+        w={isOnmobile ? "100%" : "60%"}
+        mb="6"
+        size="md"
+        textAlign="center"
+      >
         If you would like to add more information click next.
       </Heading>
 
-      <Flex>
+      <Flex w="50%" flexWrap="wrap" align="center" justify="center">
+        <Button
+          w="60%"
+          m="4"
+          onClick={() => {
+            navigate("/explore");
+          }}
+          bg="#F7CD6B"
+        >
+          Explore jobs
+        </Button>
+
+        <Button
+          w="60%"
+          bg="#F7CD6B"
+          m="4"
+          onClick={() => {
+            navigate("/profile");
+          }}
+        >
+          View My Profile
+        </Button>
+      </Flex>
+      <Flex w="100%" flexWrap="wrap" align="center" justify="space-between">
         <Button
           m="4"
           leftIcon={<ChevronLeftIcon fontSize="2xl" />}
@@ -43,32 +76,10 @@ function MidSection({ formData, updateFormData, goBack, goNext, currentUser }) {
         >
           Back
         </Button>
-        <Button
-          mt="4"
-          mx="2"
-          onClick={() => {
-            navigate("/explore");
-          }}
-          bg="#F7CD6B"
-        >
-          Explore jobs
-        </Button>
-        <Button
-          bg="#F7CD6B"
-          mt="4"
-          mb="8"
-          mx="2"
-          onClick={() => {
-            navigate("/profile");
-          }}
-        >
-          Preview
-        </Button>
 
         <Button
           bg="#F7CD6B"
-          mt="4"
-          mx="2"
+          m="4"
           rightIcon={<ChevronRightIcon fontSize="2xl" />}
           onClick={goNext}
         >
