@@ -6,6 +6,7 @@ import {
   FormLabel,
   Heading,
   Spacer,
+  Text,
   Textarea,
   useMediaQuery,
   useToast,
@@ -16,6 +17,11 @@ import getBlobDuration from "get-blob-duration";
 import { useEffect, useState } from "react";
 import { storage } from "../../utils/firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import {
+  NOT_UPLOADING,
+  UPLOADING_COMPLETE,
+  UPLOADING_STARTED,
+} from "../../utils/Constants";
 
 function Summary({ formData, updateFormData, goNext, goBack, currentUser }) {
   const toast = useToast();
@@ -24,6 +30,8 @@ function Summary({ formData, updateFormData, goNext, goBack, currentUser }) {
   const [isRecording, setIsRecording] = useState(false);
   const [firstRecordComplete, setfFrstRecordComplete] = useState(false);
   const [recording, setRecording] = useState(false);
+  const [timePassed, setTimePassed] = useState(0);
+  const [isUploading, setIsUploading] = useState(NOT_UPLOADING);
 
   let { mediaBlob, stopRecording, liveStream, startRecording } =
     useMediaRecorder({
@@ -39,6 +47,7 @@ function Summary({ formData, updateFormData, goNext, goBack, currentUser }) {
         })();
       },
       onStart: () => {
+        setTimePassed(0);
         setIsRecording(true);
         setRecording(true);
         setfFrstRecordComplete(true);
@@ -102,6 +111,22 @@ function Summary({ formData, updateFormData, goNext, goBack, currentUser }) {
     };
   }, []);
 
+  useEffect(() => {
+    let interval = -1;
+
+    interval = setInterval(() => {
+      if (isRecording) {
+        setTimePassed(timePassed + 1);
+
+        if (timePassed >= 19) {
+          stopRecording();
+        }
+      }
+    }, 1000);
+
+    return () => (interval !== -1 ? clearInterval(interval) : "");
+  }, [isRecording, stopRecording, timePassed]);
+
   const checkValidInput = () => {
     if (!mediaBlob && formData.video === "") {
       toast({
@@ -116,7 +141,7 @@ function Summary({ formData, updateFormData, goNext, goBack, currentUser }) {
 
     if (mediaBlob) {
       const storageRef = ref(storage, "userVideos/" + currentUser.uid);
-
+      setIsUploading(UPLOADING_STARTED);
       // 'file' comes from the Blob or File API
       uploadBytes(storageRef, mediaBlob).then((snapshot) => {
         console.log("Uploaded a blob or file!", snapshot);
@@ -125,12 +150,22 @@ function Summary({ formData, updateFormData, goNext, goBack, currentUser }) {
           const copy = { ...formData };
           copy.video = downloadURL;
           updateFormData(copy);
+          setIsUploading(UPLOADING_COMPLETE);
         });
       });
+      return false;
     }
 
-    return true;
+    return isUploading === NOT_UPLOADING;
   };
+
+  useEffect(() => {
+    if (isUploading === UPLOADING_COMPLETE) {
+      goNext();
+    } else if (isUploading === UPLOADING_STARTED) {
+      alert("Uploading video.... please wait");
+    }
+  }, [goNext, isUploading]);
 
   return (
     <Flex
@@ -161,7 +196,7 @@ function Summary({ formData, updateFormData, goNext, goBack, currentUser }) {
           ? "Retake video"
           : "Record Video"}
       </Button>
-
+      {isRecording ? <Text>Time Left: {20 - timePassed} seconds</Text> : null}
       {isRecording ? (
         <VideoPreview stream={liveStream} />
       ) : (
@@ -171,7 +206,6 @@ function Summary({ formData, updateFormData, goNext, goBack, currentUser }) {
           recStarted={recording}
         />
       )}
-
       <FormControl p="1vw" id="first-name" isRequired>
         <FormLabel fontWeight="bold">Summary</FormLabel>
         <Textarea
