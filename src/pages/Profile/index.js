@@ -1,11 +1,12 @@
 import { Button, Flex, Text } from "@chakra-ui/react";
 import { React, useEffect, useState } from "react";
-import { Skeleton, Box } from "@chakra-ui/react";
+import { Box, useMediaQuery } from "@chakra-ui/react";
 import { EmailIcon } from "@chakra-ui/icons";
 import { getUser } from "../../utils/firebaseFuncs";
 
 function Profile({ currentUser, setCurrentUser }) {
   const [data, setData] = useState(null);
+  const [isOnmobile] = useMediaQuery("(max-width: 768px)");
 
   const getExistingUser = (data) => {
     if (data) {
@@ -36,18 +37,32 @@ function Profile({ currentUser, setCurrentUser }) {
         justify="center"
         align="center"
         p="5"
-        shadow="dark-lg"
+        shadow="2xl"
         borderRadius="3xl"
         my="10"
         bg="white"
+        pos="relative"
       >
-        <Flex flexDir="column">
+        <Button
+          leftIcon={<EmailIcon />}
+          colorScheme="teal"
+          variant="solid"
+          my="6"
+          pos="absolute"
+          top="0"
+          left="0"
+          ml="10"
+        >
+          Edit
+        </Button>
+
+        <Flex flexDir="column" justify="center" align="center">
           <Text as="b" fontSize="3xl">
             {data.name.fname + " " + data.name.lname}
           </Text>
           <Flex align="center" justify="center">
-            <Text>{data.location.city + ", "}</Text>
-            <Text>{data.location.country}</Text>
+            <Text>{`${data.location.city}, `}</Text>
+            <Text>{" " + data.location.country}</Text>
           </Flex>
         </Flex>
         <Box objectFit="contain" w="40%" h="40vh" borderRadius="lg" my="5">
@@ -70,13 +85,27 @@ function Profile({ currentUser, setCurrentUser }) {
           </Flex>
         ) : null}
 
-        <Flex w="50%" justifyContent="center">
-          <Text as="b" fontSize="3xl">
-            Skills
+        <Flex w="100%" justifyContent="center" flexDir="column" align="center">
+          <Text as="b" fontSize="3xl" my="5">
+            Areas of interest
           </Text>
-          <Flex>
-            {data.skills.map((skill) => {
-              <Flex>{skill}</Flex>;
+          <Flex align="center" justify="center" flexWrap="wrap">
+            {data.interests.map((interest) => {
+              return interest.selected ? (
+                <Flex
+                  my="2"
+                  w="40"
+                  p="5"
+                  justify="center"
+                  align="center"
+                  flexWrap="wrap"
+                  bg="#F7CD6B"
+                  mx="5"
+                  borderRadius="2xl"
+                >
+                  <Text>{interest.text}</Text>
+                </Flex>
+              ) : null;
             })}
           </Flex>
         </Flex>
@@ -84,7 +113,11 @@ function Profile({ currentUser, setCurrentUser }) {
           leftIcon={<EmailIcon />}
           colorScheme="teal"
           variant="solid"
-          my="10"
+          my="6"
+          pos="absolute"
+          top="0"
+          right="0"
+          mr="10"
         >
           Contact User
         </Button>
