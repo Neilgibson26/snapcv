@@ -17,16 +17,13 @@ import { useEffect, useState } from "react";
 import { storage } from "../../utils/firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
-// import { ReactMediaRecorder } from "react-media-recorder";
-// import VideoPreview from "./VideoPreview";
-// import VideoRecorder from "react-video-recorder";
-
 function Summary({ formData, updateFormData, goNext, goBack, currentUser }) {
   const toast = useToast();
 
   const [isOnmobile] = useMediaQuery("(max-width: 768px)");
   const [isRecording, setIsRecording] = useState(false);
   const [firstRecordComplete, setfFrstRecordComplete] = useState(false);
+  const [recording, setRecording] = useState(false);
 
   let { mediaBlob, stopRecording, liveStream, startRecording } =
     useMediaRecorder({
@@ -43,6 +40,7 @@ function Summary({ formData, updateFormData, goNext, goBack, currentUser }) {
       },
       onStart: () => {
         setIsRecording(true);
+        setRecording(true);
         setfFrstRecordComplete(true);
       },
     });
@@ -167,7 +165,11 @@ function Summary({ formData, updateFormData, goNext, goBack, currentUser }) {
       {isRecording ? (
         <VideoPreview stream={liveStream} />
       ) : (
-        <Player srcBlob={mediaBlob} videoUrl={formData.video} />
+        <Player
+          srcBlob={mediaBlob}
+          videoUrl={formData.video}
+          recStarted={recording}
+        />
       )}
 
       <FormControl p="1vw" id="first-name" isRequired>
@@ -211,8 +213,8 @@ function Summary({ formData, updateFormData, goNext, goBack, currentUser }) {
   );
 }
 
-function Player({ srcBlob, audio, videoUrl }) {
-  if (videoUrl !== "") {
+function Player({ srcBlob, audio, videoUrl, recStarted }) {
+  if (videoUrl !== "" && !recStarted) {
     return <video src={videoUrl} width={520} height={480} autoPlay controls />;
   }
 
