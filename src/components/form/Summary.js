@@ -162,6 +162,7 @@ function Summary({ formData, updateFormData, goNext, goBack, currentUser }) {
 
   useEffect(() => {
     if (isUploading === UPLOADING_COMPLETE) {
+      stopRecording();
       goNext();
     } else if (isUploading === UPLOADING_STARTED) {
       alert("Uploading video.... please wait");
@@ -178,6 +179,7 @@ function Summary({ formData, updateFormData, goNext, goBack, currentUser }) {
       direction="column"
       boxShadow="2xl"
       borderRadius="10px"
+      align="center"
     >
       <Heading mb="6" size="md" textAlign="center">
         Give a summary about yourself in 20 seconds
@@ -189,10 +191,11 @@ function Summary({ formData, updateFormData, goNext, goBack, currentUser }) {
         - Talk about your past experiences
         <br /> - Motivation to apply
       </Text>
-      <Button onClick={uploadVideo} _hover={{ opacity: 0.7 }}>
+      <Button w="100%" onClick={uploadVideo} _hover={{ opacity: 0.7 }}>
         Upload Video
       </Button>
       <Button
+        w="100%"
         my="4"
         onClick={isRecording ? stopRecording : startRecording}
         bg={isRecording ? "red.400" : "#edf2f6"}
