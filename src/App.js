@@ -30,9 +30,14 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
         <Route
-          path="signup"
+          path="/"
+          element={
+            <Home currentUser={currentUser} setCurrentUser={setCurrentUser} />
+          }
+        />
+        <Route
+          path="/signup"
           element={
             <>
               <NavigationBar
@@ -47,7 +52,7 @@ function App() {
           }
         />
         <Route
-          path="explore"
+          path="/explore"
           element={
             <>
               <NavigationBar
@@ -62,7 +67,7 @@ function App() {
           }
         />
         <Route
-          path="hire"
+          path="/hire"
           element={
             <>
               <NavigationBar
@@ -74,7 +79,7 @@ function App() {
           }
         />
         <Route
-          path="profile"
+          path="/profiles/:id"
           element={
             <>
               <NavigationBar
@@ -89,7 +94,8 @@ function App() {
           }
         />
         <Route
-          path="profile/:id"
+          exact
+          path="/profile"
           element={
             <>
               <NavigationBar

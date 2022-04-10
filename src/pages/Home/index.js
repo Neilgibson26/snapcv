@@ -2,7 +2,7 @@ import { Box, Flex, Skeleton, Text, useMediaQuery } from "@chakra-ui/react";
 import React from "react";
 import WhiteNavigationBar from "../../components/WhiteNavigationBar";
 
-function Home() {
+function Home({ currentUser, setCurrentUser }) {
   const [isOnmobile] = useMediaQuery("(max-width: 768px)");
 
   return (
@@ -26,7 +26,10 @@ function Home() {
         w="100%"
         shadow="2xl"
       >
-        <WhiteNavigationBar />
+        <WhiteNavigationBar
+          currentUser={currentUser}
+          setCurrentUser={setCurrentUser}
+        />
 
         <Skeleton
           w="90%"

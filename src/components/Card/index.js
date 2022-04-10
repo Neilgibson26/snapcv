@@ -15,7 +15,7 @@ function Card(props) {
       my="10"
       _hover={{ opacity: 0.7 }}
       onClick={() => {
-        navigate("/profile/" + props.id);
+        navigate("/profiles/" + props.id);
       }}
     >
       <Flex flexDir="column" flexWrap="wrap">
@@ -35,11 +35,11 @@ function Card(props) {
           </Text>
         </Flex>
 
-        {props.summary ? (
+        {/* {props.summary ? (
           <Flex flexWrap="wrap" px="2">
             <Text>{props.summary}</Text>
           </Flex>
-        ) : null}
+        ) : null} */}
       </Flex>
     </Box>
   );

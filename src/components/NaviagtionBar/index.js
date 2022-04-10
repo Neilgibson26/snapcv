@@ -1,5 +1,6 @@
 import { GiHamburgerMenu } from "react-icons/gi";
 import { ImCross } from "react-icons/im";
+import { BsPersonCircle } from "react-icons/bs";
 import {
   Box,
   Flex,
@@ -76,6 +77,18 @@ function NavigationBar({ currentUser, setCurrentUser }) {
             fontWeight="bold"
             display={{ base: "none", md: "flex" }}
           >
+            <Link to="/explore">
+              <Text
+                px="6"
+                py="2"
+                fontFamily="sans-serif"
+                fontWeight="bold"
+                borderRadius="lg"
+                _hover={{ bg: "white" }}
+              >
+                Explore Jobs
+              </Text>
+            </Link>
             <Link to="/hire">
               <Text
                 px="6"
@@ -101,12 +114,18 @@ function NavigationBar({ currentUser, setCurrentUser }) {
               </Text>
             </Link>
             {currentUser ? (
-              <Button mx="4" onClick={signUserOut}>
-                Sign Out
+              <Button
+                mx="4"
+                rightIcon={<BsPersonCircle />}
+                onClick={() => {
+                  navigate("/profile");
+                }}
+              >
+                My Profile
               </Button>
             ) : (
               <Button mx="4" leftIcon={<FcGoogle />} onClick={signUserIn}>
-                Sign In
+                Profile
               </Button>
             )}
           </Flex>
