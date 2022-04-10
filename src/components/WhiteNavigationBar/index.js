@@ -77,6 +77,18 @@ function WhiteNavigationBar({ currentUser, setCurrentUser }) {
             fontWeight="bold"
             display={{ base: "none", md: "flex" }}
           >
+            <Link to="explore">
+              <Text
+                px="6"
+                py="2"
+                fontFamily="sans-serif"
+                fontWeight="bold"
+                borderRadius="lg"
+                _hover={{ bg: "#F7CD6B" }}
+              >
+                Explore Jobs
+              </Text>
+            </Link>
             <Link to="hire">
               <Text
                 px="6"
