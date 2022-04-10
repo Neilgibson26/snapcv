@@ -44,9 +44,14 @@ function MidSection({ formData, updateFormData, goBack, goNext, currentUser }) {
         If you would like to add more information click next.
       </Heading>
 
-      <Flex w="50%" flexWrap="wrap" align="center" justify="center">
+      <Flex
+        w={isOnmobile ? "80%" : "50%"}
+        flexWrap="wrap"
+        align="center"
+        justify="center"
+      >
         <Button
-          w="60%"
+          w={isOnmobile ? "100%" : "60%"}
           m="4"
           onClick={() => {
             navigate("/explore");
@@ -57,7 +62,7 @@ function MidSection({ formData, updateFormData, goBack, goNext, currentUser }) {
         </Button>
 
         <Button
-          w="60%"
+          w={isOnmobile ? "100%" : "60%"}
           bg="#F7CD6B"
           m="4"
           onClick={() => {
@@ -67,9 +72,15 @@ function MidSection({ formData, updateFormData, goBack, goNext, currentUser }) {
           View My Profile
         </Button>
       </Flex>
-      <Flex w="100%" flexWrap="wrap" align="center" justify="space-between">
+      <Flex
+        w={isOnmobile ? "80%" : "100%"}
+        flexWrap="wrap"
+        align="center"
+        justify={isOnmobile ? "center" : "space-between"}
+      >
         <Button
           m="4"
+          w={isOnmobile ? "60%" : ""}
           leftIcon={<ChevronLeftIcon fontSize="2xl" />}
           onClick={goBack}
           bg="#F7CD6B"
@@ -78,6 +89,7 @@ function MidSection({ formData, updateFormData, goBack, goNext, currentUser }) {
         </Button>
 
         <Button
+          w={isOnmobile ? "60%" : ""}
           bg="#F7CD6B"
           m="4"
           rightIcon={<ChevronRightIcon fontSize="2xl" />}

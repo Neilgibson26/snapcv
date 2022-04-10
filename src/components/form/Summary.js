@@ -167,7 +167,7 @@ function Summary({ formData, updateFormData, goNext, goBack, currentUser }) {
     } else if (isUploading === UPLOADING_STARTED) {
       alert("Uploading video.... please wait");
     }
-  }, [goNext, isUploading]);
+  }, [goNext, isUploading, stopRecording]);
 
   return (
     <Flex

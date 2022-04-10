@@ -68,8 +68,7 @@ function Profile({ currentUser, setCurrentUser }) {
             {data.name.fname + " " + data.name.lname}
           </Text>
           <Flex align="center" justify="center">
-            <Text>{`${data.location.city}, `}</Text>
-            <Text>{" " + data.location.country}</Text>
+            <Text>{`${data.location.city}, ${data.location.country}`}</Text>
           </Flex>
         </Flex>
         <Box objectFit="contain" w="40%" h="40vh" borderRadius="lg" my="5">
