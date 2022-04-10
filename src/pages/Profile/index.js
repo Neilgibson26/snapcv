@@ -13,7 +13,6 @@ function Profile({ currentUser, setCurrentUser }) {
   const getExistingUser = (data) => {
     if (data) {
       setData(data);
-      console.log("This is the users email ", data.contact.email);
     }
   };
 
@@ -48,20 +47,34 @@ function Profile({ currentUser, setCurrentUser }) {
         pos="relative"
       >
         <Button
-          leftIcon={<EditIcon />}
+          rightIcon={<EmailIcon />}
           colorScheme="teal"
           variant="solid"
           my="6"
           pos="absolute"
           top="0"
-          left="0"
-          ml="10"
-          onClick={() => {
-            navigate("/signup");
-          }}
+          right="0"
+          mr="10"
         >
-          Edit
+          Contact User
         </Button>
+        {id === currentUser.uid ? (
+          <Button
+            leftIcon={<EditIcon />}
+            colorScheme="teal"
+            variant="solid"
+            my="6"
+            pos="absolute"
+            top="0"
+            left="0"
+            ml="10"
+            onClick={() => {
+              navigate("/signup");
+            }}
+          >
+            Edit
+          </Button>
+        ) : null}
 
         <Flex flexDir="column" justify="center" align="center">
           <Text as="b" fontSize="3xl">
@@ -115,22 +128,41 @@ function Profile({ currentUser, setCurrentUser }) {
             })}
           </Flex>
         </Flex>
-        <Button
-          rightIcon={<EmailIcon />}
-          colorScheme="teal"
-          variant="solid"
-          my="6"
-          pos="absolute"
-          top="0"
-          right="0"
-          mr="10"
-        >
-          Contact User
-        </Button>
+        {data.skills.length > 0 ? (
+          <Flex
+            w="100%"
+            justifyContent="center"
+            flexDir="column"
+            align="center"
+          >
+            <Text as="b" fontSize="3xl" mb="5">
+              Skills
+            </Text>
+            <Flex align="center" justify="center" flexWrap="wrap" mb="10">
+              {data.skills.map((skill) => {
+                return skill.selected ? (
+                  <Flex
+                    mb="2"
+                    w="40"
+                    p="5"
+                    justify="center"
+                    align="center"
+                    flexWrap="wrap"
+                    bg="#F7CD6B"
+                    mx="5"
+                    borderRadius="2xl"
+                  >
+                    <Text textAlign="center">{skill.text}</Text>
+                  </Flex>
+                ) : null;
+              })}
+            </Flex>
+          </Flex>
+        ) : null}
       </Flex>
     </Flex>
   ) : (
-    <Flex>hello</Flex>
+    <Flex>Loading ...</Flex>
   );
 }
 

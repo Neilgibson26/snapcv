@@ -35,11 +35,11 @@ function Card(props) {
           </Text>
         </Flex>
 
-        {props.summary ? (
+        {/* {props.summary ? (
           <Flex flexWrap="wrap" px="2">
             <Text>{props.summary}</Text>
           </Flex>
-        ) : null}
+        ) : null} */}
       </Flex>
     </Box>
   );
