@@ -94,7 +94,6 @@ function App() {
           }
         />
         <Route
-          exact
           path="/profile"
           element={
             <>

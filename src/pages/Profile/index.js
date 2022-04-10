@@ -21,7 +21,7 @@ function Profile({ currentUser, setCurrentUser }) {
       getUser(!id ? currentUser.uid : id, getExistingUser);
     }
     return () => {};
-  }, []);
+  }, [currentUser, id]);
 
   const navigate = useNavigate();
 
