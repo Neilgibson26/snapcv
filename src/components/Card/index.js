@@ -14,9 +14,6 @@ function Card(props) {
       mx="10"
       my="10"
       _hover={{ opacity: 0.7 }}
-      onClick={() => {
-        navigate("/profiles/" + props.id);
-      }}
     >
       <Flex flexDir="column" flexWrap="wrap">
         <Box objectFit="contain" w="100%" borderRadius="lg">
