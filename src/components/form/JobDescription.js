@@ -68,32 +68,6 @@ function JobDescription({
     return true;
   };
 
-  //   useEffect(() => {
-  //     const copy = { ...formData };
-  //     copy.name.fname =
-  //       formData && formData.name
-  //         ? formData.name.fname === ""
-  //           ? currentUser.displayName.split(" ")[0]
-  //           : formData.name.fname
-  //         : "";
-
-  //     copy.name.lname =
-  //       formData && formData.name
-  //         ? formData.name.lname === "" &&
-  //           currentUser.displayName.split(" ").length > 1
-  //           ? currentUser.displayName.split(" ")[1]
-  //           : formData.name.lname
-  //         : "";
-
-  //     copy.contact.email =
-  //       formData && formData.contact
-  //         ? formData.contact.email === ""
-  //           ? currentUser.email
-  //           : formData.contact.email
-  //         : "";
-  //     updateFormData(copy);
-  //   }, []);
-
   return (
     <Flex
       justify="center"
@@ -106,7 +80,8 @@ function JobDescription({
       borderRadius="10px"
     >
       <Heading mb="6" size="md" textAlign="center">
-        Hello {currentUser.displayName.split(" ")[0]},<br /> Enter your details
+        Hello {currentUser.displayName.split(" ")[0]} 👋
+        <br /> Enter details about the job
       </Heading>
       <FormTextInput
         label="First Name"

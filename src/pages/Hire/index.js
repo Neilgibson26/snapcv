@@ -16,6 +16,7 @@ function Hire() {
     getAllUsers(callback);
     return () => {};
   }, []);
+
   return allUsers ? (
     <Flex flexDir="column" w="100%" h="100%">
       <Flex w="100%" my="10" flexWrap="wrap" justifyContent="space-evenly">

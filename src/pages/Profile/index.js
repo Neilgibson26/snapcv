@@ -97,7 +97,6 @@ function Profile({ currentUser, setCurrentUser }) {
         {data.summary ? (
           <Flex w="50%" align="center" flexDir="column">
             <Text fontSize="3xl" as="b">
-              {" "}
               Summary
             </Text>
             <Text>{data.summary}</Text>

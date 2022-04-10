@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Hire from "./pages/Hire";
-import Apply from "./pages/PostJob";
 import Explore from "./pages/Explore";
 import NavigationBar from "./components/NaviagtionBar";
 import Profile from "./pages/Profile";
@@ -17,17 +16,16 @@ function App() {
 
   useScript("https://upload-widget.cloudinary.com/global/all.js");
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/firebase.User
-      // const uid = user.uid;
-      setCurrentUser(user);
-    } else {
-      // User is signed out
-      setCurrentUser(null);
-    }
-  });
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setCurrentUser(user);
+      } else {
+        // User is signed out
+        setCurrentUser(null);
+      }
+    });
+  }, []);
 
   return (
     <Router>
@@ -49,18 +47,6 @@ function App() {
           }
         />
         <Route
-          path="apply"
-          element={
-            <>
-              <NavigationBar
-                currentUser={currentUser}
-                setCurrentUser={setCurrentUser}
-              />
-              <Apply />
-            </>
-          }
-        />
-        <Route
           path="explore"
           element={
             <>
@@ -68,7 +54,10 @@ function App() {
                 currentUser={currentUser}
                 setCurrentUser={setCurrentUser}
               />
-              <Explore />
+              <Explore
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+              />
             </>
           }
         />
@@ -122,7 +111,10 @@ function App() {
                 currentUser={currentUser}
                 setCurrentUser={setCurrentUser}
               />
-              <PostJob />
+              <PostJob
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+              />
             </>
           }
         />

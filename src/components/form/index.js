@@ -9,6 +9,9 @@ import SignUpIntro from "./SignUpIntro";
 import Skills from "./Skills";
 import MidSection from "./MidSection";
 import WrittenSummary from "./WrittenSummary";
+import { JOBSEEKER } from "../../utils/Constants";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import JobDescription from "./JobDescription";
 
 const defaultData = {
   profileImg: "",
@@ -33,7 +36,7 @@ const defaultData = {
   work: [],
 };
 
-function Form({ currentUser, setCurrentUser, text }) {
+function Form({ currentUser, setCurrentUser, type = JOBSEEKER }) {
   const [currentStep, setCurrentStep] = useState(0);
   // const [data, setData] = useState(null);
   const [formData, setFormData] = useState(defaultData);
@@ -45,15 +48,29 @@ function Form({ currentUser, setCurrentUser, text }) {
       top: 0,
       behavior: "smooth",
     });
-  }, []);
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setCurrentUser(user);
+      } else {
+        // User is signed out
+        setCurrentUser(null);
+      }
+    });
+  }, [setCurrentUser]);
 
   let currentContent = <Flex>Loading...</Flex>;
-  const goNext = () => {
+  const goNext = (page = -1) => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
-    setCurrentStep(currentStep + 1);
+
+    if (page !== -1) {
+      setCurrentStep(page);
+    } else {
+      setCurrentStep(currentStep + 1);
+    }
   };
 
   const goBack = () => {
@@ -67,6 +84,7 @@ function Form({ currentUser, setCurrentUser, text }) {
     case 0:
       currentContent = (
         <SignUpIntro
+          type={type}
           currentUser={currentUser}
           setCurrentUser={setCurrentUser}
           formData={formData}
@@ -154,17 +172,17 @@ function Form({ currentUser, setCurrentUser, text }) {
       );
       break;
 
-    // case 6:
-    //   currentContent = (
-    //     <Preview
-    //       formData={formData}
-    //       updateFormData={setFormData}
-    //       // data={data}
-    //       goNext={goNext}
-    //       goBack={goBack}
-    //     />
-    //   );
-    //   break;
+    case 11:
+      currentContent = (
+        <JobDescription
+          formData={formData}
+          currentUser={currentUser}
+          updateFormData={setFormData}
+          goNext={goNext}
+          goBack={goBack}
+        />
+      );
+      break;
 
     default:
       break;

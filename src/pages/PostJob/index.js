@@ -1,6 +1,7 @@
 import { Flex } from "@chakra-ui/react";
 import React from "react";
 import Form from "../../components/form";
+import { EMPLOYER } from "../../utils/Constants";
 
 function PostJob({ currentUser, setCurrentUser }) {
   return (
@@ -8,7 +9,7 @@ function PostJob({ currentUser, setCurrentUser }) {
       <Form
         currentUser={currentUser}
         setCurrentUser={setCurrentUser}
-        text={"Employer"}
+        type={EMPLOYER}
       />
     </Flex>
   );

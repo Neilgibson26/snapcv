@@ -88,7 +88,7 @@ function WhiteNavigationBar({ currentUser, setCurrentUser }) {
                 Hire somebody
               </Text>
             </Link>
-            <Link to="apply">
+            <Link to="post">
               <Text
                 px="6"
                 py="2"
@@ -156,7 +156,7 @@ function WhiteNavigationBar({ currentUser, setCurrentUser }) {
                   Explore Jobs
                 </Text>
               </Link>
-              <Link to="apply">
+              <Link to="post">
                 <Text
                   px="6"
                   py="2"
