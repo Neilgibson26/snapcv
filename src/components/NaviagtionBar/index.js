@@ -1,5 +1,6 @@
 import { GiHamburgerMenu } from "react-icons/gi";
 import { ImCross } from "react-icons/im";
+import { BsPersonCircle } from "react-icons/bs";
 import {
   Box,
   Flex,
@@ -101,12 +102,18 @@ function NavigationBar({ currentUser, setCurrentUser }) {
               </Text>
             </Link>
             {currentUser ? (
-              <Button mx="4" onClick={signUserOut}>
-                Sign Out
+              <Button
+                mx="4"
+                rightIcon={<BsPersonCircle />}
+                onClick={() => {
+                  navigate("/profile");
+                }}
+              >
+                My Profile
               </Button>
             ) : (
               <Button mx="4" leftIcon={<FcGoogle />} onClick={signUserIn}>
-                Sign In
+                Profile
               </Button>
             )}
           </Flex>

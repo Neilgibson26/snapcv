@@ -32,3 +32,21 @@ export async function getAllUsers(callback) {
   });
   callback(usersArray);
 }
+
+export async function addJob(jobID, job) {
+  try {
+    await setDoc(doc(db, "jobs", jobID + ""), job, { merge: true });
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+}
+export async function getAllJobs(callback) {
+  const allJobs = await getDocs(collection(db, "jobs"));
+  const jobsArray = [];
+  allJobs.forEach((doc) => {
+    // doc.data() is never undefined for query doc snapshots
+    jobsArray.push({ id: doc.id, ...doc.data() });
+    console.log(doc.id, " => ", doc.data());
+  });
+  callback(jobsArray);
+}

@@ -15,7 +15,7 @@ function Card(props) {
       my="10"
       _hover={{ opacity: 0.7 }}
       onClick={() => {
-        navigate("/profile/" + props.id);
+        navigate("/profiles/" + props.id);
       }}
     >
       <Flex flexDir="column" flexWrap="wrap">
