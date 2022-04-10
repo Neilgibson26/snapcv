@@ -1,11 +1,9 @@
 import { Box, Flex, Skeleton, Text, useMediaQuery } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
 import React from "react";
 import WhiteNavigationBar from "../../components/WhiteNavigationBar";
 
 function Home() {
   const [isOnmobile] = useMediaQuery("(max-width: 768px)");
-  const navigate = useNavigate();
 
   return (
     <Flex
@@ -52,9 +50,8 @@ function Home() {
                 height="500"
                 src="https://www.youtube.com/embed/eSs68R4zhLI"
                 title="YouTube video player"
-                frameborder="0"
+                frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                autoplay
               ></iframe>
             </Box>
           </Flex>

@@ -1,11 +1,19 @@
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import { Button, Flex, Heading, Image, useMediaQuery } from "@chakra-ui/react";
 import { signInWithPopup } from "firebase/auth";
+import { useEffect } from "react";
 import logo from "../../Assets/whitesnapcv.png";
+import { EMPLOYER } from "../../utils/Constants";
 import { auth, provider } from "../../utils/firebase";
 import { getUser } from "../../utils/firebaseFuncs";
 
-function SignUpIntro({ goNext, updateFormData, setCurrentUser, currentUser }) {
+function SignUpIntro({
+  goNext,
+  updateFormData,
+  setCurrentUser,
+  currentUser,
+  type,
+}) {
   const [isOnmobile] = useMediaQuery("(max-width: 768px)");
 
   const getExistingUser = (data) => {
@@ -21,7 +29,12 @@ function SignUpIntro({ goNext, updateFormData, setCurrentUser, currentUser }) {
         setCurrentUser(user);
 
         getUser(user.uid, getExistingUser);
-        goNext();
+        if (type === EMPLOYER) {
+          goNext(11);
+        } else {
+          goNext();
+        }
+        alert("k");
         // ...
       })
       .catch((error) => {});
@@ -41,7 +54,9 @@ function SignUpIntro({ goNext, updateFormData, setCurrentUser, currentUser }) {
     >
       <Image w="150px" h="150px" src={logo} />
       <Heading w="60%" mb="6" size="md" textAlign="center">
-        Let's get you set up for employment in a snap
+        {type === EMPLOYER
+          ? "Let's get your job posting set up in a snap"
+          : " Let's get you set up for employment in a snap"}
       </Heading>
 
       <Button
@@ -60,7 +75,12 @@ function SignUpIntro({ goNext, updateFormData, setCurrentUser, currentUser }) {
           rightIcon={<ChevronRightIcon fontSize="2xl" />}
           onClick={() => {
             getUser(currentUser.uid, getExistingUser);
-            goNext();
+
+            if (type === EMPLOYER) {
+              goNext(11);
+            } else {
+              goNext();
+            }
           }}
         >
           Continue as {currentUser.displayName.split(" ")[0]}

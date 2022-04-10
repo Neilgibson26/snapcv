@@ -147,7 +147,7 @@ function NavigationBar({ currentUser, setCurrentUser }) {
                   Explore Jobs
                 </Text>
               </Link>
-              <Link to="apply">
+              <Link to="/hire">
                 <Text
                   px="6"
                   py="2"
