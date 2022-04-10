@@ -1,7 +1,6 @@
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import { Button, Flex, Heading, Image, useMediaQuery } from "@chakra-ui/react";
 import { signInWithPopup } from "firebase/auth";
-import { useEffect } from "react";
 import logo from "../../Assets/whitesnapcv.png";
 import { EMPLOYER } from "../../utils/Constants";
 import { auth, provider } from "../../utils/firebase";

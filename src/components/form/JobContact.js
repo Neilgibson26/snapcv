@@ -10,24 +10,15 @@ import React, { useEffect } from "react";
 import FormTextInput from "./FormTextInput";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 
-function ProfileData({
-  formData,
-  updateFormData,
-  goBack,
-  goNext,
-  currentUser,
-}) {
+function JobContact({ formData, updateFormData, goBack, goNext, currentUser }) {
   const [isOnmobile] = useMediaQuery("(max-width: 768px)");
   const toast = useToast();
 
   const checkValidInput = () => {
     if (
-      formData.name.fname === "" ||
-      formData.name.lname === "" ||
+      formData.contact.name === "" ||
       formData.contact.phone === "" ||
-      formData.contact.email === "" ||
-      formData.location.country === "" ||
-      formData.location.city === ""
+      formData.contact.email === ""
     ) {
       toast({
         title: `Please fill all required fields`,
@@ -70,20 +61,6 @@ function ProfileData({
 
   useEffect(() => {
     const copy = { ...formData };
-    copy.name.fname =
-      formData && formData.name
-        ? formData.name.fname === ""
-          ? currentUser.displayName.split(" ")[0]
-          : formData.name.fname
-        : "";
-
-    copy.name.lname =
-      formData && formData.name
-        ? formData.name.lname === "" &&
-          currentUser.displayName.split(" ").length > 1
-          ? currentUser.displayName.split(" ")[1]
-          : formData.name.lname
-        : "";
 
     copy.contact.email =
       formData && formData.contact
@@ -93,8 +70,6 @@ function ProfileData({
         : "";
     updateFormData(copy);
   }, []);
-
-  console.log("hey", formData);
 
   return (
     <Flex
@@ -108,42 +83,19 @@ function ProfileData({
       borderRadius="10px"
     >
       <Heading mb="6" size="md" textAlign="center">
-        Hello {currentUser.displayName.split(" ")[0]} 👋
-        <br /> Enter your details
+        Enter Contact Details
       </Heading>
       <FormTextInput
-        label="First Name"
-        placeholder="First Name"
-        value={
-          formData && formData.name
-            ? formData.name.fname === ""
-              ? currentUser.displayName.split(" ")[0]
-              : formData.name.fname
-            : ""
-        }
+        label="Name"
+        placeholder="Eg: Steve Jobs"
+        value={formData && formData.contact ? formData.contact.name : ""}
         onChange={(text) => {
           const copy = { ...formData };
-          copy.name.fname = text;
+          copy.contact.name = text;
           updateFormData(copy);
         }}
       />
-      <FormTextInput
-        label="Last Name"
-        placeholder="Last Name"
-        value={
-          formData && formData.name
-            ? formData.name.lname === "" &&
-              currentUser.displayName.split(" ").length > 1
-              ? currentUser.displayName.split(" ")[1]
-              : formData.name.lname
-            : ""
-        }
-        onChange={(text) => {
-          const copy = { ...formData };
-          copy.name.lname = text;
-          updateFormData(copy);
-        }}
-      />
+
       <FormTextInput
         label="Phone Number"
         placeholder="Phone Number"
@@ -170,28 +122,18 @@ function ProfileData({
           updateFormData(copy);
         }}
       />
-      <Flex justify="center">
-        <FormTextInput
-          label="Country"
-          placeholder="Country"
-          value={formData && formData.location ? formData.location.country : ""}
-          onChange={(text) => {
-            const copy = { ...formData };
-            copy.location.country = text;
-            updateFormData(copy);
-          }}
-        />
-        <FormTextInput
-          label="City"
-          placeholder="City"
-          value={formData && formData.location ? formData.location.city : ""}
-          onChange={(text) => {
-            const copy = { ...formData };
-            copy.location.city = text;
-            updateFormData(copy);
-          }}
-        />
-      </Flex>
+      <FormTextInput
+        label="Website"
+        placeholder="Eg: www.company.com"
+        isRequired={false}
+        value={formData && formData.contact ? formData.contact.website : ""}
+        onChange={(text) => {
+          const copy = { ...formData };
+          copy.contact.website = text;
+          updateFormData(copy);
+        }}
+      />
+
       <Flex w="100%" justify="space-between" mt="8">
         <Button onClick={goBack} bg="#F7CD6B">
           Cancel
@@ -215,4 +157,4 @@ function ProfileData({
   );
 }
 
-export default ProfileData;
+export default JobContact;

@@ -93,7 +93,9 @@ function MidSection({ formData, updateFormData, goBack, goNext, currentUser }) {
           bg="#F7CD6B"
           m="4"
           rightIcon={<ChevronRightIcon fontSize="2xl" />}
-          onClick={goNext}
+          onClick={() => {
+            goNext();
+          }}
         >
           Next
         </Button>

@@ -12,6 +12,11 @@ import WrittenSummary from "./WrittenSummary";
 import { JOBSEEKER } from "../../utils/Constants";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import JobDescription from "./JobDescription";
+import JobDetails from "./JobDetails";
+import JobArea from "./JobArea";
+import JobSkills from "./JobSkills";
+import JobContact from "./JobContact";
+import JobPosted from "./JobPosted";
 
 const defaultData = {
   profileImg: "",
@@ -36,10 +41,37 @@ const defaultData = {
   work: [],
 };
 
+const defaultJobData = {
+  profileImg: "",
+  jobType: "casual",
+  company: {
+    name: "",
+    area: "",
+  },
+  job: {
+    role: "",
+    rate: "",
+    hours: "",
+  },
+  location: {
+    city: "",
+    country: "",
+  },
+  contact: {
+    name: "",
+    email: "",
+    phone: "",
+    website: "",
+  },
+  video: "",
+  summary: "",
+  skills: [],
+};
+
 function Form({ currentUser, setCurrentUser, type = JOBSEEKER }) {
   const [currentStep, setCurrentStep] = useState(0);
-  // const [data, setData] = useState(null);
   const [formData, setFormData] = useState(defaultData);
+  const [jobFormData, setJobFormData] = useState(defaultJobData);
 
   const navigate = useNavigate();
 
@@ -71,6 +103,8 @@ function Form({ currentUser, setCurrentUser, type = JOBSEEKER }) {
     } else {
       setCurrentStep(currentStep + 1);
     }
+
+    console.log("step", currentStep);
   };
 
   const goBack = () => {
@@ -80,6 +114,7 @@ function Form({ currentUser, setCurrentUser, type = JOBSEEKER }) {
     setCurrentStep(currentStep - 1);
   };
 
+  console.log("curr", currentStep);
   switch (currentStep) {
     case 0:
       currentContent = (
@@ -175,9 +210,64 @@ function Form({ currentUser, setCurrentUser, type = JOBSEEKER }) {
     case 11:
       currentContent = (
         <JobDescription
-          formData={formData}
+          formData={jobFormData}
           currentUser={currentUser}
-          updateFormData={setFormData}
+          updateFormData={setJobFormData}
+          goNext={goNext}
+          goBack={goBack}
+        />
+      );
+      break;
+    case 12:
+      currentContent = (
+        <JobDetails
+          formData={jobFormData}
+          currentUser={currentUser}
+          updateFormData={setJobFormData}
+          goNext={goNext}
+          goBack={goBack}
+        />
+      );
+      break;
+    case 13:
+      currentContent = (
+        <JobArea
+          formData={jobFormData}
+          currentUser={currentUser}
+          updateFormData={setJobFormData}
+          goNext={goNext}
+          goBack={goBack}
+        />
+      );
+      break;
+    case 14:
+      currentContent = (
+        <JobSkills
+          formData={jobFormData}
+          currentUser={currentUser}
+          updateFormData={setJobFormData}
+          goNext={goNext}
+          goBack={goBack}
+        />
+      );
+      break;
+    case 15:
+      currentContent = (
+        <JobContact
+          formData={jobFormData}
+          currentUser={currentUser}
+          updateFormData={setJobFormData}
+          goNext={goNext}
+          goBack={goBack}
+        />
+      );
+      break;
+    case 16:
+      currentContent = (
+        <JobPosted
+          formData={jobFormData}
+          currentUser={currentUser}
+          updateFormData={setJobFormData}
           goNext={goNext}
           goBack={goBack}
         />

@@ -1,33 +1,24 @@
 import {
   Button,
   Flex,
-  FormControl,
-  FormLabel,
   Heading,
   Spacer,
-  Textarea,
   useMediaQuery,
   useToast,
 } from "@chakra-ui/react";
-// import React, { useEffect } from "react";
 import FormTextInput from "./FormTextInput";
-import { ChevronRightIcon } from "@chakra-ui/icons";
+import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 
-function JobDescription({
-  formData,
-  updateFormData,
-  goBack,
-  goNext,
-  currentUser,
-}) {
+function JobDetails({ formData, updateFormData, goBack, goNext, currentUser }) {
   const [isOnmobile] = useMediaQuery("(max-width: 768px)");
   const toast = useToast();
 
   const checkValidInput = () => {
     if (
-      formData.company.name === "" ||
-      formData.job.role === "" ||
-      formData.summary === ""
+      formData.job.hours === "" ||
+      formData.job.rate === "" ||
+      formData.location.country === "" ||
+      formData.location.city === ""
     ) {
       toast({
         title: `Please fill all required fields`,
@@ -54,48 +45,64 @@ function JobDescription({
       borderRadius="10px"
     >
       <Heading mb="6" size="md" textAlign="center">
-        Hello {currentUser.displayName.split(" ")[0]} 👋
-        <br /> Enter details about the job
+        Job Details
       </Heading>
 
       <FormTextInput
-        label="Company Name"
-        placeholder="Company Name"
-        value={formData && formData.company ? formData.company.name : ""}
+        label="Weekly Hours"
+        isNumber
+        placeholder="40"
+        value={formData && formData.job ? formData.job.hours : ""}
         onChange={(text) => {
           const copy = { ...formData };
-          copy.company.name = text;
+          copy.job.hours = text;
           updateFormData(copy);
         }}
       />
 
       <FormTextInput
-        label="Job Role"
-        placeholder="Eg: Sales Assistant"
-        value={formData && formData.job ? formData.job.role : ""}
+        label="Hourly Pay Rate (€ / hour)"
+        isNumber
+        placeholder="40"
+        value={formData && formData.job ? formData.job.rate : ""}
         onChange={(text) => {
           const copy = { ...formData };
-          copy.job.role = text;
+          copy.job.rate = text;
           updateFormData(copy);
         }}
       />
 
-      <FormControl p="1vw" id="first-name" isRequired>
-        <FormLabel fontWeight="bold">Job Description</FormLabel>
-        <Textarea
-          h="22vh"
-          maxLength="500"
-          placeholder="Describe the job tasks"
-          value={formData && formData.summary ? formData.summary : ""}
-          onChange={(e) => {
+      <Flex justify="center">
+        <FormTextInput
+          label="City"
+          placeholder="City"
+          value={formData && formData.location ? formData.location.city : ""}
+          onChange={(text) => {
             const copy = { ...formData };
-            copy.summary = e.target.value;
+            copy.location.city = text;
             updateFormData(copy);
           }}
         />
-      </FormControl>
-
+        <FormTextInput
+          label="Country"
+          placeholder="Country"
+          value={formData && formData.location ? formData.location.country : ""}
+          onChange={(text) => {
+            const copy = { ...formData };
+            copy.location.country = text;
+            updateFormData(copy);
+          }}
+        />
+      </Flex>
       <Flex w="100%" justify="space-between" mt="8">
+        <Button
+          onClick={goBack}
+          bg="#F7CD6B"
+          leftIcon={<ChevronLeftIcon fontSize="2xl" />}
+        >
+          Back
+        </Button>
+
         <Spacer />
 
         <Button
@@ -114,4 +121,4 @@ function JobDescription({
   );
 }
 
-export default JobDescription;
+export default JobDetails;
