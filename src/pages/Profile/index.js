@@ -9,7 +9,8 @@ function Profile({ currentUser, setCurrentUser }) {
   const [data, setData] = useState(null);
   const [isOnmobile] = useMediaQuery("(max-width: 768px)");
   const { id } = useParams();
-
+  console.log("data is ", data);
+  console.log("current user is ", currentUser);
   const getExistingUser = (data) => {
     if (data) {
       setData(data);
@@ -58,7 +59,7 @@ function Profile({ currentUser, setCurrentUser }) {
         >
           Contact User
         </Button>
-        {id === currentUser.uid ? (
+        {data.id === currentUser.uid ? (
           <Button
             leftIcon={<EditIcon />}
             colorScheme="teal"

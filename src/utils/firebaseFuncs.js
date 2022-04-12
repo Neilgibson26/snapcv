@@ -15,7 +15,7 @@ export async function getUser(userID, callback) {
 
   if (docSnap.exists()) {
     console.log("Document data:", docSnap.data());
-    callback(docSnap.data());
+    callback({ id: docSnap.id, ...docSnap.data() });
   } else {
     // doc.data() will be undefined in this case
     console.log("No such document!");
