@@ -67,7 +67,6 @@ function LinksModel({ formData, updateFormData, isOpen, onClose }) {
             onClick={() => {
               if (checkValidInput()) {
                 const copy = { ...formData };
-                console.log("copy", copy);
                 const arr = [...copy.links];
                 arr.push(currentLink);
                 copy.links = arr;

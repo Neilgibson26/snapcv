@@ -94,8 +94,6 @@ function ProfileData({
     updateFormData(copy);
   }, []);
 
-  console.log("hey", formData);
-
   return (
     <Flex
       justify="center"

@@ -103,8 +103,6 @@ function Form({ currentUser, setCurrentUser, type = JOBSEEKER }) {
     } else {
       setCurrentStep(currentStep + 1);
     }
-
-    console.log("step", currentStep);
   };
 
   const goBack = () => {

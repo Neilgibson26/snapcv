@@ -1,6 +1,7 @@
 import { Flex, Input, Select } from "@chakra-ui/react";
 import { React, useState, useEffect } from "react";
 import Card from "../../components/Card";
+import SearchFilters from "../../components/SearchFilters.js";
 import { getAllUsers } from "../../utils/firebaseFuncs";
 
 function Hire() {
@@ -9,9 +10,9 @@ function Hire() {
   const callback = (data) => {
     if (data) {
       setAllUsers(data);
-      console.log(allUsers);
     }
   };
+
   useEffect(() => {
     getAllUsers(callback);
     return () => {};
@@ -19,30 +20,7 @@ function Hire() {
 
   return allUsers ? (
     <Flex flexDir="column" w="100%" h="100%">
-      <Flex w="100%" my="10" flexWrap="wrap" justifyContent="space-evenly">
-        <Input w="20vw" placeholder="Search for Name"></Input>
-
-        <Select placeholder="Country" w="10vw">
-          <option value="option1">Option 1</option>
-          <option value="option2">Option 2</option>
-          <option value="option3">Option 3</option>
-        </Select>
-        <Select placeholder="City" w="10vw">
-          <option value="option1">Option 1</option>
-          <option value="option2">Option 2</option>
-          <option value="option3">Option 3</option>
-        </Select>
-        <Select placeholder="Skills" w="10vw">
-          <option value="option1">Option 1</option>
-          <option value="option2">Option 2</option>
-          <option value="option3">Option 3</option>
-        </Select>
-        <Select placeholder="Sector" w="10vw">
-          <option value="option1">Option 1</option>
-          <option value="option2">Option 2</option>
-          <option value="option3">Option 3</option>
-        </Select>
-      </Flex>
+      <SearchFilters />
       <Flex flexWrap="wrap" justify="center" align="center">
         {allUsers.map((user) => {
           return (

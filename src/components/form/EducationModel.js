@@ -152,7 +152,6 @@ function EducationModel({ formData, updateFormData, isOpen, onClose }) {
             onClick={() => {
               if (checkValidInput()) {
                 const copy = { ...formData };
-                console.log("copy", copy);
                 const arr = [...copy.education];
                 arr.push(currentEdu);
                 copy.education = arr;
