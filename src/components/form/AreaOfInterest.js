@@ -17,7 +17,7 @@ const convertToSelectableObjects = (list) => {
 };
 
 function AreaOfInterest({ formData, updateFormData, goBack, goNext }) {
-  const skilledAreas = [];
+  const skilledAreas = [...AREAS];
   const casualAreas = [...AREAS];
 
   const [isOnmobile] = useMediaQuery("(max-width: 768px)");
