@@ -3,7 +3,15 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { MdLocationOn, MdWork } from "react-icons/md";
 
-function JobCard(props) {
+function JobCard({
+  companyName,
+  companyArea,
+  jobRole,
+  ratePay,
+  city,
+  country,
+  summary,
+}) {
   const navigate = useNavigate();
   return (
     <Box
@@ -19,10 +27,10 @@ function JobCard(props) {
     >
       <Flex flexDir="column" flexWrap="wrap">
         <Text fontSize="xs" color="gray.500">
-          Company Name
+          {companyName}
         </Text>
         <Text fontSize="xl" as="em">
-          Job Role/Title
+          {jobRole}
         </Text>
         {/* <Flex flexWrap="wrap" justify="space-evenly" p="2">
           <Text mx="1" as="b">
@@ -54,16 +62,13 @@ function JobCard(props) {
             fontSize="xx-small"
             mx="2"
           >
-            Location
+            {city}, {country}
           </Button>
           <Button _hover={{}} bg="gray.300" w="30%" fontSize="xx-small" mx="2">
-            Sector
+            {companyArea === "" ? "Sector" : companyArea}
           </Button>
         </Flex>
-        <Text>
-          a brief summary of the job and what they will be expe ted to do
-          wiuthin the job
-        </Text>
+        <Text>{summary}</Text>
 
         {/* {props.summary ? (
           <Flex flexWrap="wrap" px="2">
