@@ -48,7 +48,7 @@ function Hire() {
           return (
             <JobCard
               companyName={job.company.name}
-              companyArea={job.company.area}
+              companyArea={job.job.area}
               jobRole={job.job.role}
               ratePay={job.job.rate}
               city={job.location.city}

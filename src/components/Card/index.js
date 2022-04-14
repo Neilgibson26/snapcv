@@ -6,8 +6,8 @@ function Card(props) {
   const navigate = useNavigate();
   return (
     <Box
-      h="40vh"
-      w="20vw"
+      h="300px"
+      w="300px"
       borderWidth="1px"
       borderRadius="lg"
       overflow="hidden"
@@ -19,7 +19,13 @@ function Card(props) {
       }}
     >
       <Flex flexDir="column" flexWrap="wrap">
-        <Box objectFit="contain" w="100%" borderRadius="lg">
+        <Box
+          objectFit="contain"
+          w="100%"
+          borderRadius="lg"
+          h="200px"
+          overflow="hidden"
+        >
           <video src={props.video} width={520} height={480} autoPlay muted />
         </Box>
         <Flex flexWrap="wrap" justify="space-evenly" p="2">
@@ -27,19 +33,15 @@ function Card(props) {
             &bull; {props.fname} {props.lname}{" "}
           </Text>
           <Text mx="1" as="b">
-            &bull;{props.city}
-          </Text>
-          <Text mx="1" as="b">
-            {" "}
-            &bull;{props.country}
+            &bull;{props.city}, {props.country}
           </Text>
         </Flex>
 
-        {/* {props.summary ? (
+        {props.summary ? (
           <Flex flexWrap="wrap" px="2">
             <Text>{props.summary}</Text>
           </Flex>
-        ) : null} */}
+        ) : null}
       </Flex>
     </Box>
   );
