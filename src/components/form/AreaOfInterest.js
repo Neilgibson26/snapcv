@@ -1,6 +1,7 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { Button, Flex, Heading, Spacer, useMediaQuery } from "@chakra-ui/react";
 import React, { useState } from "react";
+import { AREAS } from "../../utils/Constants";
 
 const convertToSelectableObjects = (list) => {
   const selectableList = [];
@@ -16,24 +17,8 @@ const convertToSelectableObjects = (list) => {
 };
 
 function AreaOfInterest({ formData, updateFormData, goBack, goNext }) {
-  const skilledAreas = [
-    "Technology",
-    "Business",
-    "Law",
-    "Medical",
-    "Engineering",
-    "Fashion & Media",
-    "Education",
-  ];
-  const casualAreas = [
-    "Hospitality",
-    "Construction",
-    "Security",
-    "Logistics",
-    "Healthcare",
-    "Childcare",
-    "Retail",
-  ];
+  const skilledAreas = [];
+  const casualAreas = [...AREAS];
 
   const [isOnmobile] = useMediaQuery("(max-width: 768px)");
   const [currentList, setCurrentList] = useState(

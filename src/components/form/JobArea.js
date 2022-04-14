@@ -1,18 +1,10 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { Button, Flex, Heading, Spacer, useMediaQuery } from "@chakra-ui/react";
 import React, { useState } from "react";
+import { AREAS } from "../../utils/Constants";
 
 function JobArea({ formData, updateFormData, goBack, goNext }) {
-  const areas = [
-    "Hospitality",
-    "Construction",
-    "Security",
-    "Logistics",
-    "Healthcare",
-    "Childcare",
-    "Retail",
-  ];
-
+  const areas = [...AREAS];
   const [isOnmobile] = useMediaQuery("(max-width: 768px)");
   const [selected, setSelected] = useState(formData.job.area);
 
