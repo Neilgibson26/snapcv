@@ -30,15 +30,30 @@ function Home({ currentUser, setCurrentUser }) {
           currentUser={currentUser}
           setCurrentUser={setCurrentUser}
         />
-
-        <Skeleton
-          w="90%"
-          mt="8"
-          startColor="#F7CD6B"
-          endColor="yellow.300"
-          height="70vh"
-        />
-
+        <Flex
+          align="center"
+          justify="center"
+          w="100%"
+          p="5"
+          textAlign="center"
+          flexDir="column"
+        >
+          <Text fontFamily="Square Peg" fontSize="6xl" mb="5" as="b">
+            <hr />
+            Welcome to SnapshotCV <br />
+            Where you can get yourself some casual work in a snap.
+            <hr />
+          </Text>
+          <Text fontFamily="Square Peg" fontSize="4xl" mx="7">
+            {" "}
+            "Here at SnapshotCV we provide a platform for you to present
+            yourself in the form of a 20 second video to any employers out there
+            seeking staff. These videos will allow you to show your personality
+            to the hiring parties where you would not normally be able to do in
+            a traditional cv format. For inspiration you should watch the video
+            below as Immanuel runs us through a quick example."
+          </Text>
+        </Flex>
         <Flex w="100%" justify="center" align="center">
           <Flex w="70%" justify="center" align="center">
             <Box

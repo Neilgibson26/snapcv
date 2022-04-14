@@ -9,7 +9,7 @@ function Hire() {
   const callback = (data) => {
     if (data) {
       setAllJobs(data);
-      console.log(allJobs);
+      console.log("this is all jobs ", allJobs);
     }
   };
   useEffect(() => {
@@ -44,13 +44,19 @@ function Hire() {
         </Select>
       </Flex>
       <Flex align="center" justify="center" flexWrap="wrap">
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
+        {allJobs.map((job) => {
+          return (
+            <JobCard
+              companyName={job.company.name}
+              companyArea={job.company.area}
+              jobRole={job.job.role}
+              ratePay={job.job.rate}
+              city={job.location.city}
+              country={job.location.country}
+              summary={job.summary}
+            />
+          );
+        })}
       </Flex>
     </Flex>
   ) : null;
