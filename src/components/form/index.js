@@ -46,9 +46,9 @@ const defaultJobData = {
   jobType: "casual",
   company: {
     name: "",
-    area: "",
   },
   job: {
+    area: "",
     role: "",
     rate: "",
     hours: "",

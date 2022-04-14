@@ -1,18 +1,21 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
-import {
-  Button,
-  Flex,
-  Heading,
-  Image,
-  useMediaQuery,
-  Textarea,
-} from "@chakra-ui/react";
+import { Button, Flex, Heading, Image, useMediaQuery } from "@chakra-ui/react";
 import logo from "../../Assets/whitesnapcv.png";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { addJob } from "../../utils/firebaseFuncs";
+import { db } from "../../utils/firebase";
+import { doc, collection } from "firebase/firestore";
 
 function JobPosted({ formData, updateFormData, goBack, goNext }) {
   const [isOnmobile] = useMediaQuery("(max-width: 768px)");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const id = doc(collection(db, "posts")).id;
+    addJob(id, formData);
+  }, []);
+
   return (
     <Flex
       justify="center"
