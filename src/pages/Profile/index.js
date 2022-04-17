@@ -55,9 +55,9 @@ function Profile({ currentUser, setCurrentUser }) {
           pos="absolute"
           top="0"
           right="0"
-          mr="10"
+          mr={isOnmobile ? "2" : "10"}
         >
-          Contact User
+          {isOnmobile ? "Contact" : "Contact User"}
         </Button>
         {data.id === currentUser.uid ? (
           <Button
@@ -68,7 +68,7 @@ function Profile({ currentUser, setCurrentUser }) {
             pos="absolute"
             top="0"
             left="0"
-            ml="10"
+            ml={isOnmobile ? "2" : "10"}
             onClick={() => {
               navigate("/signup");
             }}
@@ -78,14 +78,20 @@ function Profile({ currentUser, setCurrentUser }) {
         ) : null}
 
         <Flex flexDir="column" justify="center" align="center">
-          <Text as="b" fontSize="3xl">
+          <Text as="b" fontSize="3xl" mt={isOnmobile ? "50px" : null}>
             {data.name.fname + " " + data.name.lname}
           </Text>
           <Flex align="center" justify="center">
             <Text>{`${data.location.city}, ${data.location.country}`}</Text>
           </Flex>
         </Flex>
-        <Box objectFit="contain" w="40%" h="40vh" borderRadius="lg" my="5">
+        <Box
+          objectFit="contain"
+          w="40%"
+          h={isOnmobile ? "100" : "300"}
+          borderRadius="lg"
+          my={isOnmobile ? "0" : "10"}
+        >
           <video
             src={data.video}
             width="100%"
@@ -96,7 +102,7 @@ function Profile({ currentUser, setCurrentUser }) {
         </Box>
 
         {data.summary ? (
-          <Flex w="50%" align="center" flexDir="column">
+          <Flex w={isOnmobile ? "80%" : "50%"} align="center" flexDir="column">
             <Text fontSize="3xl" as="b">
               Summary
             </Text>
@@ -114,6 +120,7 @@ function Profile({ currentUser, setCurrentUser }) {
                 <Flex
                   my="2"
                   w="40"
+                  h="90"
                   p="5"
                   justify="center"
                   align="center"
@@ -122,7 +129,7 @@ function Profile({ currentUser, setCurrentUser }) {
                   mx="5"
                   borderRadius="2xl"
                 >
-                  <Text>{interest.text}</Text>
+                  <Text textAlign="center">{interest.text}</Text>
                 </Flex>
               ) : null;
             })}
@@ -142,8 +149,9 @@ function Profile({ currentUser, setCurrentUser }) {
               {data.skills.map((skill) => {
                 return skill.selected ? (
                   <Flex
-                    mb="2"
+                    my="2"
                     w="40"
+                    h="90"
                     p="5"
                     justify="center"
                     align="center"

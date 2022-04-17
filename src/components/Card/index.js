@@ -1,9 +1,10 @@
-import { Box, Flex, Image, Text } from "@chakra-ui/react";
+import { Box, Flex, Image, Text, useMediaQuery } from "@chakra-ui/react";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 function Card(props) {
   const navigate = useNavigate();
+  const [isOnmobile] = useMediaQuery("(max-width: 768px)");
   return (
     <Box
       h="300px"
@@ -38,8 +39,15 @@ function Card(props) {
         </Flex>
 
         {props.summary ? (
-          <Flex flexWrap="wrap" px="2">
-            <Text>{props.summary}</Text>
+          <Flex flexWrap="wrap" px="1" justify="center" align="center" w="100%">
+            <Text
+              fontFamily="Square Peg"
+              fontSize="1xl"
+              textAlign="center"
+              noOfLines={2}
+            >
+              {props.summary}
+            </Text>
           </Flex>
         ) : null}
       </Flex>
