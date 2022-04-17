@@ -1,4 +1,11 @@
-import { Box, Button, Flex, Image, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  Image,
+  Text,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { MdLocationOn, MdWork } from "react-icons/md";
@@ -13,11 +20,12 @@ function JobCard({
   summary,
 }) {
   const navigate = useNavigate();
+  const [isOnmobile] = useMediaQuery("(max-width: 768px)");
   return (
     <Box
       p="3"
-      minH="20vh"
-      w="25vw"
+      h={isOnmobile ? "250px" : "200"}
+      w="400px"
       borderWidth="1px"
       borderRadius="lg"
       overflow="hidden"
@@ -44,12 +52,20 @@ function JobCard({
             &bull;
           </Text>
         </Flex> */}
-        <Flex my="2">
+        <Flex
+          my="2"
+          flexWrap={isOnmobile ? "wrap" : null}
+          align="center"
+          justify="center"
+          w="100%"
+        >
           <Button
             _hover={{}}
             w="30%"
             fontSize="xx-small"
-            mx="2"
+            m={isOnmobile ? "2" : null}
+            mx={isOnmobile ? null : "2"}
+            p="2"
             leftIcon={<MdWork />}
           >
             Part-Time
@@ -60,15 +76,30 @@ function JobCard({
             leftIcon={<MdLocationOn />}
             w="30%"
             fontSize="xx-small"
-            mx="2"
+            m={isOnmobile ? "2" : null}
+            mx={isOnmobile ? null : "2"}
+            p="2"
           >
             {city}, {country}
           </Button>
-          <Button _hover={{}} bg="gray.300" w="30%" fontSize="xx-small" mx="2">
+          <Button
+            _hover={{}}
+            bg="gray.300"
+            w="30%"
+            fontSize="xx-small"
+            m={isOnmobile ? "2" : null}
+            mx={isOnmobile ? null : "2"}
+            p="2"
+          >
             {companyArea === "" ? "Sector" : companyArea}
           </Button>
         </Flex>
-        <Text>{summary}</Text>
+        <Text
+          textAlign={isOnmobile ? "center" : null}
+          noOfLines={isOnmobile ? 2 : 3}
+        >
+          {summary}
+        </Text>
 
         {/* {props.summary ? (
           <Flex flexWrap="wrap" px="2">

@@ -38,13 +38,28 @@ function Home({ currentUser, setCurrentUser }) {
           textAlign="center"
           flexDir="column"
         >
-          <Text fontFamily="Square Peg" fontSize="6xl" mb="5" as="b">
+          <Text
+            fontFamily="Square Peg"
+            fontSize={isOnmobile ? "4xl" : "6xl"}
+            as="b"
+          >
             <hr />
             Welcome to SnapshotCV <br />
+          </Text>
+          <Text
+            fontFamily="Square Peg"
+            fontSize={isOnmobile ? "3xl" : "5xl"}
+            mb="5"
+            as="b"
+          >
             Where you can get yourself some casual work in a snap.
             <hr />
           </Text>
-          <Text fontFamily="Square Peg" fontSize="4xl" mx="7">
+          <Text
+            fontFamily="Square Peg"
+            fontSize={isOnmobile ? "2xl" : "4xl"}
+            mx="7"
+          >
             {" "}
             "Here at SnapshotCV we provide a platform for you to present
             yourself in the form of a 20 second video to any employers out there

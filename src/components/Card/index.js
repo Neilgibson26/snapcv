@@ -1,13 +1,14 @@
-import { Box, Flex, Image, Text } from "@chakra-ui/react";
+import { Box, Flex, Image, Text, useMediaQuery } from "@chakra-ui/react";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 function Card(props) {
   const navigate = useNavigate();
+  const [isOnmobile] = useMediaQuery("(max-width: 768px)");
   return (
     <Box
-      h="40vh"
-      w="20vw"
+      h="300px"
+      w="300px"
       borderWidth="1px"
       borderRadius="lg"
       overflow="hidden"
@@ -19,7 +20,13 @@ function Card(props) {
       }}
     >
       <Flex flexDir="column" flexWrap="wrap">
-        <Box objectFit="contain" w="100%" borderRadius="lg">
+        <Box
+          objectFit="contain"
+          w="100%"
+          borderRadius="lg"
+          h="200px"
+          overflow="hidden"
+        >
           <video src={props.video} width={520} height={480} autoPlay muted />
         </Box>
         <Flex flexWrap="wrap" justify="space-evenly" p="2">
@@ -27,19 +34,22 @@ function Card(props) {
             &bull; {props.fname} {props.lname}{" "}
           </Text>
           <Text mx="1" as="b">
-            &bull;{props.city}
-          </Text>
-          <Text mx="1" as="b">
-            {" "}
-            &bull;{props.country}
+            &bull;{props.city}, {props.country}
           </Text>
         </Flex>
 
-        {/* {props.summary ? (
-          <Flex flexWrap="wrap" px="2">
-            <Text>{props.summary}</Text>
+        {props.summary ? (
+          <Flex flexWrap="wrap" px="1" justify="center" align="center" w="100%">
+            <Text
+              fontFamily="Square Peg"
+              fontSize="1xl"
+              textAlign="center"
+              noOfLines={2}
+            >
+              {props.summary}
+            </Text>
           </Flex>
-        ) : null} */}
+        ) : null}
       </Flex>
     </Box>
   );
