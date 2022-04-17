@@ -30,3 +30,11 @@ export const AREAS = [
   "Festival Work",
   "Childcare",
 ];
+export const SKILLS = [
+  "Technology",
+  "Driving",
+  "Customer Service",
+  "Attention to Detail",
+  "Craft",
+  "example here",
+];
