@@ -1,6 +1,7 @@
-import { Box, Flex, Skeleton, Text, useMediaQuery } from "@chakra-ui/react";
+import { Box, Flex, Text, useMediaQuery } from "@chakra-ui/react";
 import React from "react";
 import WhiteNavigationBar from "../../components/WhiteNavigationBar";
+import sample from "../../Assets/sample.mp4";
 
 function Home({ currentUser, setCurrentUser }) {
   const [isOnmobile] = useMediaQuery("(max-width: 768px)");
@@ -81,7 +82,7 @@ function Home({ currentUser, setCurrentUser }) {
               <iframe
                 width="100%"
                 height="500"
-                src="https://www.youtube.com/embed/eSs68R4zhLI"
+                src={sample}
                 title="YouTube video player"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
