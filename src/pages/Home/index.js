@@ -59,7 +59,7 @@ function Home({ currentUser, setCurrentUser }) {
           <Text
             fontFamily="Square Peg"
             fontSize={isOnmobile ? "2xl" : "4xl"}
-            mx="7"
+            mx={isOnmobile ? "2px" : "7px"}
           >
             {" "}
             "Here at SnapshotCV we provide a platform for you to present

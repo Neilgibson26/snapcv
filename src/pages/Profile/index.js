@@ -47,18 +47,35 @@ function Profile({ currentUser, setCurrentUser }) {
         bg="white"
         pos="relative"
       >
-        <Button
-          rightIcon={<EmailIcon />}
-          colorScheme="teal"
-          variant="solid"
-          my="6"
-          pos="absolute"
-          top="0"
-          right="0"
-          mr={isOnmobile ? "2" : "10"}
-        >
-          {isOnmobile ? "Contact" : "Contact User"}
-        </Button>
+        {data.id === currentUser.uid ? (
+          <Button
+            colorScheme="teal"
+            variant="solid"
+            my="6"
+            pos="absolute"
+            top="0"
+            right="0"
+            mr={isOnmobile ? "2" : "10"}
+            onClick={() => {
+              //Implement sign out here
+            }}
+          >
+            Sign out
+          </Button>
+        ) : (
+          <Button
+            rightIcon={<EmailIcon />}
+            colorScheme="teal"
+            variant="solid"
+            my="6"
+            pos="absolute"
+            top="0"
+            right="0"
+            mr={isOnmobile ? "2" : "10"}
+          >
+            {isOnmobile ? "Contact" : "Contact User"}
+          </Button>
+        )}
         {data.id === currentUser.uid ? (
           <Button
             leftIcon={<EditIcon />}
