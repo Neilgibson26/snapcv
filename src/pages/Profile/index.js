@@ -4,6 +4,8 @@ import { Box, useMediaQuery } from "@chakra-ui/react";
 import { EmailIcon, EditIcon } from "@chakra-ui/icons";
 import { getUser } from "../../utils/firebaseFuncs";
 import { useNavigate, useParams } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { auth } from "../../utils/firebase";
 
 function Profile({ currentUser, setCurrentUser }) {
   const [data, setData] = useState(null);
@@ -26,7 +28,14 @@ function Profile({ currentUser, setCurrentUser }) {
 
   const navigate = useNavigate();
 
-  return data ? (
+  const signUserOut = () => {
+    signOut(auth).then(() => {
+      setCurrentUser(null);
+      navigate("/");
+    });
+  };
+
+  return currentUser && data ? (
     <Flex
       w="100vw"
       alignItems="center"
@@ -47,7 +56,7 @@ function Profile({ currentUser, setCurrentUser }) {
         bg="white"
         pos="relative"
       >
-        {data.id === currentUser.uid ? (
+        {currentUser && data.id === currentUser.uid ? (
           <Button
             colorScheme="teal"
             variant="solid"
@@ -58,6 +67,7 @@ function Profile({ currentUser, setCurrentUser }) {
             mr={isOnmobile ? "2" : "10"}
             onClick={() => {
               //Implement sign out here
+              signUserOut();
             }}
           >
             Sign out
@@ -76,7 +86,7 @@ function Profile({ currentUser, setCurrentUser }) {
             {isOnmobile ? "Contact" : "Contact User"}
           </Button>
         )}
-        {data.id === currentUser.uid ? (
+        {currentUser && data.id === currentUser.uid ? (
           <Button
             leftIcon={<EditIcon />}
             colorScheme="teal"
