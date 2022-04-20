@@ -7,6 +7,7 @@ import { getAllUsers } from "../../utils/firebaseFuncs";
 function Hire() {
   const [allUsers, setAllUsers] = useState(null);
   const [filteredList, setFilteredList] = useState([]);
+  const [isFilterActive, setIsFilterActive] = useState(false);
 
   const callback = (data) => {
     if (data) {
@@ -21,7 +22,11 @@ function Hire() {
 
   return allUsers ? (
     <Flex flexDir="column" w="100%" h="100%">
-      <SearchFilters inputList={allUsers} setFilteredList={setFilteredList} />
+      <SearchFilters
+        inputList={allUsers}
+        setFilteredList={setFilteredList}
+        setIsFilterActive={setIsFilterActive}
+      />
 
       {filteredList.length > 0 ? (
         <Flex flexWrap="wrap" justify="center" align="center">
@@ -39,6 +44,10 @@ function Hire() {
               />
             );
           })}
+        </Flex>
+      ) : isFilterActive ? (
+        <Flex w="100%" minH="200px" justify="center" align="center">
+          No Results
         </Flex>
       ) : (
         <Flex flexWrap="wrap" justify="center" align="center">

@@ -22,6 +22,7 @@ export async function getUser(userID, callback) {
     callback(null);
   }
 }
+
 export async function getAllUsers(callback) {
   const allUsers = await getDocs(collection(db, "users"));
   const usersArray = [];
