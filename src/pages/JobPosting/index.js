@@ -2,10 +2,10 @@ import { Button, Flex, Text } from "@chakra-ui/react";
 import { React, useEffect, useState } from "react";
 import { Box, useMediaQuery } from "@chakra-ui/react";
 import { EmailIcon, EditIcon } from "@chakra-ui/icons";
-import { getJob } from "../../utils/firebaseFuncs";
+import { getUser } from "../../utils/firebaseFuncs";
 import { useNavigate, useParams } from "react-router-dom";
 
-function Profile({ currentUser, setCurrentUser }) {
+function JobPosting({ currentUser, setCurrentUser }) {
   const [data, setData] = useState(null);
   const [isOnmobile] = useMediaQuery("(max-width: 768px)");
   const { id } = useParams();
@@ -19,7 +19,7 @@ function Profile({ currentUser, setCurrentUser }) {
 
   useEffect(() => {
     if (currentUser) {
-      getJob(!id ? currentUser.uid : id, getExistingUser);
+      getUser(!id ? currentUser.uid : id, getExistingUser);
     }
     return () => {};
   }, [currentUser, id]);
@@ -191,4 +191,4 @@ function Profile({ currentUser, setCurrentUser }) {
   );
 }
 
-export default Profile;
+export default JobPosting;
