@@ -2,7 +2,7 @@ import { Flex, Input, Select } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { AREAS, SKILLS } from "../../utils/Constants";
 
-function SearchFilters({ inputList, setFilteredList }) {
+function SearchFilters({ inputList, setFilteredList, setIsFilterActive }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [locations, setLocations] = useState({ cities: [], countries: [] });
   const [filters, setFilters] = useState({
@@ -13,14 +13,18 @@ function SearchFilters({ inputList, setFilteredList }) {
   });
 
   useEffect(() => {
-    console.log(filters);
+    console.log("filters", filters);
     if (inputList) {
       let newList = [];
       if (searchQuery !== "") {
         for (let i = 0; i < inputList.length; i++) {
           const item = inputList[i];
-          const name = item.name.fname.toLowerCase();
-          if (name.includes(searchQuery.toLowerCase())) {
+          const fname = item.name.fname.toLowerCase();
+          const lname = item.name.lname.toLowerCase();
+          if (
+            fname.includes(searchQuery.toLowerCase()) ||
+            lname.includes(searchQuery.toLowerCase())
+          ) {
             newList.push(item);
           }
         }
@@ -28,11 +32,11 @@ function SearchFilters({ inputList, setFilteredList }) {
         newList = [...inputList];
       }
 
-      console.log("c", filters.country);
       // country
       if (filters.country !== "") {
-        for (let i = 0; i < newList.length; i++) {
+        for (let i = newList.length - 1; i >= 0; i--) {
           const item = newList[i];
+
           if (!item.location.country.toUpperCase().includes(filters.country)) {
             newList.splice(i, 1);
           }
@@ -41,7 +45,8 @@ function SearchFilters({ inputList, setFilteredList }) {
 
       // city
       if (filters.city !== "") {
-        for (let i = 0; i < newList.length; i++) {
+        console.log("count");
+        for (let i = newList.length - 1; i >= 0; i--) {
           const item = newList[i];
           if (!item.location.city.toUpperCase().includes(filters.city)) {
             newList.splice(i, 1);
@@ -94,6 +99,7 @@ function SearchFilters({ inputList, setFilteredList }) {
       }
 
       setFilteredList(newList);
+      setIsFilterActive(true);
     }
   }, [searchQuery, filters]);
 

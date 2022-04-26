@@ -33,8 +33,6 @@ function SignUpIntro({
         } else {
           goNext();
         }
-        alert("k");
-        // ...
       })
       .catch((error) => {});
   };
