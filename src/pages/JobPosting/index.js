@@ -2,7 +2,7 @@ import { Button, Flex, Text } from "@chakra-ui/react";
 import { React, useEffect, useState } from "react";
 import { Box, useMediaQuery } from "@chakra-ui/react";
 import { EmailIcon, EditIcon } from "@chakra-ui/icons";
-import { getUser } from "../../utils/firebaseFuncs";
+import { applyToJob, getUser } from "../../utils/firebaseFuncs";
 import { useNavigate, useParams } from "react-router-dom";
 import { getJob } from "../../utils/firebaseFuncs";
 
@@ -34,6 +34,7 @@ function JobPosting({ currentUser, setCurrentUser }) {
       justify="center"
       flexDir="column"
       bg="#F7CD6B"
+      minH="100vh"
     >
       <Flex
         flexDir="column"
@@ -55,34 +56,67 @@ function JobPosting({ currentUser, setCurrentUser }) {
           <Flex align="center" justify="center">
             <Text>{`${job.location.city}, ${job.location.country}`}</Text>
           </Flex>
+          <hr />
+        </Flex>
+        <Flex flexWrap="wrap" w="100%" align="center" justify="center" mt="5">
+          <Flex w="100px" h="70" mx="5" flexDir="column" textAlign="center">
+            <Text>Hours:</Text>
+            <hr />
+            {job.job.hours}
+          </Flex>
+          <Flex w="100px" h="70" mx="5" flexDir="column" textAlign="center">
+            <Text>Pay:</Text>
+            <hr />€{job.job.rate}
+          </Flex>
+          <Flex w="100px" h="70" mx="5" flexDir="column" textAlign="center">
+            <Text>Sector:</Text>
+            <hr />
+            {job.job.area}
+          </Flex>
         </Flex>
         {job.summary ? (
-          <Flex w={isOnmobile ? "80%" : "50%"} align="center" flexDir="column">
+          <Flex
+            w={isOnmobile ? "80%" : "50%"}
+            align="center"
+            flexDir="column"
+            mb="5"
+          >
             <Text fontSize="3xl" as="b">
               Summary
             </Text>
             <Text>{job.summary}</Text>
           </Flex>
         ) : null}
-        <Flex align="center" justify="space-evenly" flexWrap="wrap" my="5">
-          {job.skills.map((skill) => {
-            return skill.selected ? (
-              <Flex
-                my="2"
-                w="40"
-                h="90"
-                p="5"
-                justify="center"
-                align="center"
-                flexWrap="wrap"
-                bg="#F7CD6B"
-                mx="5"
-                borderRadius="2xl"
-              >
-                <Text textAlign="center">{skill.text}</Text>
-              </Flex>
-            ) : null;
-          })}
+        <Flex
+          flexDir="column"
+          justify="center"
+          align="center"
+          textAlign="center"
+        >
+          <Text fontSize="3xl" as="b">
+            Skills that would help
+          </Text>
+          <Flex align="center" justify="space-evenly" flexWrap="wrap" my="5">
+            {job.skills.map((skill) => {
+              return skill.selected ? (
+                <Flex
+                  my="2"
+                  w="120px"
+                  h="80px"
+                  p="4"
+                  justify="center"
+                  align="center"
+                  flexWrap="wrap"
+                  bg="#F7CD6B"
+                  mx="5"
+                  borderRadius="2xl"
+                  textAlign="center"
+                >
+                  <Text textAlign="center">{skill.text}</Text>
+                </Flex>
+              ) : null;
+            })}
+          </Flex>
         </Flex>
 
         <Button
@@ -90,8 +124,11 @@ function JobPosting({ currentUser, setCurrentUser }) {
           colorScheme="teal"
           variant="solid"
           my="5"
+          onClick={() => {
+            applyToJob(currentUser.uid, job);
+          }}
         >
-          {isOnmobile ? "Contact" : "Contact Employer"}
+          Apply
         </Button>
       </Flex>
     </Flex>
