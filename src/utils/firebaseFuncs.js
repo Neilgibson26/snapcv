@@ -109,3 +109,13 @@ export async function getEmployer(userID, callback) {
     callback(null);
   }
 }
+
+export async function applyToJob(user, job) {
+  job.interestedUsers.push(user);
+
+  await setDoc(doc(db, "jobs", job.id + ""), job, { merge: true });
+  try {
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+}
