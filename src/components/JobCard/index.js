@@ -18,6 +18,7 @@ function JobCard({
   city,
   country,
   summary,
+  id,
 }) {
   const navigate = useNavigate();
   const [isOnmobile] = useMediaQuery("(max-width: 768px)");
@@ -32,6 +33,9 @@ function JobCard({
       mx="10"
       my="10"
       _hover={{ opacity: 0.7 }}
+      onClick={() => {
+        navigate("/jobposting/" + id);
+      }}
     >
       <Flex flexDir="column" flexWrap="wrap">
         <Text fontSize="xs" color="gray.500">
@@ -40,18 +44,6 @@ function JobCard({
         <Text fontSize="xl" as="em">
           {jobRole}
         </Text>
-        {/* <Flex flexWrap="wrap" justify="space-evenly" p="2">
-          <Text mx="1" as="b">
-            &bull;
-          </Text>
-          <Text mx="1" as="b">
-            &bull;
-          </Text>
-          <Text mx="1" as="b">
-            {" "}
-            &bull;
-          </Text>
-        </Flex> */}
         <Flex
           my="2"
           flexWrap={isOnmobile ? "wrap" : null}

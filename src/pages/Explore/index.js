@@ -9,7 +9,7 @@ function Hire() {
   const callback = (data) => {
     if (data) {
       setAllJobs(data);
-      console.log("this is all jobs ", allJobs);
+      console.log("this is all jobs ", data);
     }
   };
   useEffect(() => {
@@ -54,6 +54,7 @@ function Hire() {
               city={job.location.city}
               country={job.location.country}
               summary={job.summary}
+              id={job.id}
             />
           );
         })}
