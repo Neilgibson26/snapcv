@@ -36,7 +36,11 @@ export async function getAllUsers(callback) {
 
 export async function addJob(userID, jobID, job) {
   try {
-    await setDoc(doc(db, "jobs", jobID + ""), job, { merge: true });
+    await setDoc(
+      doc(db, "jobs", jobID + ""),
+      { employerID: userID, ...job, interestedUsers: [] },
+      { merge: true }
+    );
     addEmployeeAndJob(userID, { id: jobID, ...job });
   } catch (e) {
     console.error("Error adding document: ", e);

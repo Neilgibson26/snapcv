@@ -1,14 +1,15 @@
 import { Box, Button, Flex, Text, useMediaQuery } from "@chakra-ui/react";
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { MdLocationOn, MdWork } from "react-icons/md";
 
 function EmployerJobCard({ job }) {
   const navigate = useNavigate();
   const [isOnmobile] = useMediaQuery("(max-width: 768px)");
+  console.log("job", job);
   return (
     <Box
-      p="3"
+      p="4"
       h={isOnmobile ? "250px" : "150px"}
       w="80%"
       borderWidth="1px"
@@ -19,13 +20,16 @@ function EmployerJobCard({ job }) {
       bg="white"
       shadow="lg"
       _hover={{ opacity: 0.7 }}
+      onClick={() => {
+        navigate("/dashboard/job/" + job.id);
+      }}
     >
       <Flex flexDir="column" flexWrap="wrap">
-        <Text fontSize="xs" color="gray.500">
-          {job.companyName}
+        <Text fontSize="xs" color="gray.500" ml="6">
+          {job.company.name}
         </Text>
-        <Text fontSize="xl" as="em">
-          {job.jobRole}
+        <Text fontSize="xl" as="em" ml="6">
+          {job.job.role}
         </Text>
 
         <Flex
@@ -58,7 +62,7 @@ function EmployerJobCard({ job }) {
             mx={isOnmobile ? null : "2"}
             p="2"
           >
-            {job.city}, {job.country}
+            {job.location.city}, {job.location.country}
           </Button>
           <Button
             _hover={{}}
@@ -70,7 +74,7 @@ function EmployerJobCard({ job }) {
             mx={isOnmobile ? null : "2"}
             p="2"
           >
-            {job.companyArea === "" ? "Sector" : job.companyArea}
+            {job.job.area === "" ? "Sector" : job.job.area}
           </Button>
         </Flex>
       </Flex>

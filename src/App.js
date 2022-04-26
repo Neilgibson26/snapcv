@@ -12,6 +12,7 @@ import useScript from "./hooks/useScript";
 import PostJob from "./pages/PostJob";
 import JobPosting from "./pages/JobPosting";
 import NewJob from "./pages/PostJob/NewJob";
+import JobStats from "./pages/PostJob/JobStats";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -125,6 +126,7 @@ function App() {
             </>
           }
         />
+
         <Route
           path="new-job"
           element={
@@ -140,6 +142,23 @@ function App() {
             </>
           }
         />
+
+        <Route
+          path="dashboard/job/:id"
+          element={
+            <>
+              <NavigationBar
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+              />
+              <JobStats
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+              />
+            </>
+          }
+        />
+
         <Route
           path="/jobposting/:id"
           element={
