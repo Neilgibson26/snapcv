@@ -69,7 +69,7 @@ export async function addEmployeeAndJob(userID, job) {
     console.log("No such document!");
     await setDoc(
       doc(db, "employers", userID + ""),
-      { postedJobs: [job + ""] },
+      { postedJobs: [job] },
       { merge: true }
     );
   }

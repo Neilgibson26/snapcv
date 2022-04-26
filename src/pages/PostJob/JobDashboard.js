@@ -3,6 +3,7 @@ import React from "react";
 import { BsPlusCircleFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import JobCard from "../../components/JobCard";
+import EmployerJobCard from "./EmployerJobCard";
 
 function JobDashboard({ employer }) {
   const [isOnmobile] = useMediaQuery("(max-width: 768px)");
@@ -48,19 +49,9 @@ function JobDashboard({ employer }) {
           </Button>
         </Flex>
 
-        <Flex mt="8" flexDir="column">
+        <Flex mt="8" w="100%" align="center" flexDir="column">
           {employer.postedJobs.map((job) => {
-            return (
-              <JobCard
-                companyName={job.company.name}
-                companyArea={job.job.area}
-                jobRole={job.job.role}
-                ratePay={job.job.rate}
-                city={job.location.city}
-                country={job.location.country}
-                summary={job.summary}
-              />
-            );
+            return <EmployerJobCard job={job} />;
           })}
         </Flex>
       </Flex>
