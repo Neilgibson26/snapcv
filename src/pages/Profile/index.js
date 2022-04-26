@@ -2,7 +2,7 @@ import { Button, Flex, Text } from "@chakra-ui/react";
 import { React, useEffect, useState } from "react";
 import { Box, useMediaQuery } from "@chakra-ui/react";
 import { EmailIcon, EditIcon } from "@chakra-ui/icons";
-import { getUser } from "../../utils/firebaseFuncs";
+import { getJob } from "../../utils/firebaseFuncs";
 import { useNavigate, useParams } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../../utils/firebase";
@@ -21,7 +21,7 @@ function Profile({ currentUser, setCurrentUser }) {
 
   useEffect(() => {
     if (currentUser) {
-      getUser(!id ? currentUser.uid : id, getExistingUser);
+      getJob(!id ? currentUser.uid : id, getExistingUser);
     }
     return () => {};
   }, [currentUser, id]);

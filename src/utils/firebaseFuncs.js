@@ -54,6 +54,19 @@ export async function getAllJobs(callback) {
 
   callback(jobsArray);
 }
+export async function getJob(jobID, callback) {
+  const docRef = doc(db, "jobs", jobID + "");
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    console.log("Document data:", docSnap.data());
+    callback({ id: docSnap.id, ...docSnap.data() });
+  } else {
+    // doc.data() will be undefined in this case
+    console.log("No such document!");
+    callback(null);
+  }
+}
 
 export async function addEmployeeAndJob(userID, job) {
   const employeeRef = doc(db, "employers", userID + "");
