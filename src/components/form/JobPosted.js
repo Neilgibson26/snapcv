@@ -2,18 +2,20 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { Button, Flex, Heading, Image, useMediaQuery } from "@chakra-ui/react";
 import logo from "../../Assets/whitesnapcv.png";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { addJob } from "../../utils/firebaseFuncs";
 import { db } from "../../utils/firebase";
 import { doc, collection } from "firebase/firestore";
 
-function JobPosted({ formData, updateFormData, goBack, goNext }) {
+function JobPosted({ currentUser, formData, updateFormData, goBack, goNext }) {
   const [isOnmobile] = useMediaQuery("(max-width: 768px)");
+  const [jobId, setJobId] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     const id = doc(collection(db, "posts")).id;
-    addJob(id, formData);
+    setJobId(id);
+    addJob(currentUser.uid, id, formData);
   }, []);
 
   return (
@@ -46,16 +48,18 @@ function JobPosted({ formData, updateFormData, goBack, goNext }) {
           Back
         </Button>
 
-        <Button
-          bg="#F7CD6B"
-          mx="2"
-          rightIcon={<ChevronRightIcon fontSize="2xl" />}
-          onClick={() => {
-            navigate("/profile");
-          }}
-        >
-          View Job Post
-        </Button>
+        {jobId ? (
+          <Button
+            bg="#F7CD6B"
+            mx="2"
+            rightIcon={<ChevronRightIcon fontSize="2xl" />}
+            onClick={() => {
+              navigate("/jobposting/" + jobId);
+            }}
+          >
+            View Job Post
+          </Button>
+        ) : null}
       </Flex>
     </Flex>
   );

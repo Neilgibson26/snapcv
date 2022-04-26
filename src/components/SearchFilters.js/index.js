@@ -105,7 +105,6 @@ function SearchFilters({ inputList, setFilteredList, setIsFilterActive }) {
 
   useEffect(() => {
     if (inputList) {
-      console.log("users", inputList);
       const countries = [];
       const cities = [];
 
@@ -165,8 +164,6 @@ function SearchFilters({ inputList, setFilteredList, setIsFilterActive }) {
             </option>
           );
         })}
-
-        <option value="India">India</option>
       </Select>
       <Select
         placeholder="Skills"

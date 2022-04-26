@@ -34,13 +34,15 @@ export async function getAllUsers(callback) {
   callback(usersArray);
 }
 
-export async function addJob(jobID, job) {
+export async function addJob(userID, jobID, job) {
   try {
     await setDoc(doc(db, "jobs", jobID + ""), job, { merge: true });
+    addEmployeeAndJob(userID, { id: jobID, ...job });
   } catch (e) {
     console.error("Error adding document: ", e);
   }
 }
+
 export async function getAllJobs(callback) {
   const allJobs = await getDocs(collection(db, "jobs"));
   const jobsArray = [];
@@ -49,10 +51,49 @@ export async function getAllJobs(callback) {
     jobsArray.push({ id: doc.id, ...doc.data() });
     console.log(doc.id, " => ", doc.data());
   });
+
   callback(jobsArray);
 }
 export async function getJob(jobID, callback) {
   const docRef = doc(db, "jobs", jobID + "");
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    console.log("Document data:", docSnap.data());
+    callback({ id: docSnap.id, ...docSnap.data() });
+  } else {
+    // doc.data() will be undefined in this case
+    console.log("No such document!");
+    callback(null);
+  }
+}
+
+export async function addEmployeeAndJob(userID, job) {
+  const employeeRef = doc(db, "employers", userID + "");
+  const employeeSnap = await getDoc(employeeRef);
+
+  if (employeeSnap.exists()) {
+    console.log("Document data:", employeeSnap.data());
+    const data = employeeSnap.data();
+    data.postedJobs.push(job);
+    console.log("user", userID);
+    await setDoc(doc(db, "employers", userID + ""), data, { merge: true });
+  } else {
+    console.log("No such document!");
+    await setDoc(
+      doc(db, "employers", userID + ""),
+      { postedJobs: [job] },
+      { merge: true }
+    );
+  }
+  try {
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+}
+
+export async function getEmployer(userID, callback) {
+  const docRef = doc(db, "employers", userID + "");
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {

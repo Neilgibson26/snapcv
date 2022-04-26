@@ -11,6 +11,7 @@ import { auth } from "./utils/firebase";
 import useScript from "./hooks/useScript";
 import PostJob from "./pages/PostJob";
 import JobPosting from "./pages/JobPosting";
+import NewJob from "./pages/PostJob/NewJob";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -118,6 +119,21 @@ function App() {
                 setCurrentUser={setCurrentUser}
               />
               <PostJob
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+              />
+            </>
+          }
+        />
+        <Route
+          path="new-job"
+          element={
+            <>
+              <NavigationBar
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+              />
+              <NewJob
                 currentUser={currentUser}
                 setCurrentUser={setCurrentUser}
               />
