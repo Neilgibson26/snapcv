@@ -18,7 +18,7 @@ export async function getUser(userID, callback) {
     callback({ id: docSnap.id, ...docSnap.data() });
   } else {
     // doc.data() will be undefined in this case
-    console.log("No such document!");
+    console.log("This is in addUser");
     callback(null);
   }
 }
