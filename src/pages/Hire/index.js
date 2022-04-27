@@ -1,7 +1,7 @@
 import { Flex } from "@chakra-ui/react";
 import { React, useState, useEffect } from "react";
 import Card from "../../components/Card";
-import SearchFilters from "../../components/SearchFilters.js";
+import SearchFilters from "../../components/SearchFilters/index.js";
 import { getAllUsers } from "../../utils/firebaseFuncs";
 
 function Hire() {
