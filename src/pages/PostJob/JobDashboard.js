@@ -7,7 +7,7 @@ import EmployerJobCard from "./EmployerJobCard";
 function JobDashboard({ employer }) {
   const navigate = useNavigate();
 
-  console.log("emp", employer);
+  const [isOnmobile] = useMediaQuery("(max-width: 768px)");
 
   return (
     employer && (
@@ -25,9 +25,9 @@ function JobDashboard({ employer }) {
         <Flex
           flexDir="column"
           w="100%"
-          justify="center"
-          align="center"
-          pos="relative"
+          justify={isOnmobile ? "center" : "center"}
+          align={isOnmobile ? "center" : "center"}
+          pos={isOnmobile ? "" : "relative"}
         >
           <Heading w="60%" size="md" textAlign="center">
             Employer Dashboard
@@ -36,7 +36,7 @@ function JobDashboard({ employer }) {
             my="1"
             mx="2"
             bg="#F7CD6B"
-            pos="absolute"
+            pos={isOnmobile ? "left" : "absolute"}
             right="0"
             leftIcon={<BsPlusCircleFill fontSize="2xl" />}
             onClick={() => {

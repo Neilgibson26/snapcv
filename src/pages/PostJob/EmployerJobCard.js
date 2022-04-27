@@ -37,12 +37,12 @@ function EmployerJobCard({ job }) {
           flexWrap={isOnmobile ? "wrap" : null}
           align="center"
           justify="center"
-          w="100%"
+          w={isOnmobile ? "200px" : "100%"}
         >
           <Button
             _hover={{}}
             _focus={{}}
-            w="30%"
+            w="90px"
             fontSize="xx-small"
             m={isOnmobile ? "2" : null}
             mx={isOnmobile ? null : "2"}
@@ -56,7 +56,7 @@ function EmployerJobCard({ job }) {
             _focus={{}}
             _hover={{}}
             leftIcon={<MdLocationOn />}
-            w="30%"
+            w={isOnmobile ? "90px" : "30%"}
             fontSize="xx-small"
             m={isOnmobile ? "2" : null}
             mx={isOnmobile ? null : "2"}
@@ -68,7 +68,7 @@ function EmployerJobCard({ job }) {
             _hover={{}}
             _focus={{}}
             bg="gray.300"
-            w="30%"
+            w="90px"
             fontSize="xx-small"
             m={isOnmobile ? "2" : null}
             mx={isOnmobile ? null : "2"}
