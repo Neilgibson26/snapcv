@@ -163,9 +163,8 @@ function WhiteNavigationBar({ currentUser, setCurrentUser }) {
               fontFamily="Inter"
               fontWeight="bold"
             >
-              <Link to="explore" w="100%">
+              <Link to="explore">
                 <Text
-                  w="100%"
                   px="6"
                   py="2"
                   fontFamily="sans-serif"
@@ -174,6 +173,18 @@ function WhiteNavigationBar({ currentUser, setCurrentUser }) {
                   _hover={{ bg: "#F7CD6B" }}
                 >
                   Explore Jobs
+                </Text>
+              </Link>
+              <Link to="hire">
+                <Text
+                  px="6"
+                  py="2"
+                  fontFamily="sans-serif"
+                  fontWeight="bold"
+                  borderRadius="lg"
+                  _hover={{ bg: "#F7CD6B" }}
+                >
+                  Hire somebody
                 </Text>
               </Link>
               <Link to="post">
@@ -189,17 +200,26 @@ function WhiteNavigationBar({ currentUser, setCurrentUser }) {
                 </Text>
               </Link>
               {currentUser ? (
-                <Button mx="4" onClick={signUserOut} _hover={{ bg: "#F7CD6B" }}>
-                  Sign Out
+                <Button
+                  rightIcon={<BsPersonCircle />}
+                  mx="4"
+                  bg="#F7CD6B"
+                  onClick={() => {
+                    navigate("/profile");
+                  }}
+                >
+                  My Profile
                 </Button>
               ) : (
                 <Button
                   mx="4"
-                  leftIcon={<FcGoogle />}
-                  onClick={signUserIn}
-                  _hover={{ bg: "#F7CD6B" }}
+                  onClick={() => {
+                    navigate("/signup");
+                  }}
+                  bg="#F7CD6B"
+                  _hover={{ opacity: 0.8 }}
                 >
-                  Sign In
+                  Sign Up
                 </Button>
               )}
             </Stack>

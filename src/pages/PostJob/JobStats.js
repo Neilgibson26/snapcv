@@ -1,10 +1,8 @@
-import { Button, Flex, Text } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 import { React, useEffect, useState } from "react";
-import { Box, useMediaQuery } from "@chakra-ui/react";
-import { EmailIcon, EditIcon } from "@chakra-ui/icons";
-import { applyToJob, getUser } from "../../utils/firebaseFuncs";
-import { useNavigate, useParams } from "react-router-dom";
+import { useMediaQuery } from "@chakra-ui/react";
 import { getJob } from "../../utils/firebaseFuncs";
+import { useParams } from "react-router-dom";
 
 function JobStats({ currentUser, setCurrentUser }) {
   const [job, setJob] = useState(null);
@@ -24,8 +22,6 @@ function JobStats({ currentUser, setCurrentUser }) {
     }
     return () => {};
   }, [currentUser, id]);
-
-  const navigate = useNavigate();
 
   if (job && currentUser.uid !== job.employerID) {
     return (

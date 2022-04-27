@@ -154,7 +154,7 @@ function NavigationBar({ currentUser, setCurrentUser }) {
               fontFamily="Inter"
               fontWeight="bold"
             >
-              <Link to="explore">
+              <Link to="/explore">
                 <Text
                   px="6"
                   py="2"
@@ -175,16 +175,34 @@ function NavigationBar({ currentUser, setCurrentUser }) {
                   borderRadius="lg"
                   _hover={{ bg: "white" }}
                 >
+                  Hire somebody
+                </Text>
+              </Link>
+              <Link to="/post">
+                <Text
+                  px="6"
+                  py="2"
+                  fontFamily="sans-serif"
+                  fontWeight="bold"
+                  borderRadius="lg"
+                  _hover={{ bg: "white" }}
+                >
                   Post a Job
                 </Text>
               </Link>
               {currentUser ? (
-                <Button mx="4" onClick={signUserOut}>
-                  Sign Out
+                <Button
+                  mx="4"
+                  rightIcon={<BsPersonCircle />}
+                  onClick={() => {
+                    navigate("/profile");
+                  }}
+                >
+                  My Profile
                 </Button>
               ) : (
                 <Button mx="4" leftIcon={<FcGoogle />} onClick={signUserIn}>
-                  Sign In
+                  Profile
                 </Button>
               )}
             </Stack>
