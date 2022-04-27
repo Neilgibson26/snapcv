@@ -1,4 +1,4 @@
-import { Flex, Text } from "@chakra-ui/react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import { React, useEffect, useState } from "react";
 import { useMediaQuery } from "@chakra-ui/react";
 import { getJob } from "../../utils/firebaseFuncs";
@@ -132,12 +132,10 @@ function JobStats({ currentUser, setCurrentUser }) {
         <Text fontSize="3xl" as="b">
           Interested Candidates:
         </Text>
-        {job.skills.map((skill) => {
-          return skill.selected ? (
+        {job.interestedUsers.map((user) => {
+          return (
             <Flex
               my="2"
-              w="120px"
-              h="80px"
               p="4"
               justify="center"
               align="center"
@@ -147,9 +145,18 @@ function JobStats({ currentUser, setCurrentUser }) {
               borderRadius="2xl"
               textAlign="center"
             >
-              <Text textAlign="center">{skill.text}</Text>
+              <Flex
+                objectFit="contain"
+                align="center"
+                maxW="300px"
+                minH={isOnmobile ? "200px" : "300px"}
+                borderRadius="lg"
+                mb="6"
+              >
+                <Box as="video" src={user.video} minW="200px" controls />
+              </Flex>
             </Flex>
-          ) : null;
+          );
         })}
       </Flex>
     </Flex>

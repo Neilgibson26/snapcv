@@ -2,11 +2,9 @@ import { Button, Flex, Heading, useMediaQuery } from "@chakra-ui/react";
 import React from "react";
 import { BsPlusCircleFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
-import JobCard from "../../components/JobCard";
 import EmployerJobCard from "./EmployerJobCard";
 
 function JobDashboard({ employer }) {
-  const [isOnmobile] = useMediaQuery("(max-width: 768px)");
   const navigate = useNavigate();
 
   console.log("emp", employer);

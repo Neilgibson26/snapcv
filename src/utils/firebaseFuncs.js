@@ -110,8 +110,8 @@ export async function getEmployer(userID, callback) {
   }
 }
 
-export async function applyToJob(uid, job) {
-  job.interestedUsers.push(uid + "");
+export async function applyToJob(user, job) {
+  job.interestedUsers.push(user);
 
   await setDoc(doc(db, "jobs", job.id + ""), job, { merge: true });
   try {

@@ -8,24 +8,30 @@ import { getJob } from "../../utils/firebaseFuncs";
 
 function JobPosting({ currentUser, setCurrentUser }) {
   const [job, setJob] = useState(null);
+  const [userProfile, setUserProfile] = useState(null);
   const [isOnmobile] = useMediaQuery("(max-width: 768px)");
   const { id } = useParams();
+  const navigate = useNavigate();
+
   const getExistingJob = (data) => {
     if (data) {
       setJob(data);
-      console.log("Job schema is: ", data);
     }
   };
-  console.log("The schema is: ", job);
+
+  const getExistingUser = (data) => {
+    if (data) {
+      setUserProfile(data);
+    }
+  };
 
   useEffect(() => {
     if (currentUser) {
       getJob(!id ? currentUser.uid : id, getExistingJob);
+      getUser(currentUser.uid, getExistingUser);
     }
     return () => {};
   }, [currentUser, id]);
-
-  const navigate = useNavigate();
 
   return job ? (
     <Flex
@@ -125,7 +131,13 @@ function JobPosting({ currentUser, setCurrentUser }) {
           variant="solid"
           my="5"
           onClick={() => {
-            applyToJob(currentUser.uid, job);
+            if (userProfile) {
+              applyToJob(userProfile, job);
+              alert("Your profile as been sent to the employer. Good Luck!");
+              navigate("/explore");
+            } else {
+              alert("Oops, try again. Something went wrong");
+            }
           }}
         >
           Apply
