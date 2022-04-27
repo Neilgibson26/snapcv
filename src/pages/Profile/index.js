@@ -113,26 +113,24 @@ function Profile({ currentUser, setCurrentUser }) {
             <Text>{`${data.location.city}, ${data.location.country}`}</Text>
           </Flex>
         </Flex>
-        <Box
+        <Flex
           objectFit="contain"
           align="center"
-          w="40%"
-          h={isOnmobile ? "100" : "300"}
+          // justifyContent="center"
+
+          h={isOnmobile ? "100px" : "300px"}
           borderRadius="lg"
-          mb={isOnmobile ? "5" : "20"}
-          mt={isOnmobile ? "5" : "5"}
         >
-          <video
-            src={data.video}
-            width="270px"
-            height="250px"
-            autoPlay
-            controls
-          />
-        </Box>
+          <Box as="video" src={data.video} width="200px" autoPlay controls />
+        </Flex>
 
         {data.summary ? (
-          <Flex w={isOnmobile ? "80%" : "50%"} align="center" flexDir="column">
+          <Flex
+            w={isOnmobile ? "80%" : "50%"}
+            align="center"
+            flexDir="column"
+            mt="10"
+          >
             <Text fontSize="3xl" as="b">
               Summary
             </Text>
