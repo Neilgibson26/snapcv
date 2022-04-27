@@ -115,15 +115,17 @@ function Profile({ currentUser, setCurrentUser }) {
         </Flex>
         <Box
           objectFit="contain"
+          align="center"
           w="40%"
           h={isOnmobile ? "100" : "300"}
           borderRadius="lg"
-          my={isOnmobile ? "0" : "10"}
+          mb={isOnmobile ? "5" : "20"}
+          mt={isOnmobile ? "5" : "5"}
         >
           <video
             src={data.video}
-            width="100%"
-            height="100%"
+            width="270px"
+            height="250px"
             autoPlay
             controls
           />
