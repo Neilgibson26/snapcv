@@ -30,7 +30,7 @@ function WhiteNavigationBar({ currentUser, setCurrentUser }) {
         // const token = credential.accessToken;
         // // The signed-in user info.
         const user = result.user;
-        alert("Hello " + user.displayName);
+        // alert("Hello " + user.displayName);
         setCurrentUser(user);
         // ...
       })

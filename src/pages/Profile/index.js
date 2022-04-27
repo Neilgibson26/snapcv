@@ -116,12 +116,12 @@ function Profile({ currentUser, setCurrentUser }) {
         <Flex
           objectFit="contain"
           align="center"
-          // justifyContent="center"
-
-          h={isOnmobile ? "100px" : "300px"}
+          maxW="300px"
+          minH={isOnmobile ? "200px" : "300px"}
           borderRadius="lg"
+          mb="6"
         >
-          <Box as="video" src={data.video} width="200px" autoPlay controls />
+          <Box as="video" src={data.video} minW="200px" autoPlay controls />
         </Flex>
 
         {data.summary ? (
