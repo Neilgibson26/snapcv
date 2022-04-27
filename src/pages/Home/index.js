@@ -78,15 +78,17 @@ function Home({ currentUser, setCurrentUser }) {
               borderRadius="lg"
               overflow="hidden"
               my="10"
+              bg="black"
+              align="center"
             >
-              <iframe
-                width="100%"
-                height="500"
+              <video
+                width="400px"
+                height="600px"
                 src={sample}
                 title="YouTube video player"
                 frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              ></iframe>
+                controls
+              ></video>
             </Box>
           </Flex>
         </Flex>
