@@ -36,5 +36,8 @@ export const SKILLS = [
   "Customer Service",
   "Attention to Detail",
   "Craft",
-  "example here",
+  "Math",
+  "Teamwork",
+  "Fast-paced Working",
+  "Management",
 ];
