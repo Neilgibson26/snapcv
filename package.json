@@ -24,7 +24,7 @@
     "react-router-dom": "6",
     "react-scripts": "5.0.0",
     "react-video-recorder": "^3.19.1",
-    "styled-components": "^5.3.5",
+    "styled-components": "^5.3.7",
     "web-vitals": "^0.2.4",
     "workbox-background-sync": "^5.1.4",
     "workbox-broadcast-update": "^5.1.4",
