@@ -21,7 +21,7 @@
     "react-dom": "^18.0.0",
     "react-icons": "^4.3.1",
     "react-media-recorder": "^1.6.3",
-    "react-router-dom": "6",
+    "react-router-dom": "6.30.2",
     "react-scripts": "5.0.0",
     "react-video-recorder": "^3.19.1",
     "styled-components": "^5.3.5",
